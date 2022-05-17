@@ -1,12 +1,13 @@
 import React from "react";
-import Filter, { advancedSearch } from "../Filter";
+import Filter from "../Filter";
+import Carousel from "./Carousel";
 import { Container } from "./style";
 
 const Home = () => {
   return (
     <Container>
       <Filter />
-      {advancedSearch}
+      <Carousel />
     </Container>
   );
 };
