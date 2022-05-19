@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useRef } from "react";
 import AliceCarousel from "react-alice-carousel";
 import Card from "../../Card";
+import { Icon } from "../Carousel/style";
 import { Carousel, Container, Wrapper } from "./style";
 
 const Recommended = () => {
+  const slider = useRef();
   const items = [
     <Card mr={20} />,
     <Card mr={20} />,
@@ -18,7 +20,9 @@ const Recommended = () => {
       </div>
       <Wrapper>
         <Carousel>
-          <AliceCarousel autoWidth items={items} />
+          <Icon.Right onClick={() => slider.current.slidePrev()} />
+          <Icon.Left onClick={() => slider.current.slideNext()} />
+          <AliceCarousel ref={slider} autoWidth items={items} />
         </Carousel>
       </Wrapper>
     </Container>

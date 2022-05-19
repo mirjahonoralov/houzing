@@ -11,12 +11,23 @@ const Wrapper = styled.div`
   display: flex;
   justify-content: center;
   margin-top: 32px;
+  position: relative;
 `;
 
 const Carousel = styled.div`
-  width: 1440px;
+  /* width: 100%; */
+  max-width: 1440px;
   display: flex;
   padding: 0 130px;
   overflow: hidden;
+
+  .alice-carousel__prev-btn-wrapper,
+  .alice-carousel__next-btn-wrapper {
+    display: none;
+  }
 `;
+
+// const Icon = styled.div``;
+// Icon.Left=
+
 export { Container, Wrapper, Carousel };

@@ -27,7 +27,7 @@ Icon.Right = styled(right)`
   justify-content: center;
   align-items: center;
   background: #ffffff;
-  opacity: 0.2;
+  opacity: 0.5;
   transform: matrix(-1, 0, 0, 1, 0, 0);
   color: #fff;
   padding: 7px;
@@ -44,6 +44,7 @@ Icon.Right = styled(right)`
   :hover {
     opacity: 0.97;
   }
+  box-shadow: 0 0 10px #404040;
 `;
 
 Icon.Left = styled(left)`
@@ -53,7 +54,7 @@ Icon.Left = styled(left)`
   justify-content: center;
   align-items: center;
   background: #ffffff;
-  opacity: 0.2;
+  opacity: 0.5;
   transform: matrix(-1, 0, 0, 1, 0, 0);
   color: #fff;
   padding: 7px;
@@ -70,6 +71,7 @@ Icon.Left = styled(left)`
   :hover {
     opacity: 0.97;
   }
+  box-shadow: 0 0 10px #404040;
 `;
 
 export { Container, Img, Wrapper, Icon };
