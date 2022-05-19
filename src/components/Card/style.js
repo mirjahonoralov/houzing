@@ -14,6 +14,10 @@ const Container = styled.div`
   background: #ffffff;
   border: 1px solid #e6e9ec;
   border-radius: 3px;
+  max-width: 380px;
+  min-width: 280px;
+  flex-grow: 10;
+  margin-right: ${({ mr }) => mr && `${mr}px`};
 `;
 
 const Info = styled.div`
@@ -36,8 +40,10 @@ const ItemsWrapper = styled.div`
 `;
 
 const Img = styled.img`
-  max-width: 380px;
-  min-width: 22px;
+  /* max-width: 380px;
+  min-width: 280px; */
+  width: 100%;
+  flex-grow: 10;
   height: 220px;
 `;
 
@@ -48,8 +54,10 @@ const Person = styled.img`
   /* border:2px solid */
   background: #ffffff;
   box-shadow: 0px 0px 10px rgba(13, 38, 59, 0.2);
-  border-radius: 100%;
+  border-radius: 50%;
   padding: 2px;
+  width: 40px;
+  height: 40px;
 `;
 
 const Icon = styled.div``;

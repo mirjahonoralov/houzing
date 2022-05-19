@@ -9,7 +9,7 @@ const Home = () => {
     <Container>
       <Filter />
       <Carousel />
-      {/* <Recommended /> */}
+      <Recommended />
     </Container>
   );
 };
