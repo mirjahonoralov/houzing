@@ -16,7 +16,7 @@ const Wrapper = styled.div`
 
 const Carousel = styled.div`
   /* width: 100%; */
-  max-width: 1440px;
+  width: 1440px;
   display: flex;
   padding: 0 130px;
   overflow: hidden;
@@ -26,8 +26,5 @@ const Carousel = styled.div`
     display: none;
   }
 `;
-
-// const Icon = styled.div``;
-// Icon.Left=
 
 export { Container, Wrapper, Carousel };
