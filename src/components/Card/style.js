@@ -16,7 +16,7 @@ const Container = styled.div`
   border-radius: 3px;
   max-width: 380px;
   min-width: 280px;
-  flex-grow: 10;
+  /* flex-grow: 10; */
   margin-right: ${({ mr }) => mr && `${mr}px`};
 `;
 

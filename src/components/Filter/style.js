@@ -14,6 +14,7 @@ const Wrapper = styled.div`
   width: 1440px;
   gap: 20px;
   margin: 10px 0;
+  padding: 0 130px;
 `;
 
 const Icon = styled.div``;

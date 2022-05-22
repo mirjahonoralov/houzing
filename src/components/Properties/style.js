@@ -20,9 +20,10 @@ const Result = styled.div`
 `;
 
 const Wrapper = styled.div`
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 20px;
+  width: 100%;
   max-width: 1440px;
 `;
 

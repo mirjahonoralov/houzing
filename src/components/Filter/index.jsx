@@ -1,35 +1,20 @@
-import React, { useRef } from "react";
+import React from "react";
 import { Button } from "../Generic/Button";
 import { Input } from "../Generic/Input";
 
 import { Advanced, Container, Icon, Inputs, Wrapper } from "./style";
 import { Popover } from "antd";
 import { useLocation, useNavigate } from "react-router-dom";
-import UseReplace from "../../hooks/useReplace";
-import UseSearch from "../../hooks/useSearch";
+import { UseReplace, UseSearch } from "../../hooks/functions";
 
 const Filter = () => {
   const navigate = useNavigate();
   const { pathname } = useLocation();
   const query = UseSearch();
-  const countryRef = useRef("");
-  const regionRef = useRef("");
-  const cityRef = useRef("");
-  const zipRef = useRef("");
-  const addressRef = useRef("");
-  const houseNameRef = useRef("");
-  const roomRef = useRef("");
-  const minRef = useRef("");
-  const maxRef = useRef("");
-
-  const onSearch = () => {};
 
   const onChange = ({ target }) => {
-    const { value } = target;
-    console.log("pathname: ", pathname);
-    navigate(
-      `${pathname}${UseReplace(target.placeholder.toLowerCase(), value)}`
-    );
+    const { value, name } = target;
+    navigate(`${pathname}${UseReplace(name, value)}`);
   };
 
   const advancedSearch = (
@@ -37,39 +22,81 @@ const Filter = () => {
       <Advanced.Title>Address</Advanced.Title>
       <Inputs>
         <Input
-          onChange={onChange}
-          defaultValue={query.get("zip")}
-          ref={countryRef}
+          name={"country"}
           placeholder={"Country"}
           pl={20}
+          onChange={onChange}
+          defaultValue={query.get("country")}
         />
-        <Input ref={regionRef} placeholder={"Region"} pl={20} />
         <Input
-          defaultValue={query.get("city")}
-          ref={cityRef}
+          name={"region"}
+          placeholder={"Region"}
+          pl={20}
+          onChange={onChange}
+          defaultValue={query.get("region")}
+        />
+        <Input
+          name={"city"}
           placeholder={"City"}
           pl={20}
           onChange={onChange}
+          defaultValue={query.get("city")}
         />
-        <Input ref={zipRef} placeholder={"Zip"} pl={20} />
+        <Input
+          name={"zip"}
+          placeholder={"Zip"}
+          pl={20}
+          onChange={onChange}
+          defaultValue={query.get("zip")}
+        />
       </Inputs>
       <Advanced.Title>Apartment info</Advanced.Title>
       <Inputs>
-        <Input ref={addressRef} placeholder={"Address"} pl={20} />
-        <Input ref={houseNameRef} placeholder={"House name"} pl={20} />
-        <Input ref={roomRef} placeholder={"Rooms"} pl={20} />
+        <Input
+          name={"address"}
+          placeholder={"Address"}
+          pl={20}
+          onChange={onChange}
+          defaultValue={query.get("address")}
+        />
+        <Input
+          name={"house"}
+          placeholder={"House name"}
+          pl={20}
+          onChange={onChange}
+          defaultValue={query.get("house")}
+        />
+        <Input
+          name={"rooms"}
+          placeholder={"Rooms"}
+          pl={20}
+          onChange={onChange}
+          defaultValue={query.get("rooms")}
+        />
       </Inputs>
       <Advanced.Title>Price</Advanced.Title>
       <Inputs>
-        <Input ref={minRef} placeholder={"Min price"} pl={20} />
-        <Input ref={maxRef} placeholder={"Max price"} pl={20} />
+        <Input
+          name={"min"}
+          placeholder={"Min price"}
+          pl={20}
+          onChange={onChange}
+          defaultValue={query.get("min")}
+        />
+        <Input
+          name={"max"}
+          placeholder={"Max price"}
+          pl={20}
+          onChange={onChange}
+          defaultValue={query.get("max")}
+        />
       </Inputs>
       <Inputs>
-        {/* <Button width={"130px"} type={"secondary"}>
+        <Button width={"130px"} type={"secondary"}>
           Cancel
-        </Button> */}
-        <Button width={"130px"} type={"primary"} onClick={onSearch}>
-          Search
+        </Button>
+        <Button width={"130px"} type={"primary"}>
+          Clear
         </Button>
       </Inputs>
     </Advanced>
@@ -94,7 +121,7 @@ const Filter = () => {
             Advanced
           </Button>
         </Popover>
-        <Button type={"primary"} width={"131px"} onClick={onSearch}>
+        <Button type={"primary"} width={"131px"}>
           <Icon.Search />
           Search
         </Button>

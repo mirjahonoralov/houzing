@@ -2,6 +2,7 @@ import React from "react";
 import { Container, Icon, Wrapper } from "./style";
 
 export const Input = ({
+  name,
   placeholder,
   onChange,
   defaultValue,
@@ -19,6 +20,7 @@ export const Input = ({
     <Wrapper mr={mr} ml={ml} mb={mb} mt={mt}>
       <Icon>{children}</Icon>
       <Container
+        name={name}
         onChange={onChange}
         defaultValue={defaultValue}
         pl={pl}
