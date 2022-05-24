@@ -6,6 +6,9 @@ import { ReactComponent as right } from "../../../assets/icons/right-arrow.svg";
 const Container = styled(Carousel)`
   width: 100%;
   height: fit-content;
+  max-width: 1440px;
+  display: flex;
+  justify-content: center;
 `;
 
 const Wrapper = styled.div`

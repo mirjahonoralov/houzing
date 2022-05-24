@@ -15,10 +15,10 @@ const Wrapper = styled.div`
 `;
 
 const Carousel = styled.div`
-  /* width: 100%; */
+  padding: 0 130px;
   width: 1440px;
   display: flex;
-  padding: 0 130px;
+  justify-content: space-between;
   overflow: hidden;
 
   .alice-carousel__prev-btn-wrapper,
