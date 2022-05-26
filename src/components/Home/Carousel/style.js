@@ -3,21 +3,26 @@ import { Carousel } from "antd";
 import { ReactComponent as left } from "../../../assets/icons/left-arrow.svg";
 import { ReactComponent as right } from "../../../assets/icons/right-arrow.svg";
 
-const Container = styled(Carousel)`
-  width: 100%;
-  height: fit-content;
-  max-width: 1440px;
+const ExtraWrapper = styled.div`
   display: flex;
   justify-content: center;
+  max-width: 100vw;
 `;
 
 const Wrapper = styled.div`
-  width: 100%;
-  height: 570px;
   position: relative;
+  max-width: 1440px;
+  width: 100%;
 `;
+
+const Container = styled(Carousel)`
+  height: fit-content;
+  width: 100%;
+`;
+
 const Img = styled.img`
   width: 100%;
+  max-width: 1440px;
   background: #000;
 `;
 
@@ -77,4 +82,4 @@ Icon.Left = styled(left)`
   box-shadow: 0 0 10px #404040;
 `;
 
-export { Container, Img, Wrapper, Icon };
+export { Container, Img, Wrapper, Icon, ExtraWrapper };

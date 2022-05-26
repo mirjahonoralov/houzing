@@ -1,6 +1,7 @@
 // components
 import Generic from "../pages/Generic";
 import HomePage from "../pages/Home";
+import Login from "../pages/Login";
 import PropertiesPage from "../pages/Properties";
 
 export const navbar = [
@@ -20,6 +21,15 @@ export const navbar = [
     Element: <PropertiesPage />,
     search: "?",
     hidden: false,
+    private: false,
+  },
+  {
+    id: 3,
+    title: "Login",
+    path: "/login",
+    Element: <Login />,
+    search: "?",
+    hidden: true,
     private: false,
   },
   {

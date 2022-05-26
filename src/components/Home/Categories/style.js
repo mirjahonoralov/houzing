@@ -11,10 +11,10 @@ const Wrapper = styled.div`
   display: flex;
   justify-content: center;
   margin-top: 32px;
+  position: relative;
 `;
 
 const Carousel = styled.div`
-  position: relative;
   padding: 0 130px;
   width: 1440px;
   display: flex;

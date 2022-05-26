@@ -11,6 +11,7 @@ const Recommended = () => {
     <Card mr={20} />,
     <Card mr={20} />,
     <Card mr={20} />,
+    <Card mr={20} />,
   ];
   return (
     <Container>

@@ -14,7 +14,7 @@ import noUser from "../../assets/imgs/no-user.jpg";
 const Card = ({ info, mr }) => {
   return (
     <Container mr={mr}>
-      <Img src={info?.attachments[0]?.imgPath123 || noImg} />
+      <Img src={info?.attachments[0]?.imgPath || noImg} />
       <Info>
         <Person src={info?.user?.img || noUser} />
         <div

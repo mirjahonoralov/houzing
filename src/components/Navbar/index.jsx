@@ -22,11 +22,14 @@ const Navbar = () => {
             <Logo.Title>Houzing</Logo.Title>
           </Logo>
           <NavbarBody>
-            {navbar.map(({ title, id, path }) => (
-              <Link key={id} to={path}>
-                {title}
-              </Link>
-            ))}
+            {navbar.map(
+              ({ title, id, path, hidden }) =>
+                !hidden && (
+                  <Link key={id} to={path}>
+                    {title}
+                  </Link>
+                )
+            )}
           </NavbarBody>
           <span>
             <Button onClick={() => navigate("/login")} width={"120px"}>
