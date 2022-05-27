@@ -6,6 +6,7 @@ import { Advanced, Container, Icon, Inputs, Wrapper } from "./style";
 import { Popover } from "antd";
 import { useLocation, useNavigate } from "react-router-dom";
 import { UseReplace, UseSearch } from "../../hooks/functions";
+import MobileFilter from "./MobileFilter";
 
 const Filter = () => {
   const navigate = useNavigate();
@@ -104,6 +105,7 @@ const Filter = () => {
 
   return (
     <Container>
+      <MobileFilter />
       <Wrapper>
         <Input
           placeholder={"Enter an address, neighborhood, city, or ZIP code"}

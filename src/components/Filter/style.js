@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { ReactComponent as home } from "../../assets/icons/home.svg";
 import { ReactComponent as setting } from "../../assets/icons/setting.svg";
 import { ReactComponent as search } from "../../assets/icons/search.svg";
+import { device } from "../../utils/sizes";
 
 const Container = styled.div`
   display: flex;
@@ -15,6 +16,14 @@ const Wrapper = styled.div`
   gap: 20px;
   margin: 10px 0;
   padding: 0 130px;
+
+  @media ${device.laptop} {
+    padding: 0 50px;
+  }
+
+  @media ${device.tablet} {
+    display: none;
+  }
 `;
 
 const Icon = styled.div``;

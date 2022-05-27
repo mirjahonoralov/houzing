@@ -21,10 +21,31 @@ const Carousel = styled.div`
   justify-content: space-between;
   overflow: hidden;
 
+  .alice-carousel__stage {
+    display: flex;
+    gap: 20px;
+  }
+
   .alice-carousel__prev-btn-wrapper,
   .alice-carousel__next-btn-wrapper {
     display: none;
   }
 `;
 
-export { Container, Wrapper, Carousel };
+const CategoryWrapper = styled.div`
+  width: 280px;
+  height: 350px;
+  position: relative;
+  border-radius: 5px;
+  overflow: hidden;
+  cursor: pointer;
+  h3 {
+    color: #fff;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+`;
+
+export { Container, Wrapper, Carousel, CategoryWrapper };

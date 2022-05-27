@@ -1,22 +1,30 @@
-import React from "react";
-import { Outlet, useNavigate } from "react-router-dom";
+import React, { useState } from "react";
+import { NavLink, Outlet, useNavigate } from "react-router-dom";
 import { navbar } from "../../utils/navbar";
 import {
   Container,
+  Icon,
   Link,
   Logo,
   NavbarBody,
   NavbarWrapper,
   Wrapper,
 } from "./style";
-import { Button } from "../Generic/Button";
+import { Button } from "../Generic";
+import MobileDrawer from "./MobileDrawer";
 
 const Navbar = () => {
   const navigate = useNavigate();
+  const [visible, setVisible] = useState(false);
+  const showDrawer = () => setVisible(true);
+  const onClose = () => setVisible(false);
+
   return (
     <Wrapper>
       <Container>
         <NavbarWrapper>
+          <Icon.Bar onClick={showDrawer} />
+
           <Logo onClick={() => navigate("/home")}>
             <Logo.Icon />
             <Logo.Title>Houzing</Logo.Title>
@@ -36,9 +44,15 @@ const Navbar = () => {
               Login
             </Button>
           </span>
+
+          <NavLink to="/login">
+            <Icon.Account />
+          </NavLink>
         </NavbarWrapper>
       </Container>
       <Outlet />
+
+      <MobileDrawer onClose={onClose} visible={visible} />
     </Wrapper>
   );
 };

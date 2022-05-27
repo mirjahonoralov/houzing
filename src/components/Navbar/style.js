@@ -1,6 +1,9 @@
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import { ReactComponent as logoIcon } from "../../assets/icons/logo.svg";
+import { device } from "../../utils/sizes";
+import { ReactComponent as bar } from "../../assets/icons/navbar/bar.svg";
+import { ReactComponent as account } from "../../assets/icons/navbar/account.svg";
 
 const Wrapper = styled.div`
   display: flex;
@@ -20,6 +23,14 @@ const Container = styled.div`
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+
+  @media ${device.laptop} {
+    padding: 0 50px;
+  }
+
+  @media ${device.mobileL} {
+    padding: 0 20px;
+  }
 `;
 
 const NavbarWrapper = styled.div`
@@ -34,6 +45,27 @@ const NavbarWrapper = styled.div`
   line-height: 24px;
   width: 100%;
   color: #fff;
+  /* display: none; */
+  @media ${device.tablet} {
+    justify-content: space-between;
+    span {
+      display: none;
+    }
+  }
+`;
+
+const Icon = styled.div``;
+Icon.Bar = styled(bar)`
+  cursor: pointer;
+  @media (min-width: 768px) {
+    display: none;
+  }
+`;
+Icon.Account = styled(account)`
+  @media (min-width: 768px) {
+    cursor: pointer;
+    display: none;
+  }
 `;
 
 const NavbarBody = styled.div`
@@ -46,6 +78,15 @@ const NavbarBody = styled.div`
   .active {
     color: #00fff5;
   }
+  @media ${device.tablet} {
+    display: none;
+  }
+`;
+
+const MobileMenu = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 `;
 
 const Link = styled(NavLink)`
@@ -56,6 +97,14 @@ const Link = styled(NavLink)`
   font-weight: 400;
   font-size: 18px;
   line-height: 24px;
+
+  @media ${device.tablet} {
+    color: #000;
+  }
+
+  @media ${device.mobileL} {
+    margin: 0;
+  }
 `;
 
 const Logo = styled.div`
@@ -71,4 +120,13 @@ Logo.Title = styled("div")`
   font-weight: 500;
 `;
 
-export { Wrapper, Container, NavbarWrapper, NavbarBody, Link, Logo };
+export {
+  Wrapper,
+  Container,
+  NavbarWrapper,
+  NavbarBody,
+  Link,
+  Logo,
+  Icon,
+  MobileMenu,
+};
