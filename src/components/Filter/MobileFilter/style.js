@@ -9,6 +9,9 @@ const Container = styled.div`
     justify-content: center;
     padding: 0 50px;
   }
+  @media ${device.mobileL} {
+    padding: 0 20px;
+  }
 `;
 
 const MobileWrapper = styled.div`
@@ -16,6 +19,8 @@ const MobileWrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 10px;
+  border: 1px solid red;
+  padding: 25px;
 `;
 
 const BtnsWrapper = styled.div`

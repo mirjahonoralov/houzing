@@ -26,6 +26,44 @@ const Img = styled.img`
   background: #000;
 `;
 
+const Content = styled.div`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 1;
+
+  h1 {
+    color: #fff;
+    font-size: 40px;
+  }
+
+  .title,
+  h4,
+  svg {
+    color: #fff;
+  }
+  .title:nth-child(even) {
+    margin: 24px 0 40px 0;
+  }
+`;
+
+const ItemsWrapper = styled.div`
+  display: flex;
+  gap: 25px;
+  margin: 25px 0;
+
+  div {
+    color: #fff;
+    svg {
+      color: #fff !important;
+    }
+  }
+`;
+
 const Icon = styled.div``;
 
 Icon.Right = styled(right)`
@@ -82,4 +120,4 @@ Icon.Left = styled(left)`
   box-shadow: 0 0 10px #404040;
 `;
 
-export { Container, Img, Wrapper, Icon, ExtraWrapper };
+export { Container, Img, Wrapper, Icon, ExtraWrapper, Content, ItemsWrapper };

@@ -8,17 +8,14 @@ const MobileFilter = () => {
   return (
     <Container>
       <MobileWrapper>
-        <Input
-          placeholder={"Enter an address, neighborhood, city, or ZIP code"}
-          pl={44}
-        >
+        <Input placeholder={"Enter an address, city, or ZIP code"} pl={44}>
           <Icon.Home />
         </Input>
         <Input placeholder={"Status"} pl={44}>
-          <Icon.Home />
+          <Icon.Key />
         </Input>
         <Input placeholder={"Price"} pl={44}>
-          <Icon.Home />
+          <Icon.Price />
         </Input>
         <BtnsWrapper>
           <Popover

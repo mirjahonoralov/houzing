@@ -2,6 +2,8 @@ import styled from "styled-components";
 import { ReactComponent as home } from "../../assets/icons/home.svg";
 import { ReactComponent as setting } from "../../assets/icons/setting.svg";
 import { ReactComponent as search } from "../../assets/icons/search.svg";
+import { ReactComponent as key } from "../../assets/icons/key.svg";
+import { ReactComponent as price } from "../../assets/icons/price.svg";
 import { device } from "../../utils/sizes";
 
 const Container = styled.div`
@@ -35,6 +37,12 @@ Icon.Setting = styled(setting)`
   margin-right: 15px;
 `;
 Icon.Search = styled(search)`
+  margin-right: 15px;
+`;
+Icon.Key = styled(key)`
+  margin-right: 15px;
+`;
+Icon.Price = styled(price)`
   margin-right: 15px;
 `;
 
