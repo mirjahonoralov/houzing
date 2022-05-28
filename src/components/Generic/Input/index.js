@@ -4,6 +4,7 @@ import { Container, Icon, Wrapper } from "./style";
 export const Input = forwardRef(
   (
     {
+      value,
       name,
       placeholder,
       onChange,
@@ -24,6 +25,7 @@ export const Input = forwardRef(
       <Wrapper mr={mr} ml={ml} mb={mb} mt={mt}>
         <Icon>{children}</Icon>
         <Container
+          value={value}
           ref={ref}
           name={name}
           onChange={onChange}

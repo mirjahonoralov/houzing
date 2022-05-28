@@ -11,7 +11,7 @@ const Properties = () => {
   const { search } = useLocation();
   const [data, setData] = useState([]);
   useQuery(
-    [search],
+    ["", search],
     () => fetch(`${url}/v1/houses/list${search}`).then((res) => res.json()),
     {
       onSuccess: (res) => setData(res.dataList[0] || []),
