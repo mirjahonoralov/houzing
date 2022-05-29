@@ -3,6 +3,7 @@ import Generic from "../pages/Generic";
 import HomePage from "../pages/Home";
 import Login from "../pages/Login";
 import PropertiesPage from "../pages/Properties";
+import SelectedHousePage from "../pages/SelectedHouse";
 
 export const navbar = [
   {
@@ -24,6 +25,15 @@ export const navbar = [
     private: false,
   },
   {
+    id: 5,
+    title: "Selected House",
+    path: "/properties/:id",
+    Element: <SelectedHousePage />,
+    hidden: true,
+    param: true,
+    private: false,
+  },
+  {
     id: 3,
     title: "Login",
     path: "/login",
@@ -33,7 +43,7 @@ export const navbar = [
     private: false,
   },
   {
-    id: 3,
+    id: 4,
     title: "Contacts",
     path: "/contacts",
     Element: <Generic />,

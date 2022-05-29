@@ -11,10 +11,10 @@ import {
 import noImg from "../../assets/imgs/no_image.jpeg";
 import noUser from "../../assets/imgs/no-user.jpg";
 
-const Card = ({ info, mr }) => {
+const Card = ({ info, mr, onClick }) => {
   return (
     <Container mr={mr}>
-      <Img src={info?.attachments[0]?.imgPath || noImg} />
+      <Img onClick={onClick} src={info?.attachments[0]?.imgPath || noImg} />
       <Info>
         <Person src={info?.user?.img || noUser} />
         <div

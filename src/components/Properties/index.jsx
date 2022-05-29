@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useQuery } from "react-query";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import Card from "../Card";
 import Filter from "../Filter";
 import { Container, Result, Wrapper } from "./style";
@@ -17,6 +17,10 @@ const Properties = () => {
       onSuccess: (res) => setData(res.dataList[0] || []),
     }
   );
+  const navigate = useNavigate();
+  const onClick = (id) => {
+    navigate(`/properties/:${id}`);
+  };
 
   return (
     <>
@@ -31,7 +35,7 @@ const Properties = () => {
         </Result>
         <Wrapper>
           {data?.map((card) => (
-            <Card key={card.id} info={card} />
+            <Card key={card.id} info={card} onClick={() => onClick(card.id)} />
           ))}
         </Wrapper>
       </Container>

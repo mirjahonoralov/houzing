@@ -8,11 +8,13 @@ import { Advanced, Inputs } from "./style";
 const AdvancedSearch = ({ state, setState, query, list }) => {
   const { pathname } = useLocation();
   const navigate = useNavigate();
+
   const onChange = ({ target }) => {
     const { value, name } = target;
     setState({ ...state, [name]: value });
     navigate(`${pathname}${UseReplace(name, value)}`);
   };
+
   const onSelect = (value) => {
     setDef(value);
     navigate(`/properties?category_id=${value}`);

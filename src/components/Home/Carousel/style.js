@@ -20,6 +20,14 @@ const Container = styled(Carousel)`
   width: 100%;
 `;
 
+const Opacity = styled.div`
+  width: 100%;
+  height: 100%;
+  background: #000;
+  opacity: 0.5;
+  position: absolute;
+`;
+
 const Img = styled.img`
   width: 100%;
   max-width: 1440px;
@@ -58,9 +66,6 @@ const ItemsWrapper = styled.div`
 
   div {
     color: #fff;
-    svg {
-      color: #fff !important;
-    }
   }
 `;
 
@@ -120,4 +125,13 @@ Icon.Left = styled(left)`
   box-shadow: 0 0 10px #404040;
 `;
 
-export { Container, Img, Wrapper, Icon, ExtraWrapper, Content, ItemsWrapper };
+export {
+  Container,
+  Img,
+  Wrapper,
+  Icon,
+  ExtraWrapper,
+  Content,
+  ItemsWrapper,
+  Opacity,
+};

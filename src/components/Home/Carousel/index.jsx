@@ -7,6 +7,7 @@ import {
   ExtraWrapper,
   Content,
   ItemsWrapper,
+  Opacity,
 } from "./style";
 import home1 from "../../../assets/imgs/home1.jpg";
 import home2 from "../../../assets/imgs/home2.png";
@@ -54,6 +55,7 @@ const Carousel = () => {
         <Icon.Right onClick={() => slider.current.prev()} />
         <Icon.Left onClick={() => slider.current.next()} />
         <Container dots autoplay ref={slider}>
+          <Opacity />
           <Img src={home1} alt="test" />
           <Img src={home2} />
         </Container>

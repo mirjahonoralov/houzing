@@ -60,7 +60,10 @@ const Person = styled.img`
   height: 40px;
 `;
 
-const Icon = styled.div``;
+const Icon = styled.div`
+  color: #fff;
+  background: #000;
+`;
 
 Icon.Bath = bath;
 Icon.Bed = bed;
