@@ -2,6 +2,10 @@ import styled from "styled-components";
 import { Carousel } from "antd";
 import { ReactComponent as left } from "../../../assets/icons/left-arrow.svg";
 import { ReactComponent as right } from "../../../assets/icons/right-arrow.svg";
+import { ReactComponent as bath } from "../../../assets/icons/home/bath.svg";
+import { ReactComponent as bed } from "../../../assets/icons/home/bed.svg";
+import { ReactComponent as car } from "../../../assets/icons/home/car.svg";
+import { ReactComponent as ruler } from "../../../assets/icons/home/ruler.svg";
 
 const ExtraWrapper = styled.div`
   display: flex;
@@ -69,6 +73,20 @@ const ItemsWrapper = styled.div`
   }
 `;
 
+const Info = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 7px;
+`;
+
+const InfoIcon = styled.div``;
+
+InfoIcon.Bath = bath;
+InfoIcon.Bed = bed;
+InfoIcon.Car = car;
+InfoIcon.Ruler = ruler;
+
 const Icon = styled.div``;
 
 Icon.Right = styled(right)`
@@ -134,4 +152,6 @@ export {
   Content,
   ItemsWrapper,
   Opacity,
+  Info,
+  InfoIcon,
 };

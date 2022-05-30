@@ -53,3 +53,7 @@ body {
     width: 100% !important;
   }
 }
+
+#info-icon {
+  fill: #fff;
+}

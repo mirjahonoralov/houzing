@@ -33,7 +33,7 @@ const Filter = () => {
     },
     {
       onSuccess: (res) => {
-        if (res?.dataList?.[0]) setList(res?.dataList?.[0] || []);
+        if (res?.data) setList(res?.data || []);
       },
     }
   );
