@@ -56,9 +56,9 @@ const Carousel = () => {
         <Icon.Right onClick={() => slider.current.prev()} />
         <Icon.Left onClick={() => slider.current.next()} />
         <Container dots autoplay ref={slider}>
-          <Opacity />
           <Img src={home1} alt="test" />
           <Img src={home2} />
+          <Opacity />
         </Container>
       </Wrapper>
     </ExtraWrapper>
