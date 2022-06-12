@@ -3,7 +3,7 @@ import AddNewPage from "../pages/AddNew";
 import MyPropertiesPage from "../pages/Generic";
 import Generic from "../pages/Generic";
 import HomePage from "../pages/Home";
-import Login from "../pages/Login";
+import Login from "../pages/SignIn";
 import PropertiesPage from "../pages/Properties";
 import SelectedHousePage from "../pages/SelectedHouse";
 

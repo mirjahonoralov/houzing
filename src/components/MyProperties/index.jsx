@@ -29,8 +29,8 @@ const MyProperties = () => {
         </Button>
       </Top>
       <Wrapper>
-        {data?.data?.map((house) => (
-          <h2>{house?.description}</h2>
+        {data?.data?.map((house, id) => (
+          <h2 key={id}>{house?.description}</h2>
         ))}
       </Wrapper>
     </Container>
