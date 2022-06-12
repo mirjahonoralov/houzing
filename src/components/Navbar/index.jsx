@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { NavLink, Outlet, useNavigate } from "react-router-dom";
+import { NavLink, Outlet, useLocation, useNavigate } from "react-router-dom";
 import { navbar } from "../../utils/navbar";
 import {
   Container,
@@ -18,7 +18,7 @@ const Navbar = () => {
   const [visible, setVisible] = useState(false);
   const showDrawer = () => setVisible(true);
   const onClose = () => setVisible(false);
-
+  const { pathname } = useLocation();
   return (
     <Wrapper>
       <Container>
@@ -40,9 +40,30 @@ const Navbar = () => {
             )}
           </NavbarBody>
           <span>
-            <Button onClick={() => navigate("/login")} width={"120px"}>
-              Login
-            </Button>
+            {localStorage.getItem("token") && pathname === "/my-properties" ? (
+              <Button
+                width={"120px"}
+                type={"primary"}
+                onClick={() => {
+                  localStorage.clear();
+                  navigate("/home");
+                }}
+              >
+                Logout
+              </Button>
+            ) : localStorage.getItem("token") ? (
+              <Button
+                width={"120px"}
+                type={"primary"}
+                onClick={() => navigate("/my-properties")}
+              >
+                Profile
+              </Button>
+            ) : (
+              <Button onClick={() => navigate("/login")} width={"120px"}>
+                Login
+              </Button>
+            )}
           </span>
 
           <NavLink to="/login">

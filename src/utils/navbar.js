@@ -1,4 +1,6 @@
 // components
+import AddNewPage from "../pages/AddNew";
+import MyPropertiesPage from "../pages/Generic";
 import Generic from "../pages/Generic";
 import HomePage from "../pages/Home";
 import Login from "../pages/Login";
@@ -49,6 +51,26 @@ export const navbar = [
     Element: <Generic />,
     search: "?",
     hidden: false,
+    private: false,
+  },
+  {
+    id: 6,
+    title: "My Properties",
+    path: "/my-properties",
+    Element: <MyPropertiesPage />,
+    param: true,
+    search: "?",
+    hidden: true,
+    private: false,
+  },
+  {
+    id: 6,
+    title: "Add New",
+    path: "/properties/add-new",
+    Element: <AddNewPage />,
+    param: true,
+    search: "?",
+    hidden: true,
     private: false,
   },
 ];

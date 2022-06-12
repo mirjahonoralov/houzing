@@ -11,12 +11,13 @@ const Login = () => {
 
   const navigate = useNavigate();
 
-  const { mutate } = useMutation(() => {
-    return fetch(`${url}/public/auth/login`, {
+  const { mutate } = useMutation(async () => {
+    const res = await fetch(`${url}/public/auth/login`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email, password: pw }),
-    }).then((res) => res.json());
+    });
+    return await res.json();
   });
 
   const onSubmit = () => {
@@ -24,7 +25,7 @@ const Login = () => {
       onSuccess: (res) => {
         if (res?.authenticationToken) {
           localStorage.setItem("token", res?.authenticationToken);
-          navigate("/home");
+          navigate("/my-properties");
         }
       },
       onError: (err) => {
