@@ -117,9 +117,9 @@ const AdvancedSearch = ({ state, setState, query, list }) => {
         />
         <Select value={def} onChange={onSelect}>
           {list.length > 0 &&
-            list.map((item, id) => (
-              <Option key={id} value={id + 1}>
-                {item}
+            list.map((item) => (
+              <Option key={item.id} value={item.id}>
+                {item.name}
               </Option>
             ))}
         </Select>

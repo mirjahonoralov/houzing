@@ -5,30 +5,29 @@ import { useNavigate } from "react-router-dom";
 import { Icon } from "../Carousel/style";
 import { Carousel, CategoryWrapper, Container, Wrapper } from "./style";
 import categoryImg from "../../../assets/imgs/category.png";
-
-const { REACT_APP_BASE_URL: url } = process.env;
+import { useHttp } from "../../../hooks/useHttp";
 
 const Categories = () => {
-  const Category = ({ text, id }) => (
+  const Category = ({ category }) => (
     <CategoryWrapper
-      onClick={() => navigate(`/properties?category_id=${id + 1}`)}
+      onClick={() => navigate(`/properties?category_id=${category?.id}`)}
     >
       <img src={categoryImg} alt="categoryImg" />
-      <h3>{text}</h3>
+      <h3>{category?.name}</h3>
     </CategoryWrapper>
   );
 
   const navigate = useNavigate();
   const slider = useRef();
   const [list, setList] = useState([]);
-
+  const { request } = useHttp();
   useQuery(
     "",
-    () => {
-      return fetch(`${url}/v1/categories`, {
-        headers: { authorization: `Bearer ${localStorage.getItem("token")}` },
-      }).then((res) => res.json());
-    },
+    () =>
+      request({
+        url: "/v1/categories/list",
+        // headers: { authorization: `Bearer ${localStorage.getItem("token")}` },
+      }),
     {
       onSuccess: (res) => {
         if (res?.data) setList(res?.data || []);
@@ -50,9 +49,7 @@ const Categories = () => {
             ref={slider}
             autoWidth
             items={[
-              ...list.map((item, idx) => (
-                <Category text={item} key={idx} id={idx} />
-              )),
+              ...list.map((item) => <Category category={item} key={item.id} />),
             ]}
           />
         </Carousel>

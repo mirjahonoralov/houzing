@@ -6,7 +6,7 @@ import { UseSearch } from "../../hooks/functions";
 import MobileFilter from "./MobileFilter";
 import { useQuery } from "react-query";
 import AdvancedSearch from "./AdvancedSearch";
-const { REACT_APP_BASE_URL: url } = process.env;
+import { useHttp } from "../../hooks/useHttp";
 
 const Filter = () => {
   const query = UseSearch();
@@ -24,13 +24,14 @@ const Filter = () => {
   });
 
   const [list, setList] = useState([]);
+  const { request } = useHttp();
   useQuery(
     "",
-    () => {
-      return fetch(`${url}/v1/categories`, {
-        headers: { authorization: `Bearer ${localStorage.getItem("token")}` },
-      }).then((res) => res.json());
-    },
+    () =>
+      request({
+        url: "/v1/categories/list",
+        // headers: { authorization: `Bearer ${localStorage.getItem("token")}` },
+      }),
     {
       onSuccess: (res) => {
         if (res?.data) setList(res?.data || []);

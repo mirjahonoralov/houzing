@@ -30,6 +30,7 @@ const Opacity = styled.div`
   background: #000;
   opacity: 0.5;
   position: absolute;
+  z-index: 2;
 `;
 
 const Img = styled.img`
@@ -46,7 +47,7 @@ const Content = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  z-index: 1;
+  z-index: 3;
 
   h1 {
     color: #fff;
