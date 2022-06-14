@@ -19,6 +19,8 @@ const Navbar = () => {
   const showDrawer = () => setVisible(true);
   const onClose = () => setVisible(false);
   const { pathname } = useLocation();
+  console.log(localStorage.getItem("token"));
+  console.log("navbar");
   return (
     <Wrapper>
       <Container>
