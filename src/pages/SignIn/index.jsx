@@ -36,7 +36,7 @@ const Login = () => {
   const onSubmit = () => {
     if (!email) setIsValidEmail(true);
     if (!pw) setIsValidPassword(true);
-    else
+    if (pw && email)
       mutate("something", {
         onSuccess: (res) => {
           if (res?.authenticationToken) {
