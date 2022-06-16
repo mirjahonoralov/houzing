@@ -8,16 +8,22 @@ export const useHttp = () => {
     body = null,
     token = false,
   }) => {
-    if (token)
+    if (token) {
       headers["Authorization"] = `Bearer ${localStorage.getItem("token")}`;
+      headers["Content-Type"] = "application/json";
+    }
+
+    let bd = (await method) === "POST" ? JSON.stringify(body) : body;
 
     let res = await fetch(`${REACT_APP_BASE_URL}${url}`, {
       method,
+      body: bd,
       headers,
-      body,
     }).then((res) => res.json());
-    if (res.success) return res;
-    else return new Error(res?.message || "something was wrong");
+    if (res.success) {
+      console.log(res);
+      return res;
+    } else return new Error(res?.message || "something was wrong");
   };
 
   return { request };
