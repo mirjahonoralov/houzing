@@ -13,7 +13,10 @@ export const useHttp = () => {
       headers["Content-Type"] = "application/json";
     }
 
-    let bd = (await method) === "POST" ? JSON.stringify(body) : body;
+    let bd =
+      (await method) === "POST" || method === "PUT"
+        ? JSON.stringify(body)
+        : body;
 
     let res = await fetch(`${REACT_APP_BASE_URL}${url}`, {
       method,
