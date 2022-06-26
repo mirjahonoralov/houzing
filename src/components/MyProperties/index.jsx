@@ -1,6 +1,15 @@
 import React from "react";
 import { useQuery, useMutation } from "react-query";
-import { Container, Icons, Table, TableWrapper, Top, Wrapper } from "./style";
+import {
+  CardWrapper,
+  Container,
+  Icons,
+  ImgWrapper,
+  Table,
+  TableWrapper,
+  Top,
+  Wrapper,
+} from "./style";
 import { useHttp } from "../../hooks/useHttp";
 import { Button } from "../Generic";
 import { useNavigate } from "react-router-dom";
@@ -39,6 +48,25 @@ const MyProperties = () => {
     message.error("Click on No");
   };
 
+  const Card = ({ card }) => {
+    return (
+      <CardWrapper>
+        <ImgWrapper>
+          <img src={card.attachments[0].imgPath} alt="" />
+        </ImgWrapper>
+        <main>
+          <div className="subtitle">{card.description}</div>
+          <div className="description" style={{ marginBottom: "21px" }}>
+            {card.region} {card.country}
+          </div>
+          <span className="delete">{card.price}</span>
+          <div className="subtitle">{card.salePrice}</div>
+        </main>
+        <button>For sale</button>
+      </CardWrapper>
+    );
+  };
+
   return (
     <Container>
       <Top>
@@ -64,11 +92,14 @@ const MyProperties = () => {
             <tbody>
               {data?.data?.map((house) => (
                 <tr key={house.id}>
-                  <td>{house.description}</td>
+                  {/* <td>{house.description}</td> */}
+                  <td style={{ width: "45%" }}>
+                    <Card card={house} />
+                  </td>
                   <td>{house.zipCode}</td>
                   <td>{house.status ? "Pending" : "No"}</td>
                   <td>3214</td>
-                  <td style={{ display: "flex", gap: "32px" }}>
+                  <td>
                     <Icons.Edit
                       onClick={() =>
                         navigate(`/properties/add-new/${house.id}`)
@@ -81,7 +112,7 @@ const MyProperties = () => {
                       okText="Yes"
                       cancelText="No"
                     >
-                      <Icons.Trash />
+                      <Icons.Trash style={{ marginLeft: "22px" }} />
                     </Popconfirm>
                   </td>
                 </tr>

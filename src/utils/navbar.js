@@ -3,9 +3,10 @@ import AddNewPage from "../pages/AddNew";
 import MyPropertiesPage from "../pages/Generic";
 import Generic from "../pages/Generic";
 import HomePage from "../pages/Home";
-import Login from "../pages/SignIn";
 import PropertiesPage from "../pages/Properties";
 import SelectedHousePage from "../pages/SelectedHouse";
+import SignInPage from "../pages/SignIn";
+import SignUpPage from "../pages/SignUp";
 
 export const navbar = [
   {
@@ -37,9 +38,9 @@ export const navbar = [
   },
   {
     id: 3,
-    title: "Login",
-    path: "/login",
-    Element: <Login />,
+    title: "SignIn",
+    path: "/sign-in",
+    Element: <SignInPage />,
     search: "?",
     hidden: true,
     private: false,
@@ -79,6 +80,16 @@ export const navbar = [
     path: "/properties/add-new/:id",
     Element: <AddNewPage />,
     param: true,
+    search: "?",
+    hidden: true,
+    private: false,
+  },
+  {
+    id: 9,
+    title: "SignUp",
+    path: "/sign-up",
+    Element: <SignUpPage />,
+    param: false,
     search: "?",
     hidden: true,
     private: false,

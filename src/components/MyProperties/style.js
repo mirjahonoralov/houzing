@@ -52,6 +52,7 @@ const Table = styled.table`
         font-size: 14px;
         line-height: 20px;
         color: #696969;
+        padding-right: 70px;
       }
     }
   }
@@ -61,4 +62,47 @@ const Icons = styled.div``;
 Icons.Edit = styled(edit)``;
 Icons.Trash = styled(trash)``;
 
-export { Container, Top, Wrapper, Table, TableWrapper, Icons };
+const CardWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  width: 100%;
+  align-items: flex-start;
+  margin: 8px 0;
+
+  main {
+  }
+
+  button {
+    background: #0d263b;
+    border-radius: 3px;
+    padding: 5px 12px;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    outline: none;
+    border: none;
+  }
+`;
+
+const ImgWrapper = styled.div`
+  width: 113px;
+  height: 113px;
+  background: #c4c4c4;
+  border-radius: 3px;
+
+  img {
+    width: 100%;
+  }
+`;
+
+export {
+  Container,
+  Top,
+  Wrapper,
+  Table,
+  TableWrapper,
+  Icons,
+  CardWrapper,
+  ImgWrapper,
+};

@@ -19,8 +19,6 @@ const Navbar = () => {
   const showDrawer = () => setVisible(true);
   const onClose = () => setVisible(false);
   const { pathname } = useLocation();
-  console.log(localStorage.getItem("token"));
-  console.log("navbar");
   return (
     <Wrapper>
       <Container>
@@ -62,8 +60,8 @@ const Navbar = () => {
                 Profile
               </Button>
             ) : (
-              <Button onClick={() => navigate("/login")} width={"120px"}>
-                Login
+              <Button onClick={() => navigate("/sign-in")} width={"120px"}>
+                SignIn
               </Button>
             )}
           </span>
