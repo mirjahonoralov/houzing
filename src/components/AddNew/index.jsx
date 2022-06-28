@@ -1,17 +1,49 @@
 import React, { useState } from "react";
 import { Button, Input2 } from "../Generic";
 import Map from "./Map";
-import { ButtonWrapper, Container, Section, Wrapper } from "./style";
+import {
+  ButtonWrapper,
+  CheckboxesWrapper,
+  Container,
+  Imgs,
+  ImgWrapper,
+  MediaWrapper,
+  Section,
+  UploadBtn,
+  Wrapper,
+} from "./style";
 import { useHttp } from "../../hooks/useHttp";
 import { useMutation, useQuery } from "react-query";
 import { useNavigate, useParams } from "react-router-dom";
-import { message } from "antd";
+import { Checkbox, message } from "antd";
 
 const AddNew = () => {
   const { request } = useHttp();
   const navigate = useNavigate();
   const { id } = useParams();
   const [data, setData] = useState({});
+  const [checkBox, setCheckBox] = useState([
+    { title: "Air conditioning", isSelected: false },
+    { title: "Barbeque", isSelected: false },
+    { title: "Dryer", isSelected: false },
+    { title: "Gym", isSelected: true },
+    { title: "Laundry", isSelected: false },
+    { title: "Lawn", isSelected: true },
+    { title: "Microwave", isSelected: false },
+    { title: "Outdoor Shower", isSelected: false },
+    { title: "Refrigerator", isSelected: false },
+    { title: "Stunning views", isSelected: false },
+    { title: "Dining Room", isSelected: false },
+    { title: "Fireplace", isSelected: false },
+    { title: "Pets Allowed", isSelected: false },
+    { title: "Unit Washer/Dryer", isSelected: false },
+    { title: "Onsite Parking", isSelected: false },
+    { title: "Waterfront", isSelected: false },
+    { title: "Parking", isSelected: false },
+    { title: "Doorman", isSelected: false },
+    { title: "Central Heating", isSelected: false },
+    { title: "Cleaning Service", isSelected: false },
+  ]);
 
   const body = {
     address: "newwwwww",
@@ -117,6 +149,26 @@ const AddNew = () => {
       });
   };
 
+  const onCheck = (title) =>
+    setCheckBox((prev) => {
+      return prev.map((item) => {
+        if (item.title === title) {
+          if (item.isSelected) return { ...item, isSelected: false };
+          else return { ...item, isSelected: true };
+        } else return item;
+      });
+    });
+
+  const selectImg = (e) => {
+    if (selectedImgs.length !== 4) {
+      const [file] = e.target.files;
+      console.log(file, "file");
+      setSelectedImgs([...selectedImgs, URL.createObjectURL(file)]);
+    }
+  };
+
+  const [selectedImgs, setSelectedImgs] = useState([]);
+
   return (
     <Container>
       <div className="title">Add new property</div>
@@ -163,6 +215,73 @@ const AddNew = () => {
         </Wrapper>
         <Map />
       </Section>
+
+      <Section>
+        <div className="subtitle">Media</div>
+        <MediaWrapper>
+          <div className="description">Featured image</div>
+          <Imgs>
+            <ImgWrapper>
+              {selectedImgs.length >= 0 && <img src={selectedImgs[0]} alt="" />}
+            </ImgWrapper>
+            <ImgWrapper>
+              {selectedImgs.length > 0 && <img src={selectedImgs[1]} alt="" />}
+            </ImgWrapper>
+            <ImgWrapper>
+              {selectedImgs.length > 1 && <img src={selectedImgs[2]} alt="" />}
+            </ImgWrapper>
+            <ImgWrapper>
+              {selectedImgs.length > 2 && <img src={selectedImgs[3]} alt="" />}
+            </ImgWrapper>
+          </Imgs>
+          <UploadBtn type="file">
+            Upload <input type="file" onChange={selectImg} />
+          </UploadBtn>
+        </MediaWrapper>
+        <MediaWrapper>
+          <div className="description">Gallery</div>
+          <UploadBtn type="file">
+            Upload <input type="file" />
+          </UploadBtn>
+        </MediaWrapper>
+        <MediaWrapper>
+          <div className="description">Attachment</div>
+          <div>pdf</div>
+          <UploadBtn type="file">
+            Upload <input type="file" />
+          </UploadBtn>
+        </MediaWrapper>
+        <MediaWrapper>
+          <Input2 placeholder={"Video link"} />
+          <div style={{ marginTop: "44px" }} className="description">
+            Virtual tour
+          </div>
+          <Input2 />
+        </MediaWrapper>
+      </Section>
+
+      <Section>
+        <div className="subtitle">Amenities</div>
+        <CheckboxesWrapper>
+          {checkBox.map((item) => (
+            <Checkbox
+              checked={item.isSelected}
+              onChange={() => onCheck(item.title)}
+            >
+              {item.title}
+            </Checkbox>
+          ))}
+        </CheckboxesWrapper>
+      </Section>
+
+      <Section>
+        <div className="subtitle">Select Energy Class</div>
+        <div style={{ display: "flex", gap: "20px" }}>
+          <Input2 placeholder={"Energy class"} />
+          <Input2 placeholder={"Energy Index in kWh/m2a"} />
+        </div>
+      </Section>
+
       <ButtonWrapper>
         <Button
           onClick={onSubmit}

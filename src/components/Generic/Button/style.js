@@ -6,6 +6,7 @@ const getType = (type) => {
       return {
         border: "1px solid #e6e9ec",
         color: "#0d263b",
+        background: "#fff",
       };
     case "primary":
       return {
@@ -14,11 +15,15 @@ const getType = (type) => {
         border: "none",
       };
     default:
-      return { border: "1px solid #e6e9ec", color: "#fff" };
+      return {
+        border: "1px solid #e6e9ec",
+        color: "#fff",
+        background: "transparent",
+      };
   }
 };
 
-const Container = styled.div`
+const Container = styled.button`
   display: flex;
   font-family: "Montserrat";
   font-style: normal;
