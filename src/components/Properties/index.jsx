@@ -14,18 +14,19 @@ const Properties = () => {
   const { request } = useHttp();
   useQuery(
     ["", search],
-    // () => fetch(`${url}/v1/houses/list${search}`).then((res) => res.json()),
     () => {
       return request({ url: `/v1/houses/list${search}` });
     },
     {
-      onSuccess: (res) => setData(res.data || []),
+      onSuccess: (res) => setData(res?.data || []),
     }
   );
   const navigate = useNavigate();
   const onClick = (id) => {
     navigate(`/properties/:${id}`);
   };
+
+  console.log(data, "data ---");
 
   return (
     <>

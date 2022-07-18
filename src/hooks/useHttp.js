@@ -22,11 +22,7 @@ export const useHttp = () => {
       headers,
     })
       .then((res) => res.json())
-      .then((data) => console.log(data));
-    // if (res) {
-    //   console.log(res);
-    //   return res;
-    // }
+      .then((data) => data);
     if (res?.success) {
       console.log(res);
       return res;
