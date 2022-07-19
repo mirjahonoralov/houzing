@@ -10,11 +10,19 @@ import { ReactComponent as garage } from "../../assets/icons/properties/car.svg"
 import user from "../../assets/imgs/no-user.jpg";
 
 const Container = styled.div`
-  display: flex;
-  padding: 130px;
+  padding: 30px 130px;
   width: 100%;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const ImgWrapper = styled.div`
+  width: 50%;
+  padding: 0 130px;
+  img {
+    width: 100%;
+  }
 `;
 
 const Wrapper = styled.div`
@@ -299,6 +307,7 @@ Icons.File = file;
 
 export {
   Container,
+  ImgWrapper,
   Wrapper,
   Content,
   Actions,

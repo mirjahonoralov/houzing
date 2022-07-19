@@ -10,6 +10,7 @@ import {
   Doc,
   Documents,
   Icons,
+  ImgWrapper,
   Params,
   Price,
   Wrapper,
@@ -44,6 +45,9 @@ const SelectedHouse = () => {
 
   return (
     <Container>
+      <ImgWrapper>
+        <img src={house?.attachments[0]?.imgPath} alt="" />
+      </ImgWrapper>
       <Wrapper>
         <Content>
           <h1>
