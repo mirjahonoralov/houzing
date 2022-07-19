@@ -7,12 +7,17 @@ import {
   Container,
   Content,
   Description,
+  Doc,
+  Documents,
   Icons,
   Params,
   Price,
   Wrapper,
 } from "./style";
-import { GoogleMap, useJsApiLoader, Marker } from "@react-google-maps/api";
+import Contact from "./contact";
+import Location from "./location";
+import Property from "./property";
+import Schedule from "./schedule";
 
 const SelectedHouse = () => {
   const { id } = useParams();
@@ -36,20 +41,6 @@ const SelectedHouse = () => {
     }
   );
 
-  const containerStyle = {
-    width: "100%",
-    height: "400px",
-  };
-
-  const center = {
-    lat: house?.location?.latitude,
-    lng: house?.location?.longitude,
-  };
-
-  const { isLoaded } = useJsApiLoader({
-    id: "google-map-script",
-    googleMapsApiKey: "AIzaSyAkkKvMyf8Tk3Q8s7MWXin6njbtjIjq2S4",
-  });
   return (
     <Container>
       <Wrapper>
@@ -131,16 +122,48 @@ const SelectedHouse = () => {
             <a href="#">Show more</a>
           </Description>
 
-          {isLoaded && (
-            <GoogleMap
-              mapContainerStyle={containerStyle}
-              center={center}
-              zoom={10}
-            >
-              {center.lat && center.lng && <Marker position={center} />}
-            </GoogleMap>
-          )}
+          <Documents>
+            <div className="subtitle">Documents</div>
+            <div className="docs">
+              <Doc>
+                <span>
+                  <Icons.File />
+                  test_property.pdf
+                </span>
+                <a href="#">Download</a>
+              </Doc>
+              <Doc>
+                <span>
+                  <Icons.File />
+                  test_property.pdf
+                </span>
+                <a href="#">Download</a>
+              </Doc>
+              <Doc>
+                <span>
+                  <Icons.File />
+                  test_property.pdf
+                </span>
+                <a href="#">Download</a>
+              </Doc>
+            </div>
+          </Documents>
+          <div className="line"></div>
+
+          <Location house={house} />
+
+          <div className="line"></div>
+
+          <Property data={house} />
+
+          <div className="line"></div>
+
+          <Schedule />
+
+          <div className="line"></div>
         </Content>
+
+        <Contact userData={house?.user} />
       </Wrapper>
     </Container>
   );
