@@ -14,10 +14,11 @@ import {
   Price,
   Wrapper,
 } from "./style";
-import Contact from "./contact";
-import Location from "./location";
-import Property from "./property";
-import Schedule from "./schedule";
+import Contact from "./components/contact";
+import Location from "./components/location";
+import Property from "./components/property";
+import Schedule from "./components/schedule";
+import Review from "./components/review";
 
 const SelectedHouse = () => {
   const { id } = useParams();
@@ -98,7 +99,7 @@ const SelectedHouse = () => {
           </h1>
 
           <Description>
-            <div className="title">Description</div>
+            <div className="subtitle">Description</div>
             <p>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut, dicta
               at. Ad voluptatum corrupti ullam in debitis excepturi explicabo
@@ -130,21 +131,21 @@ const SelectedHouse = () => {
                   <Icons.File />
                   test_property.pdf
                 </span>
-                <a href="#">Download</a>
+                <a href="#">DOWNLOAD</a>
               </Doc>
               <Doc>
                 <span>
                   <Icons.File />
                   test_property.pdf
                 </span>
-                <a href="#">Download</a>
+                <a href="#">DOWNLOAD</a>
               </Doc>
               <Doc>
                 <span>
                   <Icons.File />
                   test_property.pdf
                 </span>
-                <a href="#">Download</a>
+                <a href="#">DOWNLOAD</a>
               </Doc>
             </div>
           </Documents>
@@ -161,6 +162,8 @@ const SelectedHouse = () => {
           <Schedule />
 
           <div className="line"></div>
+
+          <Review />
         </Content>
 
         <Contact userData={house?.user} />

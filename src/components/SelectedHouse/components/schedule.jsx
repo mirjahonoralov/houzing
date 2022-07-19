@@ -1,9 +1,9 @@
 import React from "react";
-import { ScheduleWrapper } from "./style";
+import { ScheduleWrapper } from "../style";
 import { Select } from "antd";
 import { DatePicker } from "antd";
-import Input2 from "../Generic/Input2";
-import Button from "../Generic/Button";
+import Input2 from "../../Generic/Input2";
+import Button from "../../Generic/Button";
 
 const Schedule = () => {
   const { Option } = Select;

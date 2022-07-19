@@ -1,9 +1,9 @@
 import React from "react";
-import Button from "../Generic/Button";
-import Input2 from "../Generic/Input2";
-import { ContactWrapper, User } from "./style";
+import Button from "../../Generic/Button";
+import Input2 from "../../Generic/Input2";
+import { ContactWrapper, User } from "../style";
 import { Checkbox } from "antd";
-import user from "../../assets/imgs/no-user.jpg";
+import user from "../../../assets/imgs/no-user.jpg";
 
 const Contact = ({ userData }) => {
   return (

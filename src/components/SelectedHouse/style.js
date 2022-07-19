@@ -135,7 +135,10 @@ const User = styled.div`
 
 const Documents = styled.div`
   margin-top: 64px;
+  width: 100%;
+
   .docs {
+    width: 100%;
     margin-top: 15px;
     display: flex;
     justify-content: space-between;
@@ -148,6 +151,10 @@ const Doc = styled.div`
   span {
     display: flex;
     gap: 10px;
+  }
+
+  a {
+    text-decoration: underline;
   }
 `;
 
@@ -244,6 +251,40 @@ const ScheduleWrapper = styled.div`
   }
 `;
 
+const Rates = styled.div`
+  margin-top: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 100%;
+`;
+
+const Rate = styled.div`
+  width: 90%;
+  display: flex;
+  justify-content: space-between;
+
+  div {
+    width: 35%;
+    display: flex;
+    justify-content: space-between;
+  }
+`;
+
+const ReviewInputs = styled.div`
+  margin-top: 70px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+
+  .top {
+    width: 100%;
+    display: flex;
+    gap: 20px;
+  }
+`;
+
 const Icons = styled.div``;
 
 Icons.Share = share;
@@ -273,4 +314,7 @@ export {
   LocationWrapper,
   PropertyWrapper,
   ScheduleWrapper,
+  Rates,
+  Rate,
+  ReviewInputs,
 };

@@ -1,5 +1,5 @@
 import React from "react";
-import { LocationInfo, LocationWrapper } from "./style";
+import { LocationInfo, LocationWrapper } from "../style";
 import { GoogleMap, useJsApiLoader, Marker } from "@react-google-maps/api";
 
 const Location = ({ house }) => {
@@ -20,7 +20,7 @@ const Location = ({ house }) => {
 
   return (
     <LocationWrapper>
-      <div className="title">Location</div>
+      <div className="subtitle">Location</div>
       <LocationInfo>
         <div>
           <span>Address: </span>

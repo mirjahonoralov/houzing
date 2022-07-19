@@ -1,5 +1,5 @@
 import React from "react";
-import { PropertyWrapper } from "./style";
+import { PropertyWrapper } from "../style";
 
 const Property = ({ data }) => {
   return (
