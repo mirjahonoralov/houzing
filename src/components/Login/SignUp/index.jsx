@@ -1,46 +1,51 @@
-import React from "react";
+import React, { useState } from "react";
 import Button from "../../Generic/Button";
 import Input2 from "../../Generic/Input2";
-import { Container, CustomForm, CustomInput, Wrapper } from "./style";
+import { Container, CustomForm, CustomInput, Error, Wrapper } from "./style";
 import { Formik } from "formik";
-import { Form, Input } from "formik-antd";
-import { useMutation } from "react-query";
-import { useHttp } from "../../../hooks/useHttp";
+import { Modal } from "antd";
+import { useNavigate } from "react-router-dom";
 
 const SignUp = () => {
-  const { request } = useHttp();
+  const navigate = useNavigate();
 
-  const { mutate: register } = useMutation("", (data) =>
-    request({
-      url: "/public/auth/register",
-      method: "POST",
-      body: data,
-    })
-  );
+  const error = () =>
+    Modal.error({
+      title: "Error",
+      content: "*Something went wrong, try again",
+    });
+
+  const success = async () =>
+    Modal.success({
+      title: "Success",
+      content: "We sent confirmation link to your email. Place confirm it",
+      afterClose: () => navigate("/sign-in"),
+    });
+
+  const registered = async (status) => {
+    console.log(status === 201);
+    if (status === 201) {
+      success();
+    } else {
+      error();
+    }
+  };
 
   const onSubmit = (formData) => {
-    // register(
-    //   { ...formData, roleIdSet: [1] },
-    //   {
-    //     onSuccess: (res) => {
-    //       console.log(res, "success res");
-    //     },
-    //   }
-    // );
     fetch("https://houzing-app.herokuapp.com/api/public/auth/register", {
       method: "POST",
       body: JSON.stringify({ ...formData, roleIdSet: [1] }),
       headers: {
         "Content-Type": "application/json",
       },
-    })
-      .then((res) => res.json())
-      .then((data) => console.log(data));
+    }).then((res) => registered(res?.status));
   };
 
   return (
     <Container>
-      {/* <Wrapper> */}
+      {/* {success ? (
+        <Success />
+      ) : ( */}
       <Formik
         initialValues={{}}
         onSubmit={onSubmit}
@@ -59,10 +64,11 @@ const SignUp = () => {
               Register
             </Button> */}
             <button type="submit">button</button>
+            {/* {error && <Error>*Something went wrong, try again</Error>} */}
           </CustomForm>
         )}
       />
-      {/* </Wrapper> */}
+      {/* )} */}
     </Container>
   );
 };

@@ -45,4 +45,24 @@ const CustomForm = styled(Form)`
   border-radius: 3px;
 `;
 
-export { Container, CustomInput, CustomForm };
+const Error = styled.div`
+  color: red;
+  text-align: center;
+  font-size: 20px;
+`;
+
+const SuccessWrapper = styled.div`
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 50px;
+  background: #ffffff;
+  border: 1px solid #e6e9ec;
+  box-shadow: 0px 10px 30px rgba(13, 38, 59, 0.05);
+  border-radius: 3px;
+  gap: 30px;
+`;
+
+export { Container, CustomInput, CustomForm, Error, SuccessWrapper };

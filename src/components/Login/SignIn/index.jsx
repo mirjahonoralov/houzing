@@ -39,6 +39,7 @@ const SignIn = () => {
     if (pw && email)
       mutate("something", {
         onSuccess: (res) => {
+          console.log(res, "submit res");
           if (res?.authenticationToken) {
             localStorage.setItem("token", res?.authenticationToken);
             navigate("/my-properties");
