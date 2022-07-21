@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { Form, Input } from "formik-antd";
 
 const Container = styled.div`
   display: flex;
@@ -9,31 +8,16 @@ const Container = styled.div`
   height: 100vh;
 `;
 
-const CustomInput = styled(Input)`
-  border: none;
-  border-bottom: 2px solid #e6e9ec;
-  width: 100%;
-  outline: none;
-  padding: 4px 0;
-  outline: none;
-
-  font-family: "Montserrat";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 20px;
-  color: #696969;
-
-  :focus {
-    border-bottom: 2px solid #0061df;
-  }
-
-  :active {
-    border: none;
+const InputWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  p {
+    color: red;
   }
 `;
 
-const CustomForm = styled(Form)`
+const CustomForm = styled.form`
   width: 580px;
   padding: 24px 30px;
   display: flex;
@@ -43,12 +27,6 @@ const CustomForm = styled(Form)`
   border: 1px solid #e6e9ec;
   box-shadow: 0px 10px 30px rgba(13, 38, 59, 0.05);
   border-radius: 3px;
-`;
-
-const Error = styled.div`
-  color: red;
-  text-align: center;
-  font-size: 20px;
 `;
 
 const SuccessWrapper = styled.div`
@@ -65,4 +43,35 @@ const SuccessWrapper = styled.div`
   gap: 30px;
 `;
 
-export { Container, CustomInput, CustomForm, Error, SuccessWrapper };
+const Button = styled.button`
+  display: flex;
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+
+  justify-content: center;
+  align-items: center;
+  height: 44px;
+  width: 100%;
+  border-radius: 2px;
+  cursor: pointer;
+
+  -webkit-touch-callout: none; /** iOS safari */
+  -webkit-user-select: none; /** safari */
+  -khtml-user-select: center; /** Conqueror HTML*/
+  -moz-user-select: none; /** Old version of FireFox */
+  -ms-user-select: none; /** Internet Explorer / Edge */
+  user-select: none; /** Non prefixed version, currently supported by chrome, Opera and FireFox */
+  :active {
+    transform: scale(0.98);
+    opacity: 0.7;
+  }
+
+  background: #0061df;
+  color: #fff;
+  border: none;
+`;
+
+export { Container, CustomForm, SuccessWrapper, Button, InputWrapper };

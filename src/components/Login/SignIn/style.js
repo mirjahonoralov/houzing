@@ -71,4 +71,20 @@ const Bottom = styled.div`
   margin-top: 16px;
 `;
 
-export { Container, Wrapper, Title, Input, SubTitle, Bottom, Validation };
+const ToSignUp = styled.div`
+  font-weight: bold;
+  a {
+    text-decoration: underline;
+  }
+`;
+
+export {
+  Container,
+  Wrapper,
+  Title,
+  Input,
+  SubTitle,
+  Bottom,
+  Validation,
+  ToSignUp,
+};

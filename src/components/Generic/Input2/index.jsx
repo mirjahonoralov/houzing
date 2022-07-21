@@ -20,13 +20,14 @@ const Input = styled.input`
   }
 `;
 
-const Input2 = ({ placeholder, value, name, onChange }) => {
+const Input2 = ({ placeholder, value, name, onChange, type }) => {
   return (
     <Input
       placeholder={placeholder}
       value={value}
       name={name}
       onChange={onChange}
+      type={type}
     />
   );
 };

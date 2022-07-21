@@ -5,6 +5,7 @@ import {
   Input,
   SubTitle,
   Title,
+  ToSignUp,
   Validation,
   Wrapper,
 } from "./style";
@@ -33,7 +34,8 @@ const SignIn = () => {
     return await res.json();
   });
 
-  const onSubmit = () => {
+  const onSubmit = (e) => {
+    e.preventDefault();
     if (!email) setIsValidEmail(true);
     if (!pw) setIsValidPassword(true);
     if (pw && email)
@@ -86,6 +88,9 @@ const SignIn = () => {
             <Link to="/">Forgot</Link>
           </Bottom>
         </div>
+        <ToSignUp>
+          If you have not an account <Link to="/sign-up">Click here</Link>
+        </ToSignUp>
         <Button onClick={onSubmit} type={"primary"}>
           Login
         </Button>
