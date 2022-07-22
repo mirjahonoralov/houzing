@@ -4,6 +4,7 @@ import { ReactComponent as bed } from "../../assets/icons/card/bed.svg";
 import { ReactComponent as car } from "../../assets/icons/card/car.svg";
 import { ReactComponent as ruler } from "../../assets/icons/card/ruler.svg";
 import { ReactComponent as love } from "../../assets/icons/card/love.svg";
+import { ReactComponent as loveWhite } from "../../assets/icons/card/love-white.svg";
 import { ReactComponent as resize } from "../../assets/icons/card/resize.svg";
 
 const Container = styled.div`
@@ -70,6 +71,7 @@ Icon.Bed = bed;
 Icon.Car = car;
 Icon.Ruler = ruler;
 Icon.Love = love;
+Icon.LoveWhite = loveWhite;
 Icon.Resize = resize;
 
 const Footer = styled.div`
@@ -84,14 +86,15 @@ const Footer = styled.div`
     display: flex;
     align-items: center;
     gap: 20px;
-
-    span {
-      background: #f6f8f9;
-      border-radius: 60px;
-      display: flex;
-      padding: 7px;
-    }
   }
 `;
 
-export { Container, Img, Info, ItemsWrapper, Icon, Footer, Person };
+const Like = styled.div`
+  border-radius: 60px;
+  display: flex;
+  padding: 7px;
+  background: ${({ isFavorite }) => (isFavorite ? "#cc5040" : "#f6f8f9")};
+  color: #fff;
+`;
+
+export { Container, Img, Info, ItemsWrapper, Icon, Footer, Person, Like };

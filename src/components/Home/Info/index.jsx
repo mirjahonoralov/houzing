@@ -1,6 +1,6 @@
 import React from "react";
 import { InfoData } from "./data";
-import { Card, Container, Wrapper } from "./style";
+import { Card, Cards, Container, Wrapper } from "./style";
 
 const InfoCard = ({ item }) => {
   const { icon, title, desc } = item;
@@ -18,14 +18,16 @@ const InfoCard = ({ item }) => {
 const Info = () => {
   return (
     <Container>
-      <div className="title">Why Choose Us?</div>
-      <div className="description">
-        Nulla quis curabitur velit volutpat auctor bibendum consectetur sit.
-      </div>
       <Wrapper>
-        {InfoData.map((item, id) => (
-          <InfoCard key={id} item={item} />
-        ))}
+        <div className="title">Why Choose Us?</div>
+        <div className="description">
+          Nulla quis curabitur velit volutpat auctor bibendum consectetur sit.
+        </div>
+        <Cards>
+          {InfoData.map((item, id) => (
+            <InfoCard key={id} item={item} />
+          ))}
+        </Cards>
       </Wrapper>
     </Container>
   );

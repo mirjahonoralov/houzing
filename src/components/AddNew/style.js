@@ -1,10 +1,16 @@
 import styled from "styled-components";
 
 const Container = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+`;
+
+const MainWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  max-width: 1440px;
+  width: 1440px;
   padding: 34px 130px;
   gap: 32px;
 `;
@@ -56,7 +62,6 @@ const ImgWrapper = styled.div`
   display: flex;
   justify-content: center;
   img {
-    /* width: 100%; */
     height: 100%;
   }
 `;
@@ -104,6 +109,7 @@ const UploadBtn = styled.label`
 
 export {
   Container,
+  MainWrapper,
   Wrapper,
   Section,
   ButtonWrapper,

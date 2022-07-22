@@ -13,9 +13,20 @@ const Result = styled.div`
   max-width: 1440px;
   width: 100%;
   display: flex;
+  justify-content: space-between;
   align-items: center;
   span {
     margin-right: 5px;
+  }
+
+  .ant-select-selector {
+    border: none !important;
+    border-bottom: 2px solid #e6e9ec !important;
+    box-shadow: none;
+  }
+
+  .ant-select-arrow {
+    right: 0;
   }
 `;
 

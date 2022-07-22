@@ -46,7 +46,7 @@ const SelectedHouse = () => {
   return (
     <Container>
       <ImgWrapper>
-        <img src={house?.attachments[0]?.imgPath} alt="" />
+        {/* <img src={house?.attachments[0]?.imgPath} alt="" /> */}
       </ImgWrapper>
       <Wrapper>
         <Content>

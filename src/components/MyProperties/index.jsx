@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useQuery, useMutation } from "react-query";
 import {
   CardWrapper,
@@ -17,13 +17,18 @@ import { message, Popconfirm } from "antd";
 
 const MyProperties = () => {
   const navigate = useNavigate();
+  const [data, setData] = useState(null);
   const { request } = useHttp();
-  const { data, refetch } = useQuery(
+  const [responseMessage, setResponseMessage] = useState(null);
+
+  useQuery(
     "my properties",
     () => request({ url: "/v1/houses/me", token: true }),
     {
       onSuccess: (res) => {
         console.log(res);
+        setData(res.data);
+        setResponseMessage(res.message);
       },
     }
   );
@@ -37,7 +42,7 @@ const MyProperties = () => {
       onSuccess: (res) => {
         if (res?.success) {
           message.success("Deleted");
-          refetch();
+          // refetch();
         }
       },
     });
@@ -80,46 +85,50 @@ const MyProperties = () => {
         </Button>
       </Top>
       <Wrapper>
-        <TableWrapper>
-          <Table>
-            <thead>
-              <th>Listing Title</th>
-              <th>Date Published</th>
-              <th>Status</th>
-              <th>View</th>
-              <th>Action</th>
-            </thead>
-            <tbody>
-              {data?.data?.map((house) => (
-                <tr key={house.id}>
-                  {/* <td>{house.description}</td> */}
-                  <td style={{ width: "45%" }}>
-                    <Card card={house} />
-                  </td>
-                  <td>{house.zipCode}</td>
-                  <td>{house.status ? "Pending" : "No"}</td>
-                  <td>3214</td>
-                  <td>
-                    <Icons.Edit
-                      onClick={() =>
-                        navigate(`/properties/add-new/${house.id}`)
-                      }
-                    />
-                    <Popconfirm
-                      title="Are you sure to delete home?"
-                      onConfirm={() => confirm(house.id)}
-                      onCancel={cancel}
-                      okText="Yes"
-                      cancelText="No"
-                    >
-                      <Icons.Trash style={{ marginLeft: "22px" }} />
-                    </Popconfirm>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </Table>
-        </TableWrapper>
+        {!data ? (
+          <h1>{responseMessage}</h1>
+        ) : (
+          <TableWrapper>
+            <Table>
+              <thead>
+                <th>Listing Title</th>
+                <th>Date Published</th>
+                <th>Status</th>
+                <th>View</th>
+                <th>Action</th>
+              </thead>
+              <tbody>
+                {data?.data?.map((house) => (
+                  <tr key={house.id}>
+                    {/* <td>{house.description}</td> */}
+                    <td style={{ width: "45%" }}>
+                      <Card card={house} />
+                    </td>
+                    <td>{house.zipCode}</td>
+                    <td>{house.status ? "Pending" : "No"}</td>
+                    <td>3214</td>
+                    <td>
+                      <Icons.Edit
+                        onClick={() =>
+                          navigate(`/properties/add-new/${house.id}`)
+                        }
+                      />
+                      <Popconfirm
+                        title="Are you sure to delete home?"
+                        onConfirm={() => confirm(house.id)}
+                        onCancel={cancel}
+                        okText="Yes"
+                        cancelText="No"
+                      >
+                        <Icons.Trash style={{ marginLeft: "22px" }} />
+                      </Popconfirm>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </Table>
+          </TableWrapper>
+        )}
       </Wrapper>
     </Container>
   );

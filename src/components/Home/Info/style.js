@@ -8,12 +8,18 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  max-width: 1440px;
-  padding: 48px 130px;
+  width: 100%;
+  /* width: 1440px; */
   background: #f5f7fc;
 `;
 
 const Wrapper = styled.div`
+  padding: 48px 130px;
+  width: 1440px;
+  text-align: center;
+`;
+
+const Cards = styled.div`
   display: flex;
   justify-content: space-around;
   width: 100%;
@@ -36,4 +42,4 @@ Icon.Home = styled(img2)``;
 Icon.Calculator = styled(img3)``;
 Icon.Maps = styled(img4)``;
 
-export { Container, Wrapper, Card, Icon };
+export { Container, Wrapper, Cards, Card, Icon };

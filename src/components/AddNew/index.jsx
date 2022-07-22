@@ -7,6 +7,7 @@ import {
   Container,
   Imgs,
   ImgWrapper,
+  MainWrapper,
   MediaWrapper,
   Section,
   UploadBtn,
@@ -171,127 +172,137 @@ const AddNew = () => {
 
   return (
     <Container>
-      <div className="title">Add new property</div>
-      <Section>
-        <div className="subtitle">Contact information</div>
-        <Wrapper>
-          <Input2
-            placeholder={"Property title*"}
-            value={data?.address}
-            onChange={onChange}
-            name="address"
-          />
-          <Input2 placeholder={"Type"} />
-        </Wrapper>
-        <div className="description">Property Description*</div>
-        <Input2 />
-      </Section>
-      <Section>
-        <div className="subtitle">Additional</div>
-        <Wrapper>
-          <Input2 value={data?.houseDetails?.beds} placeholder={"Beds"} />
-          <Input2 value={data?.houseDetails?.bath} placeholder={"Bath"} />
-          <Input2 value={data?.houseDetails?.garage} placeholder={"Garage"} />
-        </Wrapper>
-        <Wrapper>
-          <Input2 placeholder={"Year build"} />
-          <Input2 placeholder={"Home area"} />
-          <Input2 placeholder={"Rooms"} />
-        </Wrapper>
-      </Section>
-      <Section>
-        <div className="subtitle">Price</div>
-        <Wrapper>
-          <Input2 placeholder={"Price"} />
-          <Input2 placeholder={"Sale Price"} />
-        </Wrapper>
-      </Section>
-
-      <Section>
-        <div className="subtitle">Location</div>
-        <Wrapper>
-          <Input2 placeholder={"Region"} />
-          <Input2 placeholder={"Address"} />
-        </Wrapper>
-        <Map />
-      </Section>
-
-      <Section>
-        <div className="subtitle">Media</div>
-        <MediaWrapper>
-          <div className="description">Featured image</div>
-          <Imgs>
-            <ImgWrapper>
-              {selectedImgs.length >= 0 && <img src={selectedImgs[0]} alt="" />}
-            </ImgWrapper>
-            <ImgWrapper>
-              {selectedImgs.length > 0 && <img src={selectedImgs[1]} alt="" />}
-            </ImgWrapper>
-            <ImgWrapper>
-              {selectedImgs.length > 1 && <img src={selectedImgs[2]} alt="" />}
-            </ImgWrapper>
-            <ImgWrapper>
-              {selectedImgs.length > 2 && <img src={selectedImgs[3]} alt="" />}
-            </ImgWrapper>
-          </Imgs>
-          <UploadBtn type="file">
-            Upload <input type="file" onChange={selectImg} />
-          </UploadBtn>
-        </MediaWrapper>
-        <MediaWrapper>
-          <div className="description">Gallery</div>
-          <UploadBtn type="file">
-            Upload <input type="file" />
-          </UploadBtn>
-        </MediaWrapper>
-        <MediaWrapper>
-          <div className="description">Attachment</div>
-          <div>pdf</div>
-          <UploadBtn type="file">
-            Upload <input type="file" />
-          </UploadBtn>
-        </MediaWrapper>
-        <MediaWrapper>
-          <Input2 placeholder={"Video link"} />
-          <div style={{ marginTop: "44px" }} className="description">
-            Virtual tour
-          </div>
+      <MainWrapper>
+        <div className="title">Add new property</div>
+        <Section>
+          <div className="subtitle">Contact information</div>
+          <Wrapper>
+            <Input2
+              placeholder={"Property title*"}
+              value={data?.address}
+              onChange={onChange}
+              name="address"
+            />
+            <Input2 placeholder={"Type"} />
+          </Wrapper>
+          <div className="description">Property Description*</div>
           <Input2 />
-        </MediaWrapper>
-      </Section>
+        </Section>
+        <Section>
+          <div className="subtitle">Additional</div>
+          <Wrapper>
+            <Input2 value={data?.houseDetails?.beds} placeholder={"Beds"} />
+            <Input2 value={data?.houseDetails?.bath} placeholder={"Bath"} />
+            <Input2 value={data?.houseDetails?.garage} placeholder={"Garage"} />
+          </Wrapper>
+          <Wrapper>
+            <Input2 placeholder={"Year build"} />
+            <Input2 placeholder={"Home area"} />
+            <Input2 placeholder={"Rooms"} />
+          </Wrapper>
+        </Section>
+        <Section>
+          <div className="subtitle">Price</div>
+          <Wrapper>
+            <Input2 placeholder={"Price"} />
+            <Input2 placeholder={"Sale Price"} />
+          </Wrapper>
+        </Section>
 
-      <Section>
-        <div className="subtitle">Amenities</div>
-        <CheckboxesWrapper>
-          {checkBox.map((item) => (
-            <Checkbox
-              checked={item.isSelected}
-              onChange={() => onCheck(item.title)}
-            >
-              {item.title}
-            </Checkbox>
-          ))}
-        </CheckboxesWrapper>
-      </Section>
+        <Section>
+          <div className="subtitle">Location</div>
+          <Wrapper>
+            <Input2 placeholder={"Region"} />
+            <Input2 placeholder={"Address"} />
+          </Wrapper>
+          <Map />
+        </Section>
 
-      <Section>
-        <div className="subtitle">Select Energy Class</div>
-        <div style={{ display: "flex", gap: "20px" }}>
-          <Input2 placeholder={"Energy class"} />
-          <Input2 placeholder={"Energy Index in kWh/m2a"} />
-        </div>
-      </Section>
+        <Section>
+          <div className="subtitle">Media</div>
+          <MediaWrapper>
+            <div className="description">Featured image</div>
+            <Imgs>
+              <ImgWrapper>
+                {selectedImgs.length >= 0 && (
+                  <img src={selectedImgs[0]} alt="" />
+                )}
+              </ImgWrapper>
+              <ImgWrapper>
+                {selectedImgs.length > 0 && (
+                  <img src={selectedImgs[1]} alt="" />
+                )}
+              </ImgWrapper>
+              <ImgWrapper>
+                {selectedImgs.length > 1 && (
+                  <img src={selectedImgs[2]} alt="" />
+                )}
+              </ImgWrapper>
+              <ImgWrapper>
+                {selectedImgs.length > 2 && (
+                  <img src={selectedImgs[3]} alt="" />
+                )}
+              </ImgWrapper>
+            </Imgs>
+            <UploadBtn type="file">
+              Upload <input type="file" onChange={selectImg} />
+            </UploadBtn>
+          </MediaWrapper>
+          <MediaWrapper>
+            <div className="description">Gallery</div>
+            <UploadBtn type="file">
+              Upload <input type="file" />
+            </UploadBtn>
+          </MediaWrapper>
+          <MediaWrapper>
+            <div className="description">Attachment</div>
+            <div>pdf</div>
+            <UploadBtn type="file">
+              Upload <input type="file" />
+            </UploadBtn>
+          </MediaWrapper>
+          <MediaWrapper>
+            <Input2 placeholder={"Video link"} />
+            <div style={{ marginTop: "44px" }} className="description">
+              Virtual tour
+            </div>
+            <Input2 />
+          </MediaWrapper>
+        </Section>
 
-      <ButtonWrapper>
-        <Button
-          onClick={onSubmit}
-          width={"150px"}
-          type="primary"
-          style={{ marginLeft: "auto" }}
-        >
-          Submit
-        </Button>
-      </ButtonWrapper>
+        <Section>
+          <div className="subtitle">Amenities</div>
+          <CheckboxesWrapper>
+            {checkBox.map((item) => (
+              <Checkbox
+                checked={item.isSelected}
+                onChange={() => onCheck(item.title)}
+              >
+                {item.title}
+              </Checkbox>
+            ))}
+          </CheckboxesWrapper>
+        </Section>
+
+        <Section>
+          <div className="subtitle">Select Energy Class</div>
+          <div style={{ display: "flex", gap: "20px" }}>
+            <Input2 placeholder={"Energy class"} />
+            <Input2 placeholder={"Energy Index in kWh/m2a"} />
+          </div>
+        </Section>
+
+        <ButtonWrapper>
+          <Button
+            onClick={onSubmit}
+            width={"150px"}
+            type="primary"
+            style={{ marginLeft: "auto" }}
+          >
+            Submit
+          </Button>
+        </ButtonWrapper>
+      </MainWrapper>
     </Container>
   );
 };

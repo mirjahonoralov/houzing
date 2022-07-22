@@ -6,6 +6,7 @@ import {
   Img,
   Info,
   ItemsWrapper,
+  Like,
   Person,
 } from "./style";
 import noImg from "../../assets/imgs/no_image.jpeg";
@@ -64,9 +65,9 @@ const Card = ({ info, mr, onClick }) => {
         </Info.Item>
         <main>
           <Icon.Resize />
-          <span>
-            <Icon.Love />
-          </span>
+          <Like isFavorite={info?.favorite}>
+            {info?.favorite ? <Icon.LoveWhite /> : <Icon.Love />}
+          </Like>
         </main>
       </Footer>
     </Container>

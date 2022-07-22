@@ -10,18 +10,18 @@ import { ReactComponent as ruler } from "../../../assets/icons/home/ruler.svg";
 const ExtraWrapper = styled.div`
   display: flex;
   justify-content: center;
-  max-width: 100vw;
+  max-width: 100%;
 `;
 
 const Wrapper = styled.div`
   position: relative;
-  max-width: 1440px;
+  /* max-width: 1440px; */
   width: 100%;
 `;
 
 const Container = styled(Carousel)`
   height: fit-content;
-  width: 100%;
+  /* width: 100%; */
 `;
 
 const Opacity = styled.div`
@@ -35,7 +35,7 @@ const Opacity = styled.div`
 
 const Img = styled.img`
   width: 100%;
-  max-width: 1440px;
+  max-width: 100vw;
   background: #000;
 `;
 
