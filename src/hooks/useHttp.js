@@ -21,24 +21,27 @@ export const useHttp = () => {
       body: bd,
       headers,
     })
-      .then((res) => res.json())
+      .then((res) => {
+        console.log(res);
+        return res.json();
+      })
       .then((data) => data);
     if (res?.success) {
       console.log(res);
       return res;
     }
-    if (res.status === 401) {
-      fetch(`${REACT_APP_BASE_URL}/public/refresh/token`, {
-        headers: {
-          body: JSON.stringify({
-            refreshToken: localStorage.getItem("refreshToken"),
-            username: localStorage.getItem("username"),
-          }),
-        },
-      })
-        .then((res) => res.json())
-        .then((res) => console.log(res, "refreshToken"));
-    } else return new Error(res?.message || "something was wrong");
+    // if (res.status === 401) {
+    //   fetch(`${REACT_APP_BASE_URL}/public/refresh/token`, {
+    //     headers: {
+    //       body: JSON.stringify({
+    //         refreshToken: localStorage.getItem("refreshToken"),
+    //         username: localStorage.getItem("username"),
+    //       }),
+    //     },
+    //   })
+    //     .then((res) => res.json())
+    //     .then((res) => console.log(res, "refreshToken"));
+    // } else return new Error(res?.message || "something was wrong");
   };
 
   return { request };

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import {
   Bottom,
   Container,
+  ForgotLink,
   Input,
   SubTitle,
   Title,
@@ -13,8 +14,7 @@ import { Button } from "../../Generic";
 import { Link, useNavigate } from "react-router-dom";
 import { useMutation } from "react-query";
 import { Checkbox } from "antd";
-// import { ToastContainer, toast } from "react-toastify";
-// import "react-toastify/dist/ReactToastify.css";
+import Forgot from "./forgot";
 
 const SignIn = () => {
   const [email, setEmail] = useState("");
@@ -22,6 +22,8 @@ const SignIn = () => {
   const [isValidEmail, setIsValidEmail] = useState(false);
   const [isValidPassword, setIsValidPassword] = useState(false);
   const { REACT_APP_BASE_URL: url } = process.env;
+
+  const [forgot, setForgot] = useState(false);
 
   const navigate = useNavigate();
 
@@ -57,46 +59,50 @@ const SignIn = () => {
   return (
     <Container>
       <Wrapper>
-        <Title>Sign in</Title>
-        <div>
-          <SubTitle>Login</SubTitle>
-          <Input
-            value={email}
-            required
-            type="email"
-            onChange={({ target }) => {
-              setIsValidEmail(false);
-              setEmail(target.value);
-            }}
-            placeholder="Email"
-          />
-          {isValidEmail && <Validation>*Enter Email</Validation>}
-        </div>
-        <div>
-          <Input
-            value={pw}
-            onChange={({ target }) => {
-              setIsValidPassword(false);
-              setPw(target.value);
-            }}
-            placeholder="Password"
-            type={"password"}
-          />
-          {isValidPassword && <Validation>*Enter Password</Validation>}
-          <Bottom>
-            <Checkbox>Remember me</Checkbox>
-            <Link to="/">Forgot</Link>
-          </Bottom>
-        </div>
-        <ToSignUp>
-          If you have not an account <Link to="/sign-up">Click here</Link>
-        </ToSignUp>
-        <Button onClick={onSubmit} type={"primary"}>
-          Login
-        </Button>
+        {forgot ? (
+          <Forgot />
+        ) : (
+          <>
+            <Title>Sign in</Title>
+            <div>
+              <SubTitle>Login</SubTitle>
+              <Input
+                value={email}
+                required
+                type="email"
+                onChange={({ target }) => {
+                  setIsValidEmail(false);
+                  setEmail(target.value);
+                }}
+                placeholder="Email"
+              />
+              {isValidEmail && <Validation>*Enter Email</Validation>}
+            </div>
+            <div>
+              <Input
+                value={pw}
+                onChange={({ target }) => {
+                  setIsValidPassword(false);
+                  setPw(target.value);
+                }}
+                placeholder="Password"
+                type={"password"}
+              />
+              {isValidPassword && <Validation>*Enter Password</Validation>}
+              <Bottom>
+                <Checkbox>Remember me</Checkbox>
+                <ForgotLink onClick={() => setForgot(true)}>Forgot</ForgotLink>
+              </Bottom>
+            </div>
+            <ToSignUp>
+              If you have not an account <Link to="/sign-up">Click here</Link>
+            </ToSignUp>
+            <Button onClick={onSubmit} type={"primary"}>
+              Login
+            </Button>
+          </>
+        )}
       </Wrapper>
-
-      {/* <ToastContainer /> */}
     </Container>
   );
 };

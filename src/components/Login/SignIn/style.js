@@ -28,7 +28,6 @@ const Title = styled.div`
   line-height: 28px;
   color: #0d263b;
   text-align: start;
-  /* margin-bottom: 24px; */
 `;
 
 const SubTitle = styled.div`
@@ -78,6 +77,27 @@ const ToSignUp = styled.div`
   }
 `;
 
+const ForgotLink = styled.div`
+  color: #0061df;
+  text-decoration: underline;
+  cursor: pointer;
+`;
+
+const ForgotWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+`;
+
+const InputWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  p {
+    color: red;
+  }
+`;
+
 export {
   Container,
   Wrapper,
@@ -87,4 +107,7 @@ export {
   Bottom,
   Validation,
   ToSignUp,
+  ForgotWrapper,
+  ForgotLink,
+  InputWrapper,
 };

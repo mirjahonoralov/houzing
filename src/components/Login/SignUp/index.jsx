@@ -14,7 +14,7 @@ const SignUp = () => {
       content: "*Something went wrong, try again",
     });
 
-  const success = async () =>
+  const success = () =>
     Modal.success({
       title: "Success",
       content: "We sent confirmation link to your email. Please confirm it",
