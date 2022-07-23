@@ -29,10 +29,7 @@ const Properties = () => {
     navigate(`/properties/:${id}`);
   };
 
-  console.log(data, "data ---");
-
   const handleChange = (value) => {
-    console.log(`selected ${value}`);
     setFilter(value);
   };
 

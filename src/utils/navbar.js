@@ -1,6 +1,5 @@
 // components
 import AddNewPage from "../pages/AddNew";
-import FavoritePage from "../pages/Favorite";
 import MyPropertiesPage from "../pages/MyProperties";
 import Generic from "../pages/Generic";
 import HomePage from "../pages/Home";
@@ -90,16 +89,6 @@ export const navbar = [
     title: "SignUp",
     path: "/sign-up",
     Element: <SignUpPage />,
-    param: false,
-    search: "?",
-    hidden: true,
-    private: false,
-  },
-  {
-    id: 10,
-    title: "Favorite",
-    path: "/properties/favorite",
-    Element: <FavoritePage />,
     param: false,
     search: "?",
     hidden: true,

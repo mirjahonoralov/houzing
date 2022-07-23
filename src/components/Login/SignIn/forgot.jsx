@@ -51,11 +51,9 @@ const Forgot = () => {
     if (newPassword && email) {
       verifyEmail("verify Email", {
         onSuccess: (res) => {
-          console.log(res, "res");
           setEmailToken(res.message);
         },
         onError: (err) => {
-          console.log(err, "error");
           error();
         },
       });
@@ -66,7 +64,6 @@ const Forgot = () => {
     emailToken &&
       updatePassword("update", {
         onSuccess: (res) => {
-          console.log(res, "updated res");
           if (res?.success) success();
         },
         onError: (err) => {

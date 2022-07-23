@@ -38,7 +38,6 @@ const SelectedHouse = () => {
     {
       onSuccess: (res) => {
         setHouse(res?.data);
-        console.log(res);
       },
     }
   );

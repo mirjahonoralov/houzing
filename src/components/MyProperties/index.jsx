@@ -26,7 +26,6 @@ const MyProperties = () => {
     () => request({ url: "/v1/houses/me", token: true }),
     {
       onSuccess: (res) => {
-        console.log(res);
         setData(res.data);
         setResponseMessage(res.message);
       },
@@ -49,7 +48,6 @@ const MyProperties = () => {
   };
 
   const cancel = (e) => {
-    console.log(e);
     message.error("Click on No");
   };
 

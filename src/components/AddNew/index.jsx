@@ -144,7 +144,6 @@ const AddNew = () => {
     else
       create("", {
         onSuccess: (res) => {
-          console.log(res);
           navigate("/my-properties");
         },
       });

@@ -9,7 +9,6 @@ import Button from "../../Generic/Button";
 const Review = () => {
   const mock = [1, 2, 3, 4, 5];
   const [value, setValue] = useState(0);
-  console.log(value);
   return (
     <>
       <div className="subtitle">Write a Review</div>
