@@ -112,10 +112,10 @@ const AddNew = () => {
 
   const { mutate: create } = useMutation(() =>
     request({
-      url: "/v1/houses/",
+      url: "/v1/houses",
       method: "POST",
       token: true,
-      headers: {},
+      // headers: {},
       body: body,
     })
   );

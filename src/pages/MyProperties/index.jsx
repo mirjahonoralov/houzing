@@ -1,7 +1,6 @@
 import React from "react";
+import MyProperties from "../../components/MyProperties";
 
-const Generic = () => {
-  return <div>Generic {window.location.pathname}</div>;
-};
+const MyPropertiesPage = () => <MyProperties />;
 
-export default Generic;
+export default MyPropertiesPage;

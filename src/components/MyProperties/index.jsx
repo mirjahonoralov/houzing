@@ -74,61 +74,63 @@ const MyProperties = () => {
 
   return (
     <Container>
-      <Top>
-        <div className="title">Wrapper</div>
-        <Button
-          width={"131px"}
-          type={"primary"}
-          onClick={() => navigate("/properties/add-new")}
-        >
-          Add New
-        </Button>
-      </Top>
       <Wrapper>
-        {!data ? (
-          <h1>{responseMessage}</h1>
-        ) : (
-          <TableWrapper>
-            <Table>
-              <thead>
-                <th>Listing Title</th>
-                <th>Date Published</th>
-                <th>Status</th>
-                <th>View</th>
-                <th>Action</th>
-              </thead>
-              <tbody>
-                {data?.data?.map((house) => (
-                  <tr key={house.id}>
-                    {/* <td>{house.description}</td> */}
-                    <td style={{ width: "45%" }}>
-                      <Card card={house} />
-                    </td>
-                    <td>{house.zipCode}</td>
-                    <td>{house.status ? "Pending" : "No"}</td>
-                    <td>3214</td>
-                    <td>
-                      <Icons.Edit
-                        onClick={() =>
-                          navigate(`/properties/add-new/${house.id}`)
-                        }
-                      />
-                      <Popconfirm
-                        title="Are you sure to delete home?"
-                        onConfirm={() => confirm(house.id)}
-                        onCancel={cancel}
-                        okText="Yes"
-                        cancelText="No"
-                      >
-                        <Icons.Trash style={{ marginLeft: "22px" }} />
-                      </Popconfirm>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </Table>
-          </TableWrapper>
-        )}
+        <Top>
+          <div className="title">Wrapper</div>
+          <Button
+            width={"131px"}
+            type={"primary"}
+            onClick={() => navigate("/properties/add-new")}
+          >
+            Add New
+          </Button>
+        </Top>
+        <div style={{ marginTop: "32px" }}>
+          {!data ? (
+            <h1>{responseMessage}</h1>
+          ) : (
+            <TableWrapper>
+              <Table>
+                <thead>
+                  <th>Listing Title</th>
+                  <th>Date Published</th>
+                  <th>Status</th>
+                  <th>View</th>
+                  <th>Action</th>
+                </thead>
+                <tbody>
+                  {data?.data?.map((house) => (
+                    <tr key={house.id}>
+                      {/* <td>{house.description}</td> */}
+                      <td style={{ width: "45%" }}>
+                        <Card card={house} />
+                      </td>
+                      <td>{house.zipCode}</td>
+                      <td>{house.status ? "Pending" : "No"}</td>
+                      <td>3214</td>
+                      <td>
+                        <Icons.Edit
+                          onClick={() =>
+                            navigate(`/properties/add-new/${house.id}`)
+                          }
+                        />
+                        <Popconfirm
+                          title="Are you sure to delete home?"
+                          onConfirm={() => confirm(house.id)}
+                          onCancel={cancel}
+                          okText="Yes"
+                          cancelText="No"
+                        >
+                          <Icons.Trash style={{ marginLeft: "22px" }} />
+                        </Popconfirm>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </Table>
+            </TableWrapper>
+          )}
+        </div>
       </Wrapper>
     </Container>
   );

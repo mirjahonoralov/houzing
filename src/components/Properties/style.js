@@ -5,11 +5,11 @@ const Container = styled.div`
   flex-direction: column;
   margin-top: 64px;
   align-items: center;
-  padding: 0 130px;
 `;
 
 const Result = styled.div`
   margin: 70px 0 16px 0;
+  padding: 0 130px;
   max-width: 1440px;
   width: 100%;
   display: flex;
@@ -31,6 +31,7 @@ const Result = styled.div`
 `;
 
 const Wrapper = styled.div`
+  padding: 0 130px;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 20px;

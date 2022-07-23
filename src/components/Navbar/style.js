@@ -11,7 +11,6 @@ const Wrapper = styled.div`
 `;
 
 const Container = styled.div`
-  padding: 0 130px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -34,16 +33,17 @@ const Container = styled.div`
 `;
 
 const NavbarWrapper = styled.div`
+  padding: 0 130px;
   display: flex;
   align-items: center;
   height: 64px;
-  max-width: 1440px;
+  width: 1440px;
   font-family: "Montserrat";
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
   line-height: 24px;
-  width: 100%;
+  /* width: 100%; */
   color: #fff;
   /* display: none; */
   @media ${device.tablet} {

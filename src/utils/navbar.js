@@ -1,7 +1,7 @@
 // components
 import AddNewPage from "../pages/AddNew";
 import FavoritePage from "../pages/Favorite";
-import MyPropertiesPage from "../pages/Generic";
+import MyPropertiesPage from "../pages/MyProperties";
 import Generic from "../pages/Generic";
 import HomePage from "../pages/Home";
 import PropertiesPage from "../pages/Properties";

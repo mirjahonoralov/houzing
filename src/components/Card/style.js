@@ -90,6 +90,7 @@ const Footer = styled.div`
 `;
 
 const Like = styled.div`
+  cursor: pointer;
   border-radius: 60px;
   display: flex;
   padding: 7px;

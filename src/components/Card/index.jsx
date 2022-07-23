@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Container,
   Footer,
@@ -11,8 +11,35 @@ import {
 } from "./style";
 import noImg from "../../assets/imgs/no_image.jpeg";
 import noUser from "../../assets/imgs/no-user.jpg";
+import { useMutation } from "react-query";
+import { useHttp } from "../../hooks/useHttp";
+import { useEffect } from "react";
 
 const Card = ({ info, mr, onClick }) => {
+  const { request } = useHttp();
+  const [likeStatus, setLikeStatus] = useState(null);
+
+  const { mutate: addFavorite } = useMutation(() =>
+    request({
+      method: "PUT",
+      url: `/v1/houses/addFavourite/${info?.id}?favourite=${likeStatus}`,
+      body: { id: info?.id, favourite: likeStatus },
+      token: true,
+    })
+  );
+
+  useEffect(() => {
+    likeStatus !== null &&
+      addFavorite("like", {
+        onSuccess: (res) => {
+          console.log(res, "favorite res");
+        },
+        onError: (err) => {
+          console.log(err, "add favorite error");
+        },
+      });
+  }, [addFavorite, likeStatus]);
+
   return (
     <Container mr={mr}>
       <Img onClick={onClick} src={info?.attachments[0]?.imgPath || noImg} />
@@ -65,7 +92,12 @@ const Card = ({ info, mr, onClick }) => {
         </Info.Item>
         <main>
           <Icon.Resize />
-          <Like isFavorite={info?.favorite}>
+          <Like
+            isFavorite={info?.favorite}
+            onClick={() =>
+              info?.favorite ? setLikeStatus(false) : setLikeStatus(!likeStatus)
+            }
+          >
             {info?.favorite ? <Icon.LoveWhite /> : <Icon.Love />}
           </Like>
         </main>

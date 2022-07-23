@@ -5,7 +5,7 @@ import { ReactComponent as trash } from "../../assets/icons/table/trash.svg";
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  padding: 0 130px;
+  align-items: center;
 `;
 
 const Top = styled.div`
@@ -16,7 +16,8 @@ const Top = styled.div`
 `;
 
 const Wrapper = styled.div`
-  margin-top: 32px;
+  width: 1440px;
+  padding: 0 130px;
 `;
 
 const TableWrapper = styled.div`
