@@ -7,6 +7,7 @@ import PropertiesPage from "../pages/Properties";
 import SelectedHousePage from "../pages/SelectedHouse";
 import SignInPage from "../pages/SignIn";
 import SignUpPage from "../pages/SignUp";
+import ContactPage from "../pages/Contact";
 
 export const navbar = [
   {
@@ -49,7 +50,7 @@ export const navbar = [
     id: 4,
     title: "Contacts",
     path: "/contacts",
-    Element: <Generic />,
+    Element: <ContactPage />,
     search: "?",
     hidden: false,
     private: false,
