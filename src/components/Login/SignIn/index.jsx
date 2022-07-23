@@ -15,6 +15,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useMutation } from "react-query";
 import { Checkbox } from "antd";
 import Forgot from "./forgot";
+import { Modal } from "antd";
 
 const SignIn = () => {
   const [email, setEmail] = useState("");
@@ -26,6 +27,12 @@ const SignIn = () => {
   const [forgot, setForgot] = useState(false);
 
   const navigate = useNavigate();
+
+  const error = () =>
+    Modal.error({
+      title: "Error",
+      content: "*Something went wrong, try again",
+    });
 
   const { mutate } = useMutation(async () => {
     const res = await fetch(`${url}/public/auth/login`, {
@@ -49,6 +56,7 @@ const SignIn = () => {
           }
         },
         onError: (err) => {
+          error();
           console.log(err);
         },
       });
@@ -63,7 +71,7 @@ const SignIn = () => {
           <>
             <Title>Sign in</Title>
             <div>
-              <SubTitle>Login</SubTitle>
+              <SubTitle>Email</SubTitle>
               <Input
                 value={email}
                 required
@@ -77,6 +85,7 @@ const SignIn = () => {
               {isValidEmail && <Validation>*Enter Email</Validation>}
             </div>
             <div>
+              <SubTitle>Password</SubTitle>
               <Input
                 value={pw}
                 onChange={({ target }) => {
