@@ -26,6 +26,10 @@ const Properties = () => {
         setLoading(false);
         setData(res?.data || []);
       },
+      onError: (err) => {
+        console.log(err);
+        setLoading(false);
+      },
     }
   );
   const navigate = useNavigate();
