@@ -13,10 +13,11 @@ const Properties = () => {
   const [data, setData] = useState([]);
   const [filter, setFilter] = useState("list");
   const [loading, setLoading] = useState(false);
+  const [refetch, setRefetch] = useState(false);
 
   const { request } = useHttp();
   useQuery(
-    [search, filter, setFilter],
+    [search, filter, setFilter, refetch],
     () => {
       setLoading(true);
       return request({ url: `/v1/houses/${filter}${search}`, token: true });
@@ -74,6 +75,8 @@ const Properties = () => {
                 info={card}
                 onClick={() => onClick(card.id)}
                 setFilter={setFilter}
+                refetch={refetch}
+                setRefetch={setRefetch}
               />
             ))
           )}
