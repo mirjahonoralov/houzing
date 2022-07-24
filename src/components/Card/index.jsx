@@ -15,7 +15,7 @@ import { useMutation } from "react-query";
 import { useHttp } from "../../hooks/useHttp";
 import { useEffect } from "react";
 
-const Card = ({ info, mr, onClick }) => {
+const Card = ({ info, mr, onClick, setFilter }) => {
   const { request } = useHttp();
   const [likeStatus, setLikeStatus] = useState(null);
 
@@ -31,14 +31,10 @@ const Card = ({ info, mr, onClick }) => {
   useEffect(() => {
     likeStatus !== null &&
       addFavorite("like", {
-        onSuccess: (res) => {
-          console.log(res, "favorite res");
-        },
-        onError: (err) => {
-          console.log(err, "add favorite error");
-        },
+        onSuccess: (res) => setFilter("getAll/favouriteList"),
+        onError: (err) => console.log(err, "add favorite error"),
       });
-  }, [addFavorite, likeStatus]);
+  }, [addFavorite, likeStatus, setFilter]);
 
   return (
     <Container mr={mr}>

@@ -8,8 +8,6 @@ import Filter from "../Filter";
 import { Container, Result, Wrapper } from "./style";
 const { Option } = Select;
 
-const { REACT_APP_BASE_URL: url } = process.env;
-
 const Properties = () => {
   const { search } = useLocation();
   const [data, setData] = useState([]);
@@ -18,7 +16,7 @@ const Properties = () => {
 
   const { request } = useHttp();
   useQuery(
-    ["", search, filter],
+    [search, filter, setFilter],
     () => {
       setLoading(true);
       return request({ url: `/v1/houses/${filter}${search}`, token: true });
@@ -31,13 +29,9 @@ const Properties = () => {
     }
   );
   const navigate = useNavigate();
-  const onClick = (id) => {
-    navigate(`/properties/:${id}`);
-  };
+  const onClick = (id) => navigate(`/properties/:${id}`);
 
-  const handleChange = (value) => {
-    setFilter(value);
-  };
+  const handleChange = (value) => setFilter(value);
 
   return (
     <>
@@ -55,6 +49,7 @@ const Properties = () => {
             Sort by:{" "}
             <Select
               defaultValue={filter}
+              value={filter}
               style={{
                 width: 170,
               }}
@@ -74,6 +69,7 @@ const Properties = () => {
                 key={card.id}
                 info={card}
                 onClick={() => onClick(card.id)}
+                setFilter={setFilter}
               />
             ))
           )}
