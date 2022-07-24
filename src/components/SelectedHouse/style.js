@@ -30,6 +30,7 @@ const Wrapper = styled.div`
   gap: 20px;
   align-items: flex-start;
   width: 1440px;
+  padding: 0 130px;
 
   .line {
     background: #e6e9ec;
