@@ -16,13 +16,16 @@ import {
 import { useHttp } from "../../hooks/useHttp";
 import { useMutation, useQuery } from "react-query";
 import { useNavigate, useParams } from "react-router-dom";
-import { Checkbox, message } from "antd";
+import { Checkbox, message, Spin } from "antd";
+import { LoadingOutlined } from "@ant-design/icons";
 
 const AddNew = () => {
   const { request } = useHttp();
   const navigate = useNavigate();
   const { id } = useParams();
   const [data, setData] = useState({});
+  const [loading, setLoading] = useState(false);
+
   const [checkBox, setCheckBox] = useState([
     { title: "Air conditioning", isSelected: false },
     { title: "Barbeque", isSelected: false },
@@ -132,19 +135,28 @@ const AddNew = () => {
   );
 
   const onSubmit = () => {
+    setLoading(true);
     if (id)
       update(id, {
         onSuccess: (res) => {
           if (res.success) {
+            setLoading(false);
             message.info("Updated");
             navigate("/my-properties");
           }
+        },
+        onError: (err) => {
+          setLoading(false);
         },
       });
     else
       create("", {
         onSuccess: (res) => {
+          setLoading(false);
           navigate("/my-properties");
+        },
+        onError: (err) => {
+          setLoading(false);
         },
       });
   };
@@ -168,6 +180,16 @@ const AddNew = () => {
   };
 
   const [selectedImgs, setSelectedImgs] = useState([]);
+
+  const antIcon = (
+    <LoadingOutlined
+      style={{
+        fontSize: 24,
+        marginRight: "20px",
+      }}
+      spin
+    />
+  );
 
   return (
     <Container>
@@ -298,6 +320,7 @@ const AddNew = () => {
             type="primary"
             style={{ marginLeft: "auto" }}
           >
+            {loading && <Spin indicator={antIcon} />}
             Submit
           </Button>
         </ButtonWrapper>

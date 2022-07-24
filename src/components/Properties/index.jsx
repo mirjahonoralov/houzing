@@ -1,4 +1,4 @@
-import { Select } from "antd";
+import { Select, Spin } from "antd";
 import React, { useState } from "react";
 import { useQuery } from "react-query";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -14,14 +14,20 @@ const Properties = () => {
   const { search } = useLocation();
   const [data, setData] = useState([]);
   const [filter, setFilter] = useState("list");
+  const [loading, setLoading] = useState(false);
+
   const { request } = useHttp();
   useQuery(
     ["", search, filter],
     () => {
+      setLoading(true);
       return request({ url: `/v1/houses/${filter}${search}`, token: true });
     },
     {
-      onSuccess: (res) => setData(res?.data || []),
+      onSuccess: (res) => {
+        setLoading(false);
+        setData(res?.data || []);
+      },
     }
   );
   const navigate = useNavigate();
@@ -60,9 +66,17 @@ const Properties = () => {
           </div>
         </Result>
         <Wrapper>
-          {data?.map((card) => (
-            <Card key={card.id} info={card} onClick={() => onClick(card.id)} />
-          ))}
+          {loading ? (
+            <Spin size="large" />
+          ) : (
+            data?.map((card) => (
+              <Card
+                key={card.id}
+                info={card}
+                onClick={() => onClick(card.id)}
+              />
+            ))
+          )}
         </Wrapper>
       </Container>
     </>

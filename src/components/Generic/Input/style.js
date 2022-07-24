@@ -32,9 +32,11 @@ const Wrapper = styled.div`
 const Icon = styled.div`
   position: absolute;
   margin-left: 10px;
+  top: 15px;
 `;
 
 const Container = styled.input`
+  outline: none;
   height: ${({ height }) => height || "44px"};
   width: ${({ width }) => width || "100%"};
   border-radius: 2px;
@@ -48,6 +50,10 @@ const Container = styled.input`
   font-weight: 400;
   font-style: normal;
   color: #0d263b;
+
+  :focus {
+    border: 2px solid #0061df;
+  }
 
   /* ${({ type }) => getType(type)} */
 `;

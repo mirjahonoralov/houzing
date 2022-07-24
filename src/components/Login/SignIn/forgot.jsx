@@ -4,7 +4,8 @@ import { ForgotWrapper, InputWrapper } from "./style";
 import { useHttp } from "../../../hooks/useHttp";
 import { useMutation } from "react-query";
 import { useEffect } from "react";
-import { Modal } from "antd";
+import { Modal, Spin } from "antd";
+import { LoadingOutlined } from "@ant-design/icons";
 
 const Forgot = () => {
   const [email, setEmail] = useState("");
@@ -12,6 +13,7 @@ const Forgot = () => {
   const [emailToken, setEmailToken] = useState(null);
   const [isValidEmail, setIsValidEmail] = useState(false);
   const [isValidPassword, setIsValidPassword] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const { request } = useHttp();
 
@@ -49,16 +51,28 @@ const Forgot = () => {
     if (!email) setIsValidEmail(true);
     if (!newPassword) setIsValidPassword(true);
     if (newPassword && email) {
+      setLoading(true);
       verifyEmail("verify Email", {
         onSuccess: (res) => {
           setEmailToken(res.message);
         },
         onError: (err) => {
+          setLoading(false);
           error();
         },
       });
     }
   };
+
+  const antIcon = (
+    <LoadingOutlined
+      style={{
+        fontSize: 24,
+        marginRight: "20px",
+      }}
+      spin
+    />
+  );
 
   useEffect(() => {
     emailToken &&
@@ -103,6 +117,7 @@ const Forgot = () => {
         {isValidPassword && <p>Enter new password</p>}
       </InputWrapper>
       <Button type={"primary"} onClick={onSubmit}>
+        {loading && <Spin indicator={antIcon} />}
         Update password
       </Button>
     </ForgotWrapper>

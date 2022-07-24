@@ -13,15 +13,17 @@ import {
 import { Button } from "../../Generic";
 import { Link, useNavigate } from "react-router-dom";
 import { useMutation } from "react-query";
-import { Checkbox } from "antd";
+import { Checkbox, Spin } from "antd";
 import Forgot from "./forgot";
 import { Modal } from "antd";
+import { LoadingOutlined } from "@ant-design/icons";
 
 const SignIn = () => {
   const [email, setEmail] = useState("");
   const [pw, setPw] = useState("");
   const [isValidEmail, setIsValidEmail] = useState(false);
   const [isValidPassword, setIsValidPassword] = useState(false);
+  const [loading, setLoading] = useState(false);
   const { REACT_APP_BASE_URL: url } = process.env;
 
   const [forgot, setForgot] = useState(false);
@@ -47,7 +49,8 @@ const SignIn = () => {
     e.preventDefault();
     if (!email) setIsValidEmail(true);
     if (!pw) setIsValidPassword(true);
-    if (pw && email)
+    if (pw && email) {
+      setLoading(true);
       mutate("something", {
         onSuccess: (res) => {
           if (res?.authenticationToken) {
@@ -56,11 +59,23 @@ const SignIn = () => {
           }
         },
         onError: (err) => {
+          setLoading(false);
           error();
           console.log(err);
         },
       });
+    }
   };
+
+  const antIcon = (
+    <LoadingOutlined
+      style={{
+        fontSize: 24,
+        marginRight: "20px",
+      }}
+      spin
+    />
+  );
 
   return (
     <Container>
@@ -105,6 +120,7 @@ const SignIn = () => {
               If you have not an account <Link to="/sign-up">Click here</Link>
             </ToSignUp>
             <Button onClick={onSubmit} type={"primary"}>
+              {loading && <Spin indicator={antIcon} />}
               Login
             </Button>
           </>

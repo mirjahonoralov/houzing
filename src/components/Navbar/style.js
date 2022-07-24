@@ -68,6 +68,8 @@ Icon.Account = styled(account)`
   }
 `;
 
+Icon.Account2 = styled(account)``;
+
 const NavbarBody = styled.div`
   display: flex;
   flex: 1;
