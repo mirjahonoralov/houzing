@@ -15,16 +15,25 @@ const Container = styled.div`
   background: #ffffff;
   border: 1px solid #e6e9ec;
   border-radius: 3px;
-  max-width: 380px;
-  min-width: 280px;
-  /* flex-grow: 10; */
+  max-width: 400px;
+  min-width: 300px;
   margin-right: ${({ mr }) => mr && `${mr}px`};
+
+  @media (max-width: 500px) {
+    min-width: 230px;
+
+    width: 230px;
+  }
 `;
 
 const Info = styled.div`
   padding: 25px;
   width: 100%;
   position: relative;
+
+  @media (max-width: 500px) {
+    padding: 10px;
+  }
 `;
 
 Info.Item = styled.div`
@@ -32,6 +41,12 @@ Info.Item = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 7px;
+
+  @media (max-width: 500px) {
+    .description {
+      font-size: 10px !important;
+    }
+  }
 `;
 
 const ItemsWrapper = styled.div`
@@ -46,6 +61,10 @@ const Img = styled.img`
   width: 100%;
   flex-grow: 10;
   height: 220px;
+
+  @media (max-width: 900px) {
+    height: 140px;
+  }
 `;
 
 const Person = styled.img`
@@ -59,6 +78,11 @@ const Person = styled.img`
   padding: 2px;
   width: 40px;
   height: 40px;
+
+  @media (max-width: 500px) {
+    width: 30px;
+    height: 30px;
+  }
 `;
 
 const Icon = styled.div`
@@ -86,6 +110,10 @@ const Footer = styled.div`
     display: flex;
     align-items: center;
     gap: 20px;
+  }
+
+  @media (max-width: 500px) {
+    height: 45px;
   }
 `;
 

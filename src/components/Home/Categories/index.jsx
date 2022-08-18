@@ -6,6 +6,8 @@ import { Icon } from "../Carousel/style";
 import { Carousel, CategoryWrapper, Container, Wrapper } from "./style";
 import categoryImg from "../../../assets/imgs/category.png";
 import { useHttp } from "../../../hooks/useHttp";
+import { LeftOutlined, RightOutlined } from "@ant-design/icons";
+import { useEffect } from "react";
 
 const Categories = () => {
   const Category = ({ category }) => (
@@ -35,6 +37,24 @@ const Categories = () => {
     }
   );
 
+  const responsive = {
+    0: { items: 1 },
+    850: { items: 2 },
+    1000: { items: 3 },
+    1400: { items: 4 },
+  };
+
+  const [width, setWidth] = useState(window.innerWidth);
+  useEffect(() => {
+    window.addEventListener("resize", () => setWidth(window.innerWidth));
+  }, [window.innerWidth]);
+
+  const iconsPosition = width < 500 ? "2%" : "5%";
+
+  const items = [
+    ...list.map((item) => <Category category={item} key={item.id} />),
+  ];
+
   return (
     <Container>
       <div className="title">Categories</div>
@@ -43,14 +63,25 @@ const Categories = () => {
       </div>
       <Wrapper>
         <Carousel>
-          <Icon.Right onClick={() => slider.current.slidePrev()} />
-          <Icon.Left onClick={() => slider.current.slideNext()} />
+          <Icon
+            position={{ right: iconsPosition }}
+            onClick={() => slider.current.slideNext()}
+          >
+            <LeftOutlined />
+          </Icon>
+          <Icon
+            position={{ left: iconsPosition }}
+            onClick={() => slider.current.slidePrev()}
+          >
+            <RightOutlined />
+          </Icon>
           <AliceCarousel
+            mouseTracking
+            keyboardNavigation
             ref={slider}
-            autoWidth
-            items={[
-              ...list.map((item) => <Category category={item} key={item.id} />),
-            ]}
+            // autoWidth
+            responsive={responsive}
+            items={items}
           />
         </Carousel>
       </Wrapper>

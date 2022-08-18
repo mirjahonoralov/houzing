@@ -6,6 +6,7 @@ import { ReactComponent as l } from "../../assets/icons/footer/l.svg";
 import { ReactComponent as phone } from "../../assets/icons/footer/phone.svg";
 import { ReactComponent as email } from "../../assets/icons/footer/email.svg";
 import { ReactComponent as map } from "../../assets/icons/footer/map.svg";
+import { device } from "../../utils/sizes";
 
 const Container = styled.div`
   display: flex;
@@ -22,6 +23,15 @@ const Wrapper = styled.div`
   padding: 48px 130px;
   color: #fff;
   width: 100%;
+  gap: 30px;
+
+  @media ${device.laptop} {
+    padding: 48px 50px;
+  }
+
+  @media (max-width: 900px) {
+    flex-wrap: wrap;
+  }
 `;
 
 const Column = styled.div`

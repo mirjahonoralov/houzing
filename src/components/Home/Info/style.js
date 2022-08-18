@@ -14,8 +14,8 @@ const Container = styled.div`
 `;
 
 const Wrapper = styled.div`
-  padding: 48px 130px;
-  width: 1440px;
+  padding: 48px 9%;
+  max-width: 1440px;
   text-align: center;
 `;
 
@@ -24,6 +24,18 @@ const Cards = styled.div`
   justify-content: space-around;
   width: 100%;
   margin-top: 40px;
+  gap: 50px;
+
+  @media (max-width: 1100px) {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  @media (max-width: 500px) {
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-items: center;
+  }
 `;
 
 const Card = styled.div`

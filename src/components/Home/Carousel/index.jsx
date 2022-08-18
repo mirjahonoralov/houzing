@@ -1,23 +1,30 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
   Container,
   Img,
   Wrapper,
-  Icon,
   ExtraWrapper,
   Content,
   ItemsWrapper,
   Opacity,
   InfoIcon,
   Info,
+  Icon,
 } from "./style";
 import home1 from "../../../assets/imgs/home1.jpg";
 import home2 from "../../../assets/imgs/home2.png";
 import { Button } from "../../Generic";
+import { LeftOutlined, RightOutlined } from "@ant-design/icons";
 
 const Carousel = () => {
   const [info, setInfo] = useState();
   const slider = useRef();
+  const [width, setWidth] = useState(window.innerWidth);
+  useEffect(() => {
+    window.addEventListener("resize", () => setWidth(window.innerWidth));
+  }, [window.innerWidth]);
+  const iconsPosition = width < 500 ? "2%" : "5%";
+
   return (
     <ExtraWrapper>
       <Wrapper>
@@ -53,8 +60,18 @@ const Carousel = () => {
           <div className="title">$5,250/mo</div>
           <Button>Read more</Button>
         </Content>
-        <Icon.Right onClick={() => slider.current.prev()} />
-        <Icon.Left onClick={() => slider.current.next()} />
+        <Icon
+          position={{ right: iconsPosition }}
+          onClick={() => slider.current.prev()}
+        >
+          <LeftOutlined />
+        </Icon>
+        <Icon
+          position={{ left: iconsPosition }}
+          onClick={() => slider.current.next()}
+        >
+          <RightOutlined />
+        </Icon>
         <div style={{ position: "relative" }}>
           <Opacity />
           <Container dots autoplay ref={slider}>

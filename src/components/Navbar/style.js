@@ -33,7 +33,7 @@ const Container = styled.div`
 `;
 
 const NavbarWrapper = styled.div`
-  padding: 0 130px;
+  padding: 0 9%;
   display: flex;
   align-items: center;
   height: 64px;
@@ -43,14 +43,14 @@ const NavbarWrapper = styled.div`
   font-weight: 400;
   font-size: 16px;
   line-height: 24px;
-  /* width: 100%; */
   color: #fff;
-  /* display: none; */
+
   @media ${device.tablet} {
     justify-content: space-between;
     span {
       display: none;
     }
+    padding: 0;
   }
 `;
 
