@@ -6,6 +6,7 @@ const Container = styled.div`
   margin-top: 96px;
   align-items: center;
   width: 100%;
+  max-width: 1440px;
 
   @media (max-width: 550px) {
     .title,
