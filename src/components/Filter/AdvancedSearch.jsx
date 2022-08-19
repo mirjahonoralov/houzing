@@ -28,17 +28,14 @@ const AdvancedSearch = ({ state, setState, query, list }) => {
     setState({
       country: "",
       region: "",
-      city: "",
       zip: "",
       address: "",
-      house: "",
       rooms: "",
       minPrice: "",
       maxPrice: "",
     });
     setDef("Select Category");
     navigate("/properties");
-    console.log(query.get("category_id"));
   };
 
   const { Option } = Select;
@@ -56,17 +53,11 @@ const AdvancedSearch = ({ state, setState, query, list }) => {
         <Input
           value={state.region}
           name={"region"}
-          placeholder={"Region"}
+          placeholder={"Region / City"}
           pl={20}
           onChange={onChange}
         />
-        <Input
-          value={state.city}
-          name={"city"}
-          placeholder={"City"}
-          pl={20}
-          onChange={onChange}
-        />
+
         <Input
           value={state.zip}
           name={"zip"}
@@ -81,13 +72,6 @@ const AdvancedSearch = ({ state, setState, query, list }) => {
           value={state.address}
           name={"address"}
           placeholder={"Address"}
-          pl={20}
-          onChange={onChange}
-        />
-        <Input
-          value={state.house}
-          name={"house"}
-          placeholder={"House name"}
           pl={20}
           onChange={onChange}
         />
