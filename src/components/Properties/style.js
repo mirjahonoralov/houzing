@@ -1,10 +1,21 @@
 import styled from "styled-components";
+import { device } from "../../utils/sizes";
 
 const Container = styled.div`
   display: flex;
   flex-direction: column;
   margin-top: 64px;
   align-items: center;
+`;
+
+const Top = styled.div`
+  @media (max-width: 500px) {
+    .title,
+    .description {
+      padding: 0 30px;
+      text-align: center;
+    }
+  }
 `;
 
 const Result = styled.div`
@@ -28,15 +39,43 @@ const Result = styled.div`
   .ant-select-arrow {
     right: 0;
   }
+
+  @media ${device.laptop} {
+    padding: 0 50px;
+    margin-top: 30px;
+  }
+
+  @media ${device.mobileL} {
+    padding: 0 30px;
+
+    flex-direction: column;
+    gap: 15px;
+  }
 `;
 
 const Wrapper = styled.div`
   padding: 0 130px;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  justify-items: center;
   gap: 20px;
   width: 100%;
   max-width: 1440px;
+
+  @media (max-width: 1350px) {
+    grid-template-columns: 1fr 1fr;
+  }
+  @media ${device.laptop} {
+    padding: 50px;
+  }
+
+  @media (max-width: 850px) {
+    grid-template-columns: 1fr;
+  }
+
+  @media ${device.mobileL} {
+    padding: 30px;
+  }
 `;
 
-export { Container, Wrapper, Result };
+export { Container, Wrapper, Result, Top };

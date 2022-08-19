@@ -15,8 +15,9 @@ const Container = styled.div`
   background: #ffffff;
   border: 1px solid #e6e9ec;
   border-radius: 3px;
-  max-width: 400px;
-  min-width: 300px;
+  /* max-width: 380px;
+  min-width: 300px; */
+  width: 360px;
   margin-right: ${({ mr }) => mr && `${mr}px`};
 
   @media (max-width: 500px) {
@@ -62,7 +63,7 @@ const Img = styled.img`
   flex-grow: 10;
   height: 220px;
 
-  @media (max-width: 900px) {
+  @media (max-width: 550px) {
     height: 140px;
   }
 `;

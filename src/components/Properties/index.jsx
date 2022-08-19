@@ -5,7 +5,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { useHttp } from "../../hooks/useHttp";
 import Card from "../Card";
 import Filter from "../Filter";
-import { Container, Result, Wrapper } from "./style";
+import { Container, Result, Top, Wrapper } from "./style";
 const { Option } = Select;
 
 const Properties = () => {
@@ -42,12 +42,14 @@ const Properties = () => {
     <>
       <Filter />
       <Container>
-        <div className="title">
-          {filter === "list" ? "Properties" : "Favorites"}
-        </div>
-        <div className="description">
-          Nulla quis curabitur velit volutpat auctor bibendum consectetur sit.
-        </div>
+        <Top>
+          <div className="title">
+            {filter === "list" ? "Properties" : "Favorites"}
+          </div>
+          <div className="description">
+            Nulla quis curabitur velit volutpat auctor bibendum consectetur sit.
+          </div>
+        </Top>
         <Result>
           <div>{data?.length} results</div>
           <div>
