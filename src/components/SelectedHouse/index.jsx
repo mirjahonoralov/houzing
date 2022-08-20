@@ -8,6 +8,7 @@ import {
   Content,
   Description,
   Doc,
+  Docs,
   Documents,
   Icons,
   ImgWrapper,
@@ -50,7 +51,7 @@ const SelectedHouse = () => {
       <Wrapper>
         <Content>
           <h1>
-            Luxury Family Loft by Victoria Park
+            <div className="title">Luxury Family Loft by Victoria Park</div>
             <Actions>
               <span>
                 <div className="description">Share</div>
@@ -125,10 +126,10 @@ const SelectedHouse = () => {
 
             <a href="#">Show more</a>
           </Description>
-          {/* 
+
           <Documents>
             <div className="subtitle">Documents</div>
-            <div className="docs">
+            <Docs>
               <Doc>
                 <span>
                   <Icons.File />
@@ -150,8 +151,8 @@ const SelectedHouse = () => {
                 </span>
                 <a href="#">DOWNLOAD</a>
               </Doc>
-            </div>
-          </Documents> */}
+            </Docs>
+          </Documents>
           <div className="line"></div>
 
           <Location house={house} />

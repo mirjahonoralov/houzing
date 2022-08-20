@@ -43,6 +43,14 @@ const Wrapper = styled.div`
     flex-direction: column;
   }
 
+  @media ${device.tablet} {
+    padding: 30px;
+  }
+
+  @media (max-width: 500px) {
+    padding: 30px 15px;
+  }
+
   .line {
     background: #e6e9ec;
     height: 1px;
@@ -63,6 +71,15 @@ const Content = styled.div`
     width: 100%;
     display: flex;
     justify-content: space-between;
+  }
+
+  @media ${device.tablet} {
+    h1 {
+      flex-direction: column;
+      .title {
+        font-size: 20px;
+      }
+    }
   }
 `;
 
@@ -104,6 +121,10 @@ const Params = styled.div`
   @media (max-width: 1360px) {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  @media ${device.tablet} {
+    grid-template-columns: 1fr 1fr;
   }
 `;
 
@@ -166,12 +187,18 @@ const User = styled.div`
 const Documents = styled.div`
   margin-top: 64px;
   width: 100%;
+`;
 
-  .docs {
-    width: 100%;
-    margin-top: 15px;
-    display: flex;
-    justify-content: space-between;
+const Docs = styled.div`
+  width: 100%;
+  margin-top: 15px;
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  row-gap: 20px;
+
+  @media (max-width: 1360px) {
+    flex-wrap: wrap;
   }
 `;
 
@@ -219,6 +246,14 @@ const LocationInfo = styled.div`
     line-height: 20px;
     color: #696969;
   }
+
+  @media (max-width: 500px) {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  @media (max-width: 450px) {
+    grid-template-columns: 1fr;
+  }
 `;
 
 const PropertyWrapper = styled.div`
@@ -244,6 +279,16 @@ const PropertyWrapper = styled.div`
     font-size: 14px;
     line-height: 20px;
     color: #696969;
+  }
+
+  @media (max-width: 500px) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  @media ${device.mobileL} {
+    grid-template-columns: 1fr;
+    gap: 20px;
   }
 `;
 
@@ -279,6 +324,13 @@ const ScheduleWrapper = styled.div`
     display: flex;
     gap: 24px;
   }
+
+  @media (max-width: 500px) {
+    .inputs,
+    .selectors {
+      flex-direction: column;
+    }
+  }
 `;
 
 const Rates = styled.div`
@@ -287,12 +339,20 @@ const Rates = styled.div`
   flex-direction: column;
   gap: 24px;
   width: 100%;
+
+  @media (max-width: 700px) {
+    gap: 0px;
+  }
 `;
 
 const Rate = styled.div`
   width: 90%;
   display: flex;
   justify-content: space-between;
+
+  @media (max-width: 700px) {
+    flex-direction: column;
+  }
 `;
 
 const RateItem = styled.div`
@@ -351,4 +411,5 @@ export {
   Rate,
   ReviewInputs,
   RateItem,
+  Docs,
 };
