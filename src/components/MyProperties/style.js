@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { ReactComponent as edit } from "../../assets/icons/table/edit.svg";
 import { ReactComponent as trash } from "../../assets/icons/table/trash.svg";
+import { device } from "../../utils/sizes";
 
 const Container = styled.div`
   display: flex;
@@ -16,8 +17,17 @@ const Top = styled.div`
 `;
 
 const Wrapper = styled.div`
-  width: 1440px;
+  max-width: 1440px;
+  width: 100%;
   padding: 0 130px;
+
+  @media ${device.laptop} {
+    padding: 50px;
+  }
+
+  @media (max-width: 500px) {
+    padding: 15px;
+  }
 `;
 
 const TableWrapper = styled.div`

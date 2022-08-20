@@ -74,7 +74,7 @@ const MyProperties = () => {
     <Container>
       <Wrapper>
         <Top>
-          <div className="title">Wrapper</div>
+          <div className="title">Your houses</div>
           <Button
             width={"131px"}
             type={"primary"}
