@@ -6,6 +6,7 @@ import {
   Icon,
   Link,
   Logo,
+  MobileIcon,
   NavbarBody,
   NavbarWrapper,
   Wrapper,
@@ -43,7 +44,6 @@ const Navbar = () => {
             {localStorage.getItem("token") && pathname === "/my-properties" ? (
               <Button
                 width={"120px"}
-                type={"primary"}
                 onClick={() => {
                   localStorage.clear();
                   navigate("/home");
@@ -62,9 +62,25 @@ const Navbar = () => {
             )}
           </span>
 
-          <NavLink to="/login">
-            <Icon.Account />
-          </NavLink>
+          <MobileIcon>
+            {localStorage.getItem("token") && pathname === "/my-properties" ? (
+              <Button
+                width={"80px"}
+                onClick={() => {
+                  localStorage.clear();
+                  navigate("/home");
+                }}
+              >
+                Logout
+              </Button>
+            ) : localStorage.getItem("token") ? (
+              <Icon.Account onClick={() => navigate("/my-properties")} />
+            ) : (
+              <Button onClick={() => navigate("/sign-in")} width={"80px"}>
+                SignIn
+              </Button>
+            )}
+          </MobileIcon>
         </NavbarWrapper>
       </Container>
       <Outlet />

@@ -28,7 +28,7 @@ const Container = styled.div`
   }
 
   @media ${device.mobileL} {
-    padding: 0 20px;
+    padding: 0 15px;
   }
 `;
 
@@ -73,6 +73,13 @@ Icon.Account = styled(account)`
 `;
 
 Icon.Account2 = styled(account)``;
+
+const MobileIcon = styled.div`
+  @media (min-width: 768px) {
+    cursor: pointer;
+    display: none;
+  }
+`;
 
 const NavbarBody = styled.div`
   display: flex;
@@ -135,4 +142,5 @@ export {
   Logo,
   Icon,
   MobileMenu,
+  MobileIcon,
 };
