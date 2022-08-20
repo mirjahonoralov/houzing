@@ -1,10 +1,12 @@
 import styled from "styled-components";
+import { device } from "../../../utils/sizes";
 
 const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
+  padding: 15px;
 `;
 
 const Wrapper = styled.form`
@@ -17,6 +19,11 @@ const Wrapper = styled.form`
   border: 1px solid #e6e9ec;
   box-shadow: 0px 10px 30px rgba(13, 38, 59, 0.05);
   border-radius: 3px;
+
+  @media ${device.mobileL} {
+    padding: 20px;
+    gap: 30px;
+  }
 `;
 
 const Title = styled.div`
