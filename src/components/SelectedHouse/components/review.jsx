@@ -1,5 +1,5 @@
 import React from "react";
-import { Rate, Rates, ReviewInputs } from "../style";
+import { Rate, RateItem, Rates, ReviewInputs } from "../style";
 import { Rate as AntdRate } from "antd";
 import rateImg from "../../../assets/icons/properties/rate.svg";
 import { useState } from "react";
@@ -14,44 +14,44 @@ const Review = () => {
       <div className="subtitle">Write a Review</div>
       <Rates>
         <Rate>
-          <div>
+          <RateItem>
             <span className="description">Cleanliness</span>
             <AntdRate onChange={setValue} value={value} />
-          </div>
-          <div>
+          </RateItem>
+          <RateItem>
             <span className="description">Accuracy</span>
             <AntdRate />
-          </div>
+          </RateItem>
         </Rate>
         <Rate>
-          <div>
+          <RateItem>
             <span className="description">Communication</span>
             <AntdRate />
-          </div>
-          <div>
+          </RateItem>
+          <RateItem>
             <span className="description">Location</span>
             <AntdRate />
-          </div>
+          </RateItem>
         </Rate>
         <Rate>
-          <div>
+          <RateItem>
             <span className="description">Cleanliness</span>
             <AntdRate />
-          </div>
-          <div>
+          </RateItem>
+          <RateItem>
             <span className="description">Location</span>
             <AntdRate />
-          </div>
+          </RateItem>
         </Rate>
         <Rate>
-          <div>
+          <RateItem>
             <span className="description">Check-in</span>
             <AntdRate />
-          </div>
-          <div>
+          </RateItem>
+          <RateItem>
             <span className="description">Value</span>
             <AntdRate />
-          </div>
+          </RateItem>
         </Rate>
       </Rates>
 

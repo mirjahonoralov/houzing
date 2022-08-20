@@ -8,7 +8,7 @@ const MobileFilter = () => {
   return (
     <Container>
       <MobileWrapper>
-        <Input placeholder={"Enter an country"} pl={44}>
+        <Input placeholder={"Enter a country"} pl={44}>
           <Icon.Home />
         </Input>
         <Input placeholder={"Status"} pl={44}>

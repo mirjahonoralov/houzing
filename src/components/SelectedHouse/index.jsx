@@ -125,7 +125,7 @@ const SelectedHouse = () => {
 
             <a href="#">Show more</a>
           </Description>
-
+          {/* 
           <Documents>
             <div className="subtitle">Documents</div>
             <div className="docs">
@@ -151,7 +151,7 @@ const SelectedHouse = () => {
                 <a href="#">DOWNLOAD</a>
               </Doc>
             </div>
-          </Documents>
+          </Documents> */}
           <div className="line"></div>
 
           <Location house={house} />

@@ -8,13 +8,14 @@ import { ReactComponent as ruler } from "../../assets/icons/properties/ruler.svg
 import { ReactComponent as file } from "../../assets/icons/properties/file.svg";
 import { ReactComponent as garage } from "../../assets/icons/properties/car.svg";
 import user from "../../assets/imgs/no-user.jpg";
+import { device } from "../../utils/sizes";
 
 const Container = styled.div`
-  padding: 30px 130px;
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
 `;
 
 const ImgWrapper = styled.div`
@@ -29,8 +30,18 @@ const Wrapper = styled.div`
   display: flex;
   gap: 20px;
   align-items: flex-start;
-  width: 1440px;
-  padding: 0 130px;
+  margin: auto;
+  width: 100%;
+  max-width: 1440px;
+  padding: 30px 130px;
+
+  @media (max-width: 1200px) {
+    padding: 30px 50px;
+  }
+
+  @media ${device.laptop} {
+    flex-direction: column;
+  }
 
   .line {
     background: #e6e9ec;
@@ -42,7 +53,7 @@ const Wrapper = styled.div`
 `;
 
 const Content = styled.div`
-  width: 80%;
+  /* width: 80%; */
   align-items: flex-start;
 
   display: flex;
@@ -84,6 +95,15 @@ const Params = styled.div`
     display: flex;
     align-items: center;
     gap: 10px;
+
+    /* div {
+      min-width: 120px;
+    } */
+  }
+
+  @media (max-width: 1360px) {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
   }
 `;
 
@@ -113,7 +133,8 @@ const Description = styled.div`
 `;
 
 const ContactWrapper = styled.div`
-  width: 20%;
+  min-width: 250px !important;
+  max-width: 355px;
   padding: 24px;
   display: flex;
   flex-direction: column;
@@ -272,12 +293,14 @@ const Rate = styled.div`
   width: 90%;
   display: flex;
   justify-content: space-between;
+`;
 
-  div {
-    width: 35%;
-    display: flex;
-    justify-content: space-between;
-  }
+const RateItem = styled.div`
+  width: 35%;
+  min-width: 265px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 `;
 
 const ReviewInputs = styled.div`
@@ -327,4 +350,5 @@ export {
   Rates,
   Rate,
   ReviewInputs,
+  RateItem,
 };

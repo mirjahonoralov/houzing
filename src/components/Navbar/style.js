@@ -33,7 +33,7 @@ const Container = styled.div`
 `;
 
 const NavbarWrapper = styled.div`
-  padding: 0 9%;
+  padding: 0 130px;
   display: flex;
   align-items: center;
   height: 64px;
@@ -44,6 +44,10 @@ const NavbarWrapper = styled.div`
   font-size: 16px;
   line-height: 24px;
   color: #fff;
+
+  @media ${device.laptop} {
+    padding: 0 50px;
+  }
 
   @media ${device.tablet} {
     justify-content: space-between;
