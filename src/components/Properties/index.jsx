@@ -20,7 +20,7 @@ const Properties = () => {
     [search, filter, setFilter, refetch],
     () => {
       setLoading(true);
-      return request({ url: `/v1/houses/${filter}${search}`, token: true });
+      return request({ url: `/v1/houses/${filter}${search}` });
     },
     {
       onSuccess: (res) => {
