@@ -290,12 +290,12 @@ const AddNew = () => {
             <Input2 />
           </MediaWrapper>
         </Section>
-
         <Section>
           <div className="subtitle">Amenities</div>
           <CheckboxesWrapper>
-            {checkBox.map((item) => (
+            {checkBox.map((item, id) => (
               <Checkbox
+                key={id}
                 checked={item.isSelected}
                 onChange={() => onCheck(item.title)}
               >
@@ -307,10 +307,10 @@ const AddNew = () => {
 
         <Section>
           <div className="subtitle">Select Energy Class</div>
-          <div style={{ display: "flex", gap: "20px" }}>
+          <Wrapper>
             <Input2 placeholder={"Energy class"} />
             <Input2 placeholder={"Energy Index in kWh/m2a"} />
-          </div>
+          </Wrapper>
         </Section>
 
         <ButtonWrapper>

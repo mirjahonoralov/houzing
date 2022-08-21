@@ -10,7 +10,6 @@ export const useHttp = () => {
   }) => {
     if (token) {
       headers["Authorization"] = `Bearer ${localStorage.getItem("token")}`;
-      // headers["Content-Type"] = "application/json";
     }
 
     let bd =

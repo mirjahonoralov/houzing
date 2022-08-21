@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { device } from "../../utils/sizes";
 
 const Container = styled.div`
   width: 100%;
@@ -13,11 +14,22 @@ const MainWrapper = styled.div`
   width: 1440px;
   padding: 34px 130px;
   gap: 32px;
+
+  @media ${device.laptop} {
+    padding: 34px 50px;
+  }
+  @media (max-width: 500px) {
+    padding: 34px 15px;
+  }
 `;
 
 const Wrapper = styled.div`
   display: flex;
   gap: 20px;
+
+  @media (max-width: 500px) {
+    flex-direction: column;
+  }
 `;
 
 const Section = styled.div`
@@ -30,6 +42,10 @@ const Section = styled.div`
   border-radius: 3px;
   width: 100%;
   padding: 24px 30px;
+
+  @media ${device.tablet} {
+    padding: 24px 20px;
+  }
 `;
 
 const ButtonWrapper = styled.div`
@@ -49,6 +65,14 @@ const Imgs = styled.div`
   gap: 20px;
   margin-top: 16px;
   margin-bottom: 16px;
+
+  @media ${device.tablet} {
+    gap: 10px;
+  }
+
+  @media (max-width: 600px) {
+    flex-wrap: wrap;
+  }
 `;
 
 const ImgWrapper = styled.div`
@@ -64,6 +88,11 @@ const ImgWrapper = styled.div`
   img {
     height: 100%;
   }
+
+  @media ${device.tablet} {
+    width: 100px;
+    height: 100px;
+  }
 `;
 
 const CheckboxesWrapper = styled.div`
@@ -71,6 +100,18 @@ const CheckboxesWrapper = styled.div`
   grid-template-columns: repeat(4, 1fr);
   row-gap: 24px;
   margin-bottom: 30px;
+
+  @media ${device.tablet} {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @media (max-width: 690px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media ${device.mobileL} {
+    grid-template-columns: repeat(1, 1fr);
+  }
 `;
 
 const UploadBtn = styled.label`
