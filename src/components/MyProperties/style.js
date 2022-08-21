@@ -37,6 +37,10 @@ const TableWrapper = styled.div`
   border-radius: 3px;
   width: 100%;
   padding: 24px 30px;
+
+  @media (max-width: 1100px) {
+    padding: 15px;
+  }
 `;
 
 const Table = styled.table`
@@ -63,7 +67,11 @@ const Table = styled.table`
         font-size: 14px;
         line-height: 20px;
         color: #696969;
-        padding-right: 70px;
+        padding-right: 50px;
+
+        @media (max-width: 1100px) {
+          padding-right: 20px;
+        }
       }
     }
   }
@@ -75,13 +83,15 @@ Icons.Trash = styled(trash)``;
 
 const CardWrapper = styled.div`
   display: flex;
-  justify-content: space-between;
   gap: 16px;
   width: 100%;
   align-items: flex-start;
   margin: 8px 0;
+  justify-content: space-between;
 
   main {
+    display: flex;
+    gap: 16px;
   }
 
   button {
@@ -93,11 +103,12 @@ const CardWrapper = styled.div`
     align-items: center;
     outline: none;
     border: none;
+    min-width: 80px;
   }
 `;
 
 const ImgWrapper = styled.div`
-  width: 113px;
+  min-width: 113px;
   height: 113px;
   background: #c4c4c4;
   border-radius: 3px;

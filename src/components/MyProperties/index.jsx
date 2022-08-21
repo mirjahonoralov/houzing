@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useQuery, useMutation } from "react-query";
+import { useQuery, useMutation, refetch } from "react-query";
 import {
   CardWrapper,
   Container,
@@ -41,7 +41,7 @@ const MyProperties = () => {
       onSuccess: (res) => {
         if (res?.success) {
           message.success("Deleted");
-          // refetch();
+          refetch();
         }
       },
     });
@@ -52,17 +52,20 @@ const MyProperties = () => {
   const Card = ({ card }) => {
     return (
       <CardWrapper>
-        <ImgWrapper>
-          <img src={card.attachments[0].imgPath} alt="" />
-        </ImgWrapper>
         <main>
-          <div className="subtitle">{card.name}</div>
-          <div className="description" style={{ marginBottom: "21px" }}>
-            {card.region}, {card.address}
+          <ImgWrapper>
+            <img src={card.attachments[0].imgPath} alt="" />
+          </ImgWrapper>
+          <div>
+            <div className="subtitle">{card.name}</div>
+            {/* <div className="description" style={{ marginBottom: "21px" }}>
+              {card.region}, {card.address}
+            </div> */}
+            <span className="delete">{card.price}</span>
+            <div className="subtitle">{card.salePrice}</div>
           </div>
-          <span className="delete">{card.price}</span>
-          <div className="subtitle">{card.salePrice}</div>
         </main>
+
         <button>For sale</button>
       </CardWrapper>
     );
