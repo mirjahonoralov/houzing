@@ -62,13 +62,13 @@ const Carousel = () => {
         </Content>
         <Icon
           position={{ right: iconsPosition }}
-          onClick={() => slider.current.prev()}
+          onClick={() => slider.current.next()}
         >
           <LeftOutlined />
         </Icon>
         <Icon
           position={{ left: iconsPosition }}
-          onClick={() => slider.current.next()}
+          onClick={() => slider.current.prev()}
         >
           <RightOutlined />
         </Icon>
