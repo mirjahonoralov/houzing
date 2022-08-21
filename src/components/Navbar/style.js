@@ -72,7 +72,9 @@ Icon.Account = styled(account)`
   }
 `;
 
-Icon.Account2 = styled(account)``;
+Icon.Account2 = styled(account)`
+  cursor: pointer;
+`;
 
 const MobileIcon = styled.div`
   @media (min-width: 768px) {

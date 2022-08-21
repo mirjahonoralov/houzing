@@ -52,9 +52,7 @@ const Navbar = () => {
                 Logout
               </Button>
             ) : localStorage.getItem("token") ? (
-              <Button width={"50px"} onClick={() => navigate("/my-properties")}>
-                <Icon.Account2 />
-              </Button>
+              <Icon.Account2 onClick={() => navigate("/my-properties")} />
             ) : (
               <Button onClick={() => navigate("/sign-in")} width={"120px"}>
                 SignIn
