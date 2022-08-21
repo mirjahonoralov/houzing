@@ -47,9 +47,7 @@ const MyProperties = () => {
     });
   };
 
-  const cancel = (e) => {
-    message.error("Click on No");
-  };
+  const cancel = (e) => message.error("Clicked No");
 
   const Card = ({ card }) => {
     return (
@@ -58,9 +56,9 @@ const MyProperties = () => {
           <img src={card.attachments[0].imgPath} alt="" />
         </ImgWrapper>
         <main>
-          <div className="subtitle">{card.description}</div>
+          <div className="subtitle">{card.name}</div>
           <div className="description" style={{ marginBottom: "21px" }}>
-            {card.region} {card.country}
+            {card.region}, {card.address}
           </div>
           <span className="delete">{card.price}</span>
           <div className="subtitle">{card.salePrice}</div>
@@ -69,6 +67,8 @@ const MyProperties = () => {
       </CardWrapper>
     );
   };
+
+  console.log(data);
 
   return (
     <Container>
@@ -91,21 +91,21 @@ const MyProperties = () => {
               <Table>
                 <thead>
                   <th>Listing Title</th>
-                  <th>Date Published</th>
+                  <th>Year build</th>
                   <th>Status</th>
-                  <th>View</th>
+                  <th>Rooms</th>
                   <th>Action</th>
                 </thead>
                 <tbody>
-                  {data?.data?.map((house) => (
+                  {data?.map((house) => (
                     <tr key={house.id}>
-                      {/* <td>{house.description}</td> */}
+                      {/* <td>{house.name}</td> */}
                       <td style={{ width: "45%" }}>
                         <Card card={house} />
                       </td>
-                      <td>{house.zipCode}</td>
-                      <td>{house.status ? "Pending" : "No"}</td>
-                      <td>3214</td>
+                      <td>{house.houseDetails.yearBuilt}</td>
+                      <td>{house.status ? "On sale" : "Sold"}</td>
+                      <td>{house.houseDetails.room}</td>
                       <td>
                         <Icons.Edit
                           onClick={() =>

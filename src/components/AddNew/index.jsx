@@ -23,30 +23,29 @@ const AddNew = () => {
   const { request } = useHttp();
   const navigate = useNavigate();
   const { id } = useParams();
-  const [data, setData] = useState({});
   const [loading, setLoading] = useState(false);
 
-  const [checkBox, setCheckBox] = useState([
-    { title: "Air conditioning", isSelected: false },
-    { title: "Barbeque", isSelected: false },
-    { title: "Dryer", isSelected: false },
-    { title: "Gym", isSelected: true },
-    { title: "Laundry", isSelected: false },
-    { title: "Lawn", isSelected: true },
-    { title: "Microwave", isSelected: false },
-    { title: "Outdoor Shower", isSelected: false },
-    { title: "Refrigerator", isSelected: false },
-    { title: "Stunning views", isSelected: false },
-    { title: "Dining Room", isSelected: false },
-    { title: "Fireplace", isSelected: false },
-    { title: "Pets Allowed", isSelected: false },
-    { title: "Unit Washer/Dryer", isSelected: false },
-    { title: "Onsite Parking", isSelected: false },
-    { title: "Waterfront", isSelected: false },
-    { title: "Parking", isSelected: false },
-    { title: "Doorman", isSelected: false },
-    { title: "Central Heating", isSelected: false },
-    { title: "Cleaning Service", isSelected: false },
+  const [houseComponents, setHouseComponents] = useState([
+    // { name: "additional", isSelected: false },
+    { name: "airCondition", isSelected: false },
+    { name: "Drycourtyarder", isSelected: false },
+    { name: "furniture", isSelected: true },
+    { name: "gasStove", isSelected: false },
+    { name: "internet", isSelected: true },
+    { name: "tv", isSelected: false },
+  ]);
+
+  const [amenities, setAmenities] = useState([
+    { name: "additional", isSelected: false },
+    { name: "busStop", isSelected: false },
+    { name: "garden", isSelected: false },
+    { name: "market", isSelected: false },
+    { name: "park", isSelected: false },
+    { name: "parking", isSelected: false },
+    { name: "school", isSelected: false },
+    { name: "stadium", isSelected: false },
+    { name: "subway", isSelected: false },
+    { name: "superMarket", isSelected: false },
   ]);
 
   const body = {
@@ -88,7 +87,7 @@ const AddNew = () => {
       beds: 0,
       garage: 0,
       room: 2,
-      yearBuilt: 0,
+      yearBuilt: 2000,
     },
     locations: {
       latitude: 0,
@@ -102,8 +101,13 @@ const AddNew = () => {
     zipCode: "string",
   };
 
+  const [data, setData] = useState(body);
+
   const onChange = ({ target: { value, name } }) =>
     setData({ ...data, [name]: value });
+
+  const onHouseDetailsChange = ({ target: { value, name } }) =>
+    setData({ ...data, houseDetails: { ...data.houseDetails, [name]: value } });
 
   useQuery(
     "edit house",
@@ -119,7 +123,7 @@ const AddNew = () => {
       method: "POST",
       token: true,
       // headers: {},
-      body: body,
+      body: data,
     })
   );
 
@@ -161,15 +165,37 @@ const AddNew = () => {
       });
   };
 
-  const onCheck = (title) =>
-    setCheckBox((prev) => {
-      return prev.map((item) => {
-        if (item.title === title) {
-          if (item.isSelected) return { ...item, isSelected: false };
-          else return { ...item, isSelected: true };
-        } else return item;
-      });
+  const onChangeHouseComponents = (name) => {
+    // setHouseComponents((prev) => {
+    //   return prev.map((item) => {
+    //     if (item.name === name) {
+    //       if (item.isSelected) return { ...item, isSelected: false };
+    //       else return { ...item, isSelected: true };
+    //     } else return item;
+    //   });
+    // });
+
+    setData({
+      ...data,
+      componentsDto: {
+        ...data.componentsDto,
+        [name]: data.componentsDto?.[name] ? false : true,
+        additional: "string",
+      },
     });
+  };
+
+  const onChangeHouseAmenities = (name) => {
+    setData({
+      ...data,
+      homeAmenitiesDto: {
+        ...data.homeAmenitiesDto,
+        [name]: data.homeAmenitiesDto?.[name] ? false : true,
+        additional: "string",
+      },
+    });
+  };
+  console.log(data, "data");
 
   const selectImg = (e) => {
     if (selectedImgs.length !== 4) {
@@ -200,41 +226,78 @@ const AddNew = () => {
           <Wrapper>
             <Input2
               placeholder={"Property title*"}
-              value={data?.address}
               onChange={onChange}
-              name="address"
+              name="name"
             />
             <Input2 placeholder={"Type"} />
           </Wrapper>
           <div className="description">Property Description*</div>
-          <Input2 />
+          <Input2 name="description" onChange={onchange} />
         </Section>
+
         <Section>
           <div className="subtitle">Additional</div>
           <Wrapper>
-            <Input2 value={data?.houseDetails?.beds} placeholder={"Beds"} />
-            <Input2 value={data?.houseDetails?.bath} placeholder={"Bath"} />
-            <Input2 value={data?.houseDetails?.garage} placeholder={"Garage"} />
+            <Input2
+              name={"room"}
+              onChange={onHouseDetailsChange}
+              value={data?.houseDetails?.beds}
+              placeholder={"Beds"}
+            />
+            <Input2
+              name={"bath"}
+              onChange={onHouseDetailsChange}
+              value={data?.houseDetails?.bath}
+              placeholder={"Bath"}
+            />
+            <Input2
+              name={"garage"}
+              onChange={onHouseDetailsChange}
+              value={data?.houseDetails?.garage}
+              placeholder={"Garage"}
+            />
           </Wrapper>
           <Wrapper>
-            <Input2 placeholder={"Year build"} />
-            <Input2 placeholder={"Home area"} />
-            <Input2 placeholder={"Rooms"} />
+            <Input2
+              name={"yearBuilt"}
+              onChange={onHouseDetailsChange}
+              placeholder={"Year build"}
+            />
+            <Input2
+              name={"area"}
+              onChange={onHouseDetailsChange}
+              placeholder={"Home area"}
+            />
+            <Input2
+              name={"room"}
+              onChange={onHouseDetailsChange}
+              placeholder={"Rooms"}
+            />
           </Wrapper>
         </Section>
+
         <Section>
           <div className="subtitle">Price</div>
           <Wrapper>
-            <Input2 placeholder={"Price"} />
-            <Input2 placeholder={"Sale Price"} />
+            <Input2 name="price" onChange={onChange} placeholder={"Price"} />
+            <Input2
+              name="salePrice"
+              onChange={onChange}
+              placeholder={"Sale Price"}
+            />
           </Wrapper>
         </Section>
 
         <Section>
           <div className="subtitle">Location</div>
           <Wrapper>
-            <Input2 placeholder={"Region"} />
-            <Input2 placeholder={"Address"} />
+            <Input2 name="region" onChange={onChange} placeholder={"Region"} />
+            <Input2
+              name="address"
+              onChange={onChange}
+              placeholder={"Address"}
+              value={data?.address}
+            />
           </Wrapper>
           <Map />
         </Section>
@@ -290,16 +353,27 @@ const AddNew = () => {
             <Input2 />
           </MediaWrapper>
         </Section>
+
         <Section>
           <div className="subtitle">Amenities</div>
           <CheckboxesWrapper>
-            {checkBox.map((item, id) => (
+            {Object.keys(data.componentsDto).map((item, id) => (
               <Checkbox
                 key={id}
-                checked={item.isSelected}
-                onChange={() => onCheck(item.title)}
+                checked={data.componentsDto[item]}
+                onChange={() => onChangeHouseComponents(item)}
               >
-                {item.title}
+                {item}
+              </Checkbox>
+            ))}
+            <br />
+            {Object.keys(data.homeAmenitiesDto).map((item, id) => (
+              <Checkbox
+                key={id}
+                checked={data.homeAmenitiesDto[item]}
+                onChange={() => onChangeHouseAmenities(item)}
+              >
+                {item}
               </Checkbox>
             ))}
           </CheckboxesWrapper>
@@ -312,7 +386,6 @@ const AddNew = () => {
             <Input2 placeholder={"Energy Index in kWh/m2a"} />
           </Wrapper>
         </Section>
-
         <ButtonWrapper>
           <Button
             onClick={onSubmit}
