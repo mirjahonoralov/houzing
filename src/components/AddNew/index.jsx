@@ -18,6 +18,7 @@ import { useMutation, useQuery } from "react-query";
 import { useNavigate, useParams } from "react-router-dom";
 import { Checkbox, message, Spin } from "antd";
 import { LoadingOutlined } from "@ant-design/icons";
+import { body } from "./default-data";
 
 const AddNew = () => {
   const { request } = useHttp();
@@ -48,59 +49,6 @@ const AddNew = () => {
     { name: "superMarket", isSelected: false },
   ]);
 
-  const body = {
-    address: "newwwwww",
-    attachments: [
-      {
-        imgPath: "string",
-      },
-    ],
-    categoryId: 0,
-    city: "string",
-    componentsDto: {
-      additional: "string",
-      airCondition: true,
-      courtyard: true,
-      furniture: true,
-      gasStove: true,
-      internet: true,
-      tv: true,
-    },
-    country: "string",
-    description: "new home again",
-    favorite: true,
-    homeAmenitiesDto: {
-      additional: "string",
-      busStop: true,
-      garden: true,
-      market: true,
-      park: true,
-      parking: true,
-      school: true,
-      stadium: true,
-      subway: true,
-      superMarket: true,
-    },
-    houseDetails: {
-      area: 0,
-      bath: 0,
-      beds: 0,
-      garage: 0,
-      room: 2,
-      yearBuilt: 2000,
-    },
-    locations: {
-      latitude: 0,
-      longitude: 0,
-    },
-    name: "string",
-    price: 0,
-    region: "string",
-    salePrice: 0,
-    status: true,
-    zipCode: "string",
-  };
-
   const [data, setData] = useState(body);
 
   const onChange = ({ target: { value, name } }) =>
@@ -122,7 +70,6 @@ const AddNew = () => {
       url: "/v1/houses",
       method: "POST",
       token: true,
-      // headers: {},
       body: data,
     })
   );
@@ -225,6 +172,7 @@ const AddNew = () => {
           <div className="subtitle">Contact information</div>
           <Wrapper>
             <Input2
+              value={data.name}
               placeholder={"Property title*"}
               onChange={onChange}
               name="name"
@@ -232,14 +180,18 @@ const AddNew = () => {
             <Input2 placeholder={"Type"} />
           </Wrapper>
           <div className="description">Property Description*</div>
-          <Input2 name="description" onChange={onchange} />
+          <Input2
+            value={data.description}
+            name="description"
+            onChange={onChange}
+          />
         </Section>
 
         <Section>
           <div className="subtitle">Additional</div>
           <Wrapper>
             <Input2
-              name={"room"}
+              name={"beds"}
               onChange={onHouseDetailsChange}
               value={data?.houseDetails?.beds}
               placeholder={"Beds"}
@@ -261,16 +213,19 @@ const AddNew = () => {
             <Input2
               name={"yearBuilt"}
               onChange={onHouseDetailsChange}
+              value={data?.houseDetails?.yearBuilt}
               placeholder={"Year build"}
             />
             <Input2
               name={"area"}
               onChange={onHouseDetailsChange}
+              value={data?.houseDetails?.area}
               placeholder={"Home area"}
             />
             <Input2
               name={"room"}
               onChange={onHouseDetailsChange}
+              value={data?.houseDetails?.room}
               placeholder={"Rooms"}
             />
           </Wrapper>
@@ -279,8 +234,14 @@ const AddNew = () => {
         <Section>
           <div className="subtitle">Price</div>
           <Wrapper>
-            <Input2 name="price" onChange={onChange} placeholder={"Price"} />
             <Input2
+              value={data.price}
+              name="price"
+              onChange={onChange}
+              placeholder={"Price"}
+            />
+            <Input2
+              value={data.salePrice}
               name="salePrice"
               onChange={onChange}
               placeholder={"Sale Price"}
@@ -291,7 +252,12 @@ const AddNew = () => {
         <Section>
           <div className="subtitle">Location</div>
           <Wrapper>
-            <Input2 name="region" onChange={onChange} placeholder={"Region"} />
+            <Input2
+              value={data.region}
+              name="region"
+              onChange={onChange}
+              placeholder={"Region"}
+            />
             <Input2
               name="address"
               onChange={onChange}
@@ -299,7 +265,7 @@ const AddNew = () => {
               value={data?.address}
             />
           </Wrapper>
-          <Map />
+          <Map setData={setData} data={data} />
         </Section>
 
         <Section>
@@ -355,7 +321,7 @@ const AddNew = () => {
         </Section>
 
         <Section>
-          <div className="subtitle">Amenities</div>
+          <div className="subtitle">Components</div>
           <CheckboxesWrapper>
             {Object.keys(data.componentsDto).map((item, id) => (
               <Checkbox
@@ -367,6 +333,8 @@ const AddNew = () => {
               </Checkbox>
             ))}
             <br />
+            <div className="subtitle">Amenities</div>
+
             {Object.keys(data.homeAmenitiesDto).map((item, id) => (
               <Checkbox
                 key={id}
@@ -379,13 +347,13 @@ const AddNew = () => {
           </CheckboxesWrapper>
         </Section>
 
-        <Section>
+        {/* <Section>
           <div className="subtitle">Select Energy Class</div>
           <Wrapper>
             <Input2 placeholder={"Energy class"} />
             <Input2 placeholder={"Energy Index in kWh/m2a"} />
           </Wrapper>
-        </Section>
+        </Section> */}
         <ButtonWrapper>
           <Button
             onClick={onSubmit}

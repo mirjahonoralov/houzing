@@ -102,10 +102,7 @@ const MyProperties = () => {
                 <tbody>
                   {data?.map((house) => (
                     <tr key={house.id}>
-                      <td
-                        // data-aria-label=""
-                        style={{ width: "45%" }}
-                      >
+                      <td style={{ width: "45%" }}>
                         <Card card={house} />
                       </td>
                       <td data-aria-label="Year build">
