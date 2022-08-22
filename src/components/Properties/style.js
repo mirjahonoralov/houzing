@@ -6,6 +6,14 @@ const Container = styled.div`
   flex-direction: column;
   margin-top: 64px;
   align-items: center;
+
+  .pagination {
+    margin-top: 30px;
+
+    .ant-pagination-options {
+      display: none;
+    }
+  }
 `;
 
 const Top = styled.div`

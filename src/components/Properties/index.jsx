@@ -1,7 +1,9 @@
-import { Select, Spin } from "antd";
+import { Pagination, Select, Spin } from "antd";
 import React, { useState } from "react";
+import { useEffect } from "react";
 import { useQuery } from "react-query";
 import { useLocation, useNavigate } from "react-router-dom";
+import { UseReplace, UseSearch } from "../../hooks/functions";
 import { useHttp } from "../../hooks/useHttp";
 import Card from "../Card";
 import Filter from "../Filter";
@@ -14,18 +16,26 @@ const Properties = () => {
   const [filter, setFilter] = useState("list");
   const [loading, setLoading] = useState(false);
   const [refetch, setRefetch] = useState(false);
+  const [totalElements, setTotalElements] = useState(null);
+  const query = UseSearch();
+  const { pathname } = useLocation();
+  console.log(search, "search");
+  console.log(query.get("page"), "query");
 
   const { request } = useHttp();
   useQuery(
     [search, filter, setFilter, refetch],
     () => {
       setLoading(true);
-      return request({ url: `/v1/houses/${filter}${search}` });
+      return request({
+        url: `/v1/houses/${filter}${search ? search : "?page=1"}`,
+      });
     },
     {
       onSuccess: (res) => {
         setLoading(false);
         setData(res?.data || []);
+        setTotalElements(res?.map.total_elements || 0);
       },
       onError: (err) => {
         console.log(err);
@@ -34,9 +44,17 @@ const Properties = () => {
     }
   );
   const navigate = useNavigate();
+
   const onClick = (id) => navigate(`/properties/:${id}`);
 
   const handleChange = (value) => setFilter(value);
+
+  const onChange = (page) => navigate(`${pathname}${UseReplace("page", page)}`);
+
+  useEffect(() => {
+    navigate(`${pathname}${UseReplace("page", 1)}`);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <>
@@ -83,6 +101,14 @@ const Properties = () => {
             ))
           )}
         </Wrapper>
+
+        <Pagination
+          className="pagination"
+          current={Number(query.get("page")) || 1}
+          onChange={onChange}
+          total={totalElements}
+          pageSize={20}
+        />
       </Container>
     </>
   );
