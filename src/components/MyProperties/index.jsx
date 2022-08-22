@@ -102,14 +102,20 @@ const MyProperties = () => {
                 <tbody>
                   {data?.map((house) => (
                     <tr key={house.id}>
-                      {/* <td>{house.name}</td> */}
-                      <td style={{ width: "45%" }}>
+                      <td
+                        // data-aria-label=""
+                        style={{ width: "45%" }}
+                      >
                         <Card card={house} />
                       </td>
-                      <td>{house.houseDetails.yearBuilt}</td>
-                      <td>{house.status ? "On sale" : "Sold"}</td>
-                      <td>{house.houseDetails.room}</td>
-                      <td>
+                      <td data-aria-label="Year build">
+                        {house.houseDetails.yearBuilt}
+                      </td>
+                      <td data-aria-label="Status">
+                        {house.status ? "On sale" : "Sold"}
+                      </td>
+                      <td data-aria-label="Rooms">{house.houseDetails.room}</td>
+                      <td data-aria-label="Action">
                         <Icons.Edit
                           onClick={() =>
                             navigate(`/properties/add-new/${house.id}`)

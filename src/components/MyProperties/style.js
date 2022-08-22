@@ -25,8 +25,16 @@ const Wrapper = styled.div`
     padding: 50px;
   }
 
+  @media (max-width: 900px) {
+    padding: 30px;
+  }
+
   @media (max-width: 500px) {
     padding: 15px;
+  }
+
+  @media (max-width: 400px) {
+    padding: 10px;
   }
 `;
 
@@ -40,6 +48,10 @@ const TableWrapper = styled.div`
 
   @media (max-width: 1100px) {
     padding: 15px;
+  }
+
+  @media (max-width: 400px) {
+    padding: 10px;
   }
 `;
 
@@ -75,6 +87,53 @@ const Table = styled.table`
       }
     }
   }
+
+  @media ${device.tablet} {
+    position: relative;
+    thead {
+      display: none;
+    }
+
+    tbody {
+      tr {
+        :nth-child(even) {
+          background: #f0f0f0;
+        }
+
+        td {
+          display: block;
+          width: 100%;
+          text-align: right;
+          padding-bottom: 15px;
+          padding-right: 15px;
+
+          ::before {
+            content: attr(data-aria-label);
+            position: absolute;
+            left: 0;
+            width: 50%;
+            text-align: left;
+            padding-left: 15px;
+
+            font-family: "Montserrat";
+            font-style: normal;
+            font-weight: 600;
+            font-size: 18px;
+            line-height: 28px;
+            color: #0d263b;
+            text-align: start;
+            :first-child() {
+              display: none;
+            }
+          }
+
+          ::before::first-child() {
+            content: none;
+          }
+        }
+      }
+    }
+  }
 `;
 
 const Icons = styled.div``;
@@ -105,6 +164,17 @@ const CardWrapper = styled.div`
     border: none;
     min-width: 80px;
   }
+
+  @media ${device.tablet} {
+    margin-left: 60%;
+  }
+
+  @media (max-width: 600px) {
+    margin-left: 40%;
+  }
+  @media (max-width: 470px) {
+    margin-left: 15px;
+  }
 `;
 
 const ImgWrapper = styled.div`
@@ -115,6 +185,11 @@ const ImgWrapper = styled.div`
 
   img {
     width: 100%;
+  }
+
+  @media (max-width: 400px) {
+    min-width: 90px;
+    height: 90px;
   }
 `;
 
