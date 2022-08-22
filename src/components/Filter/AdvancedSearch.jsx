@@ -28,6 +28,7 @@ const AdvancedSearch = ({ state, setState, query, list, hide }) => {
     setState({
       country: "",
       region: "",
+      city: "",
       zip: "",
       address: "",
       rooms: "",
@@ -53,7 +54,14 @@ const AdvancedSearch = ({ state, setState, query, list, hide }) => {
         <Input
           value={state.region}
           name={"region"}
-          placeholder={"Region / City"}
+          placeholder={"Region"}
+          pl={20}
+          onChange={onChange}
+        />
+        <Input
+          value={state.city}
+          name={"city"}
+          placeholder={"City"}
           pl={20}
           onChange={onChange}
         />

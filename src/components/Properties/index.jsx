@@ -1,7 +1,7 @@
 import { Pagination, Select, Spin } from "antd";
 import React, { useState } from "react";
 import { useEffect } from "react";
-import { useQuery } from "react-query";
+import { useMutation } from "react-query";
 import { useLocation, useNavigate } from "react-router-dom";
 import { UseReplace, UseSearch } from "../../hooks/functions";
 import { useHttp } from "../../hooks/useHttp";
@@ -20,16 +20,21 @@ const Properties = () => {
   const query = UseSearch();
   const { pathname } = useLocation();
 
-  const { request } = useHttp();
-  useQuery(
-    [search, filter, setFilter, refetch],
-    () => {
-      setLoading(true);
-      return request({
-        url: `/v1/houses/${filter}${search ? search : "?page=1"}`,
-      });
-    },
-    {
+  const { mutate: filterRequest } = useMutation(() => {
+    setLoading(true);
+    return request({ url: `/v1/houses/${filter}`, token: true });
+  });
+
+  const { mutate: fetchData } = useMutation(() => {
+    setLoading(true);
+    navigate(`${pathname}${UseReplace("page", 1)}`);
+    return request({
+      url: `/v1/houses/${filter}${search ? search : "?page=1"}`,
+    });
+  });
+
+  useEffect(() => {
+    filterRequest("filter", {
       onSuccess: (res) => {
         setLoading(false);
         setData(res?.data || []);
@@ -39,8 +44,25 @@ const Properties = () => {
         console.log(err);
         setLoading(false);
       },
-    }
-  );
+    });
+  }, [setFilter, filter, filterRequest]);
+
+  const { request } = useHttp();
+
+  useEffect(() => {
+    fetchData("fetchData", {
+      onSuccess: (res) => {
+        setLoading(false);
+        setData(res?.data || []);
+        setTotalElements(res?.map.total_elements || 0);
+      },
+      onError: (err) => {
+        console.log(err);
+        setLoading(false);
+      },
+    });
+  }, [search, refetch, fetchData]);
+
   const navigate = useNavigate();
 
   const onClick = (id) => navigate(`/properties/:${id}`);
@@ -48,11 +70,6 @@ const Properties = () => {
   const handleChange = (value) => setFilter(value);
 
   const onChange = (page) => navigate(`${pathname}${UseReplace("page", page)}`);
-
-  useEffect(() => {
-    navigate(`${pathname}${UseReplace("page", 1)}`);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   return (
     <>
