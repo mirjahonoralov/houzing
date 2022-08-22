@@ -122,13 +122,6 @@ const Table = styled.table`
             line-height: 28px;
             color: #0d263b;
             text-align: start;
-            :first-child() {
-              display: none;
-            }
-          }
-
-          ::before::first-child() {
-            content: none;
           }
         }
       }
