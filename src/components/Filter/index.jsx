@@ -2,14 +2,18 @@ import React, { useState } from "react";
 import { Input, Button } from "../Generic";
 import { Container, Icon, Wrapper } from "./style";
 import { Popover } from "antd";
-import { UseSearch } from "../../hooks/functions";
+import { UseReplace, UseSearch } from "../../hooks/functions";
 import MobileFilter from "./MobileFilter";
 import { useQuery } from "react-query";
 import AdvancedSearch from "./AdvancedSearch";
 import { useHttp } from "../../hooks/useHttp";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const Filter = () => {
   const query = UseSearch();
+  const [visible, setVisible] = useState(false);
+  const hide = () => setVisible(false);
+  const show = () => setVisible(true);
 
   const [state, setState] = useState({
     country: query.get("country"),
@@ -39,26 +43,40 @@ const Filter = () => {
     }
   );
 
+  const navigate = useNavigate();
+  const { pathname } = useLocation();
+
+  const onChange = (country) => {
+    setState({ ...state, country: country });
+    navigate(`${pathname}${UseReplace("country", country)}`);
+  };
+
   return (
     <Container>
       <MobileFilter />
       <Wrapper>
-        <Input placeholder={"Enter a country"} pl={44}>
+        <Input
+          placeholder={"Enter a country"}
+          pl={44}
+          onChange={(e) => onChange(e.target.value)}
+        >
           <Icon.Home />
         </Input>
         <Popover
           placement="bottomRight"
+          visible={visible}
           content={
             <AdvancedSearch
               state={state}
               setState={setState}
               list={list}
               query={query}
+              hide={hide}
             />
           }
           trigger="click"
         >
-          <Button type={"secondary"} width={"131px"}>
+          <Button type={"secondary"} width={"131px"} onClick={show}>
             <Icon.Setting />
             Advanced
           </Button>

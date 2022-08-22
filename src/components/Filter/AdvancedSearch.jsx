@@ -5,7 +5,7 @@ import { UseReplace } from "../../hooks/functions";
 import { Button, Input } from "../Generic";
 import { Advanced, Inputs } from "./style";
 
-const AdvancedSearch = ({ state, setState, query, list }) => {
+const AdvancedSearch = ({ state, setState, query, list, hide }) => {
   const { pathname } = useLocation();
   const navigate = useNavigate();
 
@@ -109,7 +109,7 @@ const AdvancedSearch = ({ state, setState, query, list }) => {
         </Select>
       </Inputs>
       <Inputs>
-        <Button width={"130px"} type={"secondary"}>
+        <Button width={"130px"} type={"secondary"} onClick={hide}>
           Cancel
         </Button>
         <Button width={"130px"} type={"primary"} onClick={onClear}>

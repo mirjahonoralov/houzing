@@ -4,7 +4,6 @@ import { useEffect } from "react";
 
 const Map = ({ setData, data }) => {
   const [center, setCenter] = useState(null);
-  // const center =
   useEffect(() => {
     setCenter({
       lat: data?.locations?.latitude,
