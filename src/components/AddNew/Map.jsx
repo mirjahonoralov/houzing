@@ -7,11 +7,10 @@ const Map = ({ setData, data }) => {
   // const center =
   useEffect(() => {
     setCenter({
-      lat: data.locations.latitude,
-      lng: data.locations.longitude,
+      lat: data?.locations?.latitude,
+      lng: data?.locations?.longitude,
     });
   }, [data]);
-  console.log(center, "center");
   const containerStyle = {
     width: "100%",
     height: "400px",
@@ -37,13 +36,7 @@ const Map = ({ setData, data }) => {
       locations: { latitude: e.latLng.lat(), longitude: e.latLng.lng() },
     });
   };
-  console.log(
-    {
-      lng: data.locations.latitude,
-      lat: data.locations.longitude,
-    },
-    "location"
-  );
+
   return (
     <>
       {isLoaded && (

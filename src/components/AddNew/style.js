@@ -99,7 +99,6 @@ const CheckboxesWrapper = styled.div`
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   row-gap: 24px;
-  margin-bottom: 30px;
 
   @media ${device.tablet} {
     grid-template-columns: repeat(3, 1fr);

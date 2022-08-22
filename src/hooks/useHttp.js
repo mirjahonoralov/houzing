@@ -21,12 +21,12 @@ export const useHttp = () => {
       headers,
     })
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         return res.json();
       })
       .then((data) => data);
     if (res?.success) {
-      console.log(res);
+      // console.log(res);
       return res;
     }
     // if (res.status === 401) {

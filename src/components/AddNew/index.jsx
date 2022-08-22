@@ -70,7 +70,11 @@ const AddNew = () => {
       url: "/v1/houses",
       method: "POST",
       token: true,
-      body: data,
+      body: {
+        ...data,
+        componentsDto: { ...data.componentsDto, additional: "" },
+        homeAmenitiesDto: { ...data.homeAmenitiesDto, additional: "" },
+      },
     })
   );
 
@@ -81,7 +85,11 @@ const AddNew = () => {
         url: `/v1/houses/${id}`,
         method: "PUT",
         token: true,
-        body: data,
+        body: {
+          ...data,
+          componentsDto: { ...data.componentsDto, additional: "" },
+          homeAmenitiesDto: { ...data.homeAmenitiesDto, additional: "" },
+        },
       })
   );
 
@@ -127,7 +135,6 @@ const AddNew = () => {
       componentsDto: {
         ...data.componentsDto,
         [name]: data.componentsDto?.[name] ? false : true,
-        additional: "string",
       },
     });
   };
@@ -138,11 +145,9 @@ const AddNew = () => {
       homeAmenitiesDto: {
         ...data.homeAmenitiesDto,
         [name]: data.homeAmenitiesDto?.[name] ? false : true,
-        additional: "string",
       },
     });
   };
-  console.log(data, "data");
 
   const selectImg = (e) => {
     if (selectedImgs.length !== 4) {
@@ -320,40 +325,36 @@ const AddNew = () => {
           </MediaWrapper>
         </Section>
 
-        <Section>
-          <div className="subtitle">Components</div>
-          <CheckboxesWrapper>
-            {Object.keys(data.componentsDto).map((item, id) => (
-              <Checkbox
-                key={id}
-                checked={data.componentsDto[item]}
-                onChange={() => onChangeHouseComponents(item)}
-              >
-                {item}
-              </Checkbox>
-            ))}
-            <br />
+        {!id && (
+          <Section>
+            <div className="subtitle">Components</div>
+            <CheckboxesWrapper>
+              {Object.keys(data.componentsDto).map((item, id) => (
+                <Checkbox
+                  key={id}
+                  checked={data.componentsDto[item]}
+                  onChange={() => onChangeHouseComponents(item)}
+                >
+                  {item}
+                </Checkbox>
+              ))}
+              <br />
+            </CheckboxesWrapper>
+
             <div className="subtitle">Amenities</div>
-
-            {Object.keys(data.homeAmenitiesDto).map((item, id) => (
-              <Checkbox
-                key={id}
-                checked={data.homeAmenitiesDto[item]}
-                onChange={() => onChangeHouseAmenities(item)}
-              >
-                {item}
-              </Checkbox>
-            ))}
-          </CheckboxesWrapper>
-        </Section>
-
-        {/* <Section>
-          <div className="subtitle">Select Energy Class</div>
-          <Wrapper>
-            <Input2 placeholder={"Energy class"} />
-            <Input2 placeholder={"Energy Index in kWh/m2a"} />
-          </Wrapper>
-        </Section> */}
+            <CheckboxesWrapper>
+              {Object.keys(data.homeAmenitiesDto).map((item, id) => (
+                <Checkbox
+                  key={id}
+                  checked={data.homeAmenitiesDto[item]}
+                  onChange={() => onChangeHouseAmenities(item)}
+                >
+                  {item}
+                </Checkbox>
+              ))}
+            </CheckboxesWrapper>
+          </Section>
+        )}
         <ButtonWrapper>
           <Button
             onClick={onSubmit}

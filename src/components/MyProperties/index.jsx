@@ -71,8 +71,6 @@ const MyProperties = () => {
     );
   };
 
-  console.log(data);
-
   return (
     <Container>
       <Wrapper>

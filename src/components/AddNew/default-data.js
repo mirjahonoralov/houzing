@@ -8,7 +8,7 @@ export const body = {
   categoryId: 0,
   city: "",
   componentsDto: {
-    additional: "",
+    // additional: "",
     airCondition: false,
     courtyard: false,
     furniture: false,
@@ -19,7 +19,7 @@ export const body = {
   country: "",
   description: "",
   homeAmenitiesDto: {
-    additional: "",
+    // additional: "",
     busStop: false,
     garden: false,
     market: false,

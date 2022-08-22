@@ -19,8 +19,6 @@ const Properties = () => {
   const [totalElements, setTotalElements] = useState(null);
   const query = UseSearch();
   const { pathname } = useLocation();
-  console.log(search, "search");
-  console.log(query.get("page"), "query");
 
   const { request } = useHttp();
   useQuery(
