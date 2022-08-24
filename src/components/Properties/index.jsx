@@ -15,25 +15,30 @@ const Properties = () => {
   const [data, setData] = useState([]);
   const [filter, setFilter] = useState("list");
   const [loading, setLoading] = useState(false);
-  const [refetch, setRefetch] = useState(false);
   const [totalElements, setTotalElements] = useState(null);
   const query = UseSearch();
   const { pathname } = useLocation();
 
   const { mutate: filterRequest } = useMutation(() => {
     setLoading(true);
-    return request({ url: `/v1/houses/${filter}`, token: true });
+    return request({
+      url: `/v1/houses/${filter}${search && search}`,
+      token: true,
+    });
   });
 
   const { mutate: fetchData } = useMutation(() => {
     setLoading(true);
-    navigate(`${pathname}${UseReplace("page", 1)}`);
     return request({
       url: `/v1/houses/${filter}${search ? search : "?page=1"}`,
     });
   });
 
   useEffect(() => {
+    fetchFilteredData();
+  }, [setFilter, filter, filterRequest]);
+
+  const fetchFilteredData = () =>
     filterRequest("filter", {
       onSuccess: (res) => {
         setLoading(false);
@@ -45,7 +50,11 @@ const Properties = () => {
         setLoading(false);
       },
     });
-  }, [setFilter, filter, filterRequest]);
+
+  useEffect(() => {
+    if (!search) navigate(`${pathname}${UseReplace("page", 1)}`);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const { request } = useHttp();
 
@@ -61,7 +70,7 @@ const Properties = () => {
         setLoading(false);
       },
     });
-  }, [search, refetch, fetchData]);
+  }, [search, fetchData]);
 
   const navigate = useNavigate();
 
@@ -110,8 +119,7 @@ const Properties = () => {
                 info={card}
                 onClick={() => onClick(card.id)}
                 setFilter={setFilter}
-                refetch={refetch}
-                setRefetch={setRefetch}
+                fetchFilteredData={fetchFilteredData}
               />
             ))
           )}

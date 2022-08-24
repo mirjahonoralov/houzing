@@ -35,25 +35,25 @@ const Carousel = () => {
             <Info>
               <InfoIcon.Bed />
               <div className="description">
-                {info?.houseDetails?.bed || 0} Bed
+                {info?.houseDetails?.bed || 3} Bed
               </div>
             </Info>
             <Info>
               <InfoIcon.Bath />
               <div className="description">
-                {info?.houseDetails?.bath || 0} Baths
+                {info?.houseDetails?.bath || 2} Baths
               </div>
             </Info>
             <Info>
               <InfoIcon.Car />
               <div className="description">
-                {info?.houseDetails?.garage || 0} Garage
+                {info?.houseDetails?.garage || 1} Garage
               </div>
             </Info>
             <Info>
               <InfoIcon.Ruler />
               <div className="description">
-                {info?.houseDetails?.room || 0} Sq ft
+                {info?.houseDetails?.room || 5} Sq ft
               </div>
             </Info>
           </ItemsWrapper>
