@@ -20,17 +20,14 @@ const MyProperties = () => {
   const [data, setData] = useState(null);
   const { request } = useHttp();
   const [responseMessage, setResponseMessage] = useState(null);
+  const [refetch, setRefetch] = useState(false);
 
-  useQuery(
-    "my properties",
-    () => request({ url: "/v1/houses/me", token: true }),
-    {
-      onSuccess: (res) => {
-        setData(res.data);
-        setResponseMessage(res.message);
-      },
-    }
-  );
+  useQuery([refetch], () => request({ url: "/v1/houses/me", token: true }), {
+    onSuccess: (res) => {
+      setData(res.data);
+      setResponseMessage(res.message);
+    },
+  });
 
   const { mutate: deleteHome } = useMutation((id) =>
     request({ url: `/v1/houses/${id}`, method: "DELETE", token: true })
@@ -41,7 +38,7 @@ const MyProperties = () => {
       onSuccess: (res) => {
         if (res?.success) {
           message.success("Deleted");
-          refetch();
+          setRefetch(!refetch);
         }
       },
     });

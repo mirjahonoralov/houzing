@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Input2 } from "../Generic";
 import Map from "./Map";
 import {
@@ -16,7 +16,7 @@ import {
 import { useHttp } from "../../hooks/useHttp";
 import { useMutation, useQuery } from "react-query";
 import { useNavigate, useParams } from "react-router-dom";
-import { Checkbox, message, Spin } from "antd";
+import { Checkbox, message, Select, Spin } from "antd";
 import { LoadingOutlined } from "@ant-design/icons";
 import { body } from "./default-data";
 
@@ -24,6 +24,7 @@ const AddNew = () => {
   const { request } = useHttp();
   const navigate = useNavigate();
   const { id } = useParams();
+  const { Option } = Select;
   const [loading, setLoading] = useState(false);
 
   const [houseComponents, setHouseComponents] = useState([
@@ -50,6 +51,8 @@ const AddNew = () => {
   ]);
 
   const [data, setData] = useState(body);
+  const [categories, setCategories] = useState([]);
+  const [category, setCategory] = useState();
 
   const onChange = ({ target: { value, name } }) =>
     setData({ ...data, [name]: value });
@@ -61,7 +64,18 @@ const AddNew = () => {
     "edit house",
     () => id && request({ url: `/v1/houses/${id}`, token: true }),
     {
-      onSuccess: (res) => setData(res.data),
+      onSuccess: (res) => id && setData(res?.data),
+    }
+  );
+
+  useQuery(
+    "categories",
+    () => request({ url: `/v1/categories/list`, token: true }),
+    {
+      onSuccess: (res) => {
+        setCategories(res?.data);
+        setCategory(res?.data[0]?.id);
+      },
     }
   );
 
@@ -169,12 +183,17 @@ const AddNew = () => {
     />
   );
 
+  const onCategoryChange = (categoryId) => {
+    setCategory(categoryId);
+    setData({ ...data, categoryId: categoryId });
+  };
+
   return (
     <Container>
       <MainWrapper>
         <div className="title">Add new property</div>
         <Section>
-          <div className="subtitle">Contact information</div>
+          <div className="subtitle">About House</div>
           <Wrapper>
             <Input2
               value={data.name}
@@ -182,7 +201,20 @@ const AddNew = () => {
               onChange={onChange}
               name="name"
             />
-            <Input2 placeholder={"Type"} />
+            {/* <Input2 placeholder={"Type"} /> */}
+            <Select
+              value={category}
+              style={{
+                width: "100%",
+              }}
+              onChange={onCategoryChange}
+            >
+              {categories.map((item) => (
+                <Option key={item.id} value={item.id}>
+                  {item.name}
+                </Option>
+              ))}
+            </Select>
           </Wrapper>
           <div className="description">Property Description*</div>
           <Input2

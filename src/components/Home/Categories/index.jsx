@@ -47,6 +47,7 @@ const Categories = () => {
   const [width, setWidth] = useState(window.innerWidth);
   useEffect(() => {
     window.addEventListener("resize", () => setWidth(window.innerWidth));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [window.innerWidth]);
 
   const iconsPosition = width < 500 ? "2%" : "5%";
