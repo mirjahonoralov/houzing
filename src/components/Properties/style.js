@@ -87,4 +87,12 @@ const Wrapper = styled.div`
   }
 `;
 
-export { Container, Wrapper, Result, Top };
+const Loading = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+export { Container, Wrapper, Result, Top, Loading };

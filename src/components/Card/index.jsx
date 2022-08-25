@@ -14,6 +14,7 @@ import noUser from "../../assets/imgs/no-user.jpg";
 import { useMutation } from "react-query";
 import { useHttp } from "../../hooks/useHttp";
 import { useEffect } from "react";
+import { Popover } from "antd";
 
 const Card = ({
   info,
@@ -50,7 +51,15 @@ const Card = ({
     <Container mr={mr} isHomePage={isHomePage}>
       <Img onClick={onClick} src={info?.attachments[0]?.imgPath || noImg} />
       <Info>
-        <Person src={info?.user?.img || noUser} />
+        <Popover
+          content={
+            <h3>
+              Posted by {info?.user?.firstname} {info?.user?.lastname}
+            </h3>
+          }
+        >
+          <Person src={info?.user?.img || noUser} />
+        </Popover>
         <div
           className="subtitle"
           style={{ whiteSpace: "nowrap", overflow: "hidden" }}

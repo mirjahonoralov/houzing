@@ -7,7 +7,7 @@ import { UseReplace, UseSearch } from "../../hooks/functions";
 import { useHttp } from "../../hooks/useHttp";
 import Card from "../Card";
 import Filter from "../Filter";
-import { Container, Result, Top, Wrapper } from "./style";
+import { Container, Loading, Result, Top, Wrapper } from "./style";
 const { Option } = Select;
 
 const Properties = () => {
@@ -113,10 +113,13 @@ const Properties = () => {
             </Select>
           </div>
         </Result>
-        <Wrapper>
-          {loading ? (
+        {loading && (
+          <Loading>
             <Spin size="large" />
-          ) : (
+          </Loading>
+        )}
+        <Wrapper>
+          {!loading &&
             data?.map((card) => (
               <Card
                 key={card.id}
@@ -125,8 +128,7 @@ const Properties = () => {
                 setFilter={setFilter}
                 fetchFilteredData={fetchFilteredData}
               />
-            ))
-          )}
+            ))}
         </Wrapper>
 
         <Pagination
