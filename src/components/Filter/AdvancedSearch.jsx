@@ -6,12 +6,14 @@ import { Button, Input } from "../Generic";
 import { Advanced, Inputs } from "./style";
 
 const AdvancedSearch = ({ state, setState, query, list, hide }) => {
-  const { pathname } = useLocation();
+  const { pathname, search } = useLocation();
   const navigate = useNavigate();
 
   const onChange = ({ target }) => {
     const { value, name } = target;
     setState({ ...state, [name]: value });
+    if (search.includes("page"))
+      navigate(`${pathname}${UseReplace("page", "")}`);
     navigate(`${pathname}${UseReplace(name, value)}`);
   };
 
@@ -36,7 +38,7 @@ const AdvancedSearch = ({ state, setState, query, list, hide }) => {
       maxPrice: "",
     });
     setDef("Select Category");
-    navigate("/properties");
+    navigate(`/properties?page=${localStorage.getItem("pageNumber")}`);
   };
 
   const { Option } = Select;

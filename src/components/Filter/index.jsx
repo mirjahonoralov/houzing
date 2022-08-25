@@ -44,16 +44,24 @@ const Filter = () => {
   );
 
   const navigate = useNavigate();
-  const { pathname } = useLocation();
+  const { pathname, search } = useLocation();
 
   const onChange = (country) => {
     setState({ ...state, country: country });
+    if (search.includes("page"))
+      navigate(`${pathname}${UseReplace("page", "")}`);
     navigate(`${pathname}${UseReplace("country", country)}`);
   };
 
   return (
     <Container>
-      <MobileFilter />
+      <MobileFilter
+        onChange={onChange}
+        pathname={pathname}
+        setState={setState}
+        state={state}
+        query={query}
+      />
       <Wrapper>
         <Input
           placeholder={"Enter a country"}

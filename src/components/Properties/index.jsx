@@ -53,6 +53,7 @@ const Properties = () => {
 
   useEffect(() => {
     if (!search) navigate(`${pathname}${UseReplace("page", 1)}`);
+    localStorage.setItem("pageNumber", 1);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -78,7 +79,10 @@ const Properties = () => {
 
   const handleChange = (value) => setFilter(value);
 
-  const onChange = (page) => navigate(`${pathname}${UseReplace("page", page)}`);
+  const onPageChange = (page) => {
+    localStorage.setItem("pageNumber", page);
+    navigate(`${pathname}${UseReplace("page", page)}`);
+  };
 
   return (
     <>
@@ -128,7 +132,7 @@ const Properties = () => {
         <Pagination
           className="pagination"
           current={Number(query.get("page")) || 1}
-          onChange={onChange}
+          onChange={onPageChange}
           total={totalElements}
           pageSize={20}
         />
