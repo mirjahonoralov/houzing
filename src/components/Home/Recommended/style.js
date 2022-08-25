@@ -36,8 +36,12 @@ const Carousel = styled.div`
     display: none;
   }
 
+  @media (max-width: 1370px) {
+    padding: 0 7%;
+  }
+
   @media ${device.laptop} {
-    /* padding: 50px; */
+    padding: 0 9%;
   }
 
   @media (max-width: 900px) {
@@ -45,6 +49,9 @@ const Carousel = styled.div`
   }
   @media (max-width: 650px) {
     padding: 0 15%;
+  }
+  @media (max-width: 560px) {
+    padding: 0 13%;
   }
 `;
 

@@ -130,8 +130,12 @@ const Table = styled.table`
 `;
 
 const Icons = styled.div``;
-Icons.Edit = styled(edit)``;
-Icons.Trash = styled(trash)``;
+Icons.Edit = styled(edit)`
+  cursor: pointer;
+`;
+Icons.Trash = styled(trash)`
+  cursor: pointer;
+`;
 
 const CardWrapper = styled.div`
   display: flex;

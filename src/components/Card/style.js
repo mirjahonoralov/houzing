@@ -15,15 +15,15 @@ const Container = styled.div`
   background: #ffffff;
   border: 1px solid #e6e9ec;
   border-radius: 3px;
-  /* max-width: 380px;
-  min-width: 300px; */
   width: 360px;
   margin-right: ${({ mr }) => mr && `${mr}px`};
 
-  @media (max-width: 500px) {
-    min-width: 230px;
+  @media (max-width: 1300px) {
+    margin: auto;
+  }
 
-    width: 230px;
+  @media (max-width: 500px) {
+    width: 100%;
   }
 `;
 
@@ -57,13 +57,11 @@ const ItemsWrapper = styled.div`
 `;
 
 const Img = styled.img`
-  /* max-width: 380px;
-  min-width: 280px; */
   width: 100%;
   flex-grow: 10;
   height: 220px;
 
-  @media (max-width: 550px) {
+  @media (max-width: 500px) {
     height: 140px;
   }
 `;
@@ -72,7 +70,6 @@ const Person = styled.img`
   position: absolute;
   top: -20px;
   right: 20px;
-  /* border:2px solid */
   background: #ffffff;
   box-shadow: 0px 0px 10px rgba(13, 38, 59, 0.2);
   border-radius: 50%;

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Button, Input2 } from "../Generic";
 import Map from "./Map";
 import {

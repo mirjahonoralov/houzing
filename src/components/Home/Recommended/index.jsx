@@ -1,32 +1,48 @@
 import { LeftOutlined, RightOutlined } from "@ant-design/icons";
 import React, { useEffect, useRef, useState } from "react";
 import AliceCarousel from "react-alice-carousel";
+import { useQuery } from "react-query";
+import { useHttp } from "../../../hooks/useHttp";
 import Card from "../../Card";
 import { Icon } from "../Carousel/style";
 import { Carousel, Container, Wrapper } from "./style";
 
 const Recommended = () => {
   const slider = useRef();
+  const { request } = useHttp();
+  const [houses, setHouses] = useState([]);
+  const [width, setWidth] = useState(window.innerWidth);
+
   const items = [
-    <Card mr={10} />,
-    <Card mr={10} />,
-    <Card mr={10} />,
-    <Card mr={10} />,
-    <Card mr={10} />,
+    ...houses.map((house) => (
+      <Card mr={width > 900 ? 10 : 0} key={house.id} info={house} />
+    )),
   ];
+
+  useQuery("deps", () => request({ url: "/v1/houses/list" }), {
+    onSuccess: (res) => {
+      const all = res?.data;
+      const recommendedHouses = [];
+      for (let i = 0; i < 4; i++)
+        recommendedHouses.push(all[Math.floor(Math.random() * all.length)]);
+
+      setHouses(recommendedHouses);
+    },
+    enabled: !houses.length,
+  });
 
   const responsive = {
     0: { items: 1 },
     900: { items: 2 },
-    1200: { items: 3 },
+    1300: { items: 3 },
   };
 
-  const [width, setWidth] = useState(window.innerWidth);
   useEffect(() => {
     window.addEventListener("resize", () => setWidth(window.innerWidth));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [window.innerWidth]);
 
-  const iconsPosition = width < 500 ? "2%" : "5%";
+  const iconsPosition = width < 1024 ? "3%" : 560 ? "2%" : "5%";
 
   return (
     <Container>
