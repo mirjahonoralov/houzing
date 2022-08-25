@@ -1,4 +1,8 @@
 import styled from "styled-components";
+import { ReactComponent as home } from "../../../assets/icons/home/home.svg";
+import { ReactComponent as villa } from "../../../assets/icons/home/villa.svg";
+import { ReactComponent as apartment } from "../../../assets/icons/home/apartment.svg";
+import { ReactComponent as business } from "../../../assets/icons/home/business.svg";
 
 const Container = styled.div`
   display: flex;
@@ -54,12 +58,19 @@ const CategoryWrapper = styled.div`
   border-radius: 5px;
   overflow: hidden;
   cursor: pointer;
-  h3 {
-    color: #fff;
+  div {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+  }
+  h3 {
+    color: #fff;
+    position: absolute;
+    top: 70%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
   }
 
   @media (max-width: 500px) {
@@ -68,4 +79,11 @@ const CategoryWrapper = styled.div`
   }
 `;
 
-export { Container, Wrapper, Carousel, CategoryWrapper };
+const CategoryIcons = styled.div``;
+
+CategoryIcons.Home = styled(home)``;
+CategoryIcons.Villa = styled(villa)``;
+CategoryIcons.Business = styled(business)``;
+CategoryIcons.Apartment = styled(apartment)``;
+
+export { Container, Wrapper, Carousel, CategoryWrapper, CategoryIcons };

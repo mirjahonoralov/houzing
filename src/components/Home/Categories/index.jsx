@@ -3,21 +3,50 @@ import AliceCarousel from "react-alice-carousel";
 import { useQuery } from "react-query";
 import { useNavigate } from "react-router-dom";
 import { Icon } from "../Carousel/style";
-import { Carousel, CategoryWrapper, Container, Wrapper } from "./style";
-import categoryImg from "../../../assets/imgs/category.png";
+import {
+  Carousel,
+  CategoryIcons,
+  CategoryWrapper,
+  Container,
+  Wrapper,
+} from "./style";
+import apartment from "../../../assets/imgs/apartment.png";
+import house from "../../../assets/imgs/house.png";
+import villa from "../../../assets/imgs/villa.png";
+import office from "../../../assets/imgs/office.png";
 import { useHttp } from "../../../hooks/useHttp";
 import { LeftOutlined, RightOutlined } from "@ant-design/icons";
 import { useEffect } from "react";
 
 const Categories = () => {
-  const Category = ({ category }) => (
+  const Category = ({ category, media }) => (
     <CategoryWrapper
       onClick={() => navigate(`/properties?category_id=${category?.id}`)}
     >
-      <img src={categoryImg} alt="categoryImg" />
+      <img src={media.image} alt="categoryImage" />
+      <div>{media.icon}</div>
       <h3>{category?.name}</h3>
     </CategoryWrapper>
   );
+
+  const Images = [
+    {
+      icon: <CategoryIcons.Villa />,
+      image: villa,
+    },
+    {
+      icon: <CategoryIcons.Apartment />,
+      image: apartment,
+    },
+    {
+      icon: <CategoryIcons.Home />,
+      image: villa,
+    },
+    {
+      icon: <CategoryIcons.Business />,
+      image: office,
+    },
+  ];
 
   const navigate = useNavigate();
   const slider = useRef();
@@ -53,7 +82,13 @@ const Categories = () => {
   const iconsPosition = width < 500 ? "2%" : "5%";
 
   const items = [
-    ...list.map((item) => <Category category={item} key={item.id} />),
+    ...list.map((item, index) => (
+      <Category
+        category={item}
+        key={item.id}
+        media={Images[index % list.length]}
+      />
+    )),
   ];
 
   return (
@@ -80,7 +115,6 @@ const Categories = () => {
             mouseTracking
             keyboardNavigation
             ref={slider}
-            // autoWidth
             responsive={responsive}
             items={items}
           />
