@@ -23,6 +23,8 @@ const Container = styled.div`
   }
 
   @media (max-width: 500px) {
+    width: ${({ isHomePage }) => isHomePage && "100%"};
+    min-width: 200px;
     width: 100%;
   }
 `;
@@ -62,6 +64,10 @@ const Img = styled.img`
   height: 220px;
 
   @media (max-width: 500px) {
+    height: ${({ isHomePage }) => isHomePage && "140px"};
+  }
+
+  @media (max-width: 405px) {
     height: 140px;
   }
 `;

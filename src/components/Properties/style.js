@@ -6,6 +6,7 @@ const Container = styled.div`
   flex-direction: column;
   margin-top: 64px;
   align-items: center;
+  width: 100%;
 
   .pagination {
     margin-top: 30px;
@@ -64,7 +65,7 @@ const Result = styled.div`
 const Wrapper = styled.div`
   padding: 0 130px;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   justify-items: center;
   gap: 20px;
   width: 100%;
@@ -81,8 +82,8 @@ const Wrapper = styled.div`
     grid-template-columns: 1fr;
   }
 
-  @media ${device.mobileL} {
-    padding: 30px;
+  @media (max-width: 480px) {
+    padding: 15px;
   }
 `;
 

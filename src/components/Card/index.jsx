@@ -15,7 +15,14 @@ import { useMutation } from "react-query";
 import { useHttp } from "../../hooks/useHttp";
 import { useEffect } from "react";
 
-const Card = ({ info, mr, onClick, setFilter, fetchFilteredData }) => {
+const Card = ({
+  info,
+  mr,
+  onClick,
+  setFilter,
+  fetchFilteredData,
+  isHomePage,
+}) => {
   const { request } = useHttp();
   const [likeStatus, setLikeStatus] = useState(null);
 
@@ -40,7 +47,7 @@ const Card = ({ info, mr, onClick, setFilter, fetchFilteredData }) => {
   }, [addFavorite, likeStatus]);
 
   return (
-    <Container mr={mr}>
+    <Container mr={mr} isHomePage={isHomePage}>
       <Img onClick={onClick} src={info?.attachments[0]?.imgPath || noImg} />
       <Info>
         <Person src={info?.user?.img || noUser} />

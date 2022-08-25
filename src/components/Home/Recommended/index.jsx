@@ -15,7 +15,12 @@ const Recommended = () => {
 
   const items = [
     ...houses.map((house) => (
-      <Card mr={width > 900 ? 10 : 0} key={house.id} info={house} />
+      <Card
+        mr={width > 900 ? 10 : 0}
+        key={house.id}
+        info={house}
+        isHomePage={true}
+      />
     )),
   ];
 
