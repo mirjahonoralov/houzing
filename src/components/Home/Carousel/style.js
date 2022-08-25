@@ -23,7 +23,7 @@ const Container = styled(Carousel)`
   width: 100%;
 
   @media ${device.tablet} {
-    /* height: 300px; */
+    overflow: hidden;
   }
 `;
 
@@ -41,8 +41,9 @@ const Img = styled.img`
   background: #000;
 
   @media ${device.tablet} {
-    /* height: 100% !important; */
-    /* height: 300px !important; */
+    width: 768px !important;
+    margin-right: calc(384px - 50%);
+    height: 300px;
   }
 `;
 
@@ -101,7 +102,7 @@ const Content = styled.div`
   }
 
   @media (max-width: 630px) {
-    top: 80px;
+    top: 130px;
 
     .title {
       font-size: 15px;
@@ -110,10 +111,11 @@ const Content = styled.div`
     h1 {
       margin-bottom: 0;
       font-size: 15px;
+      width: 90vw;
     }
-    h4 {
+    /* h4 {
       display: none;
-    }
+    } */
   }
 `;
 
