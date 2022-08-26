@@ -4,6 +4,7 @@ import Categories from "./Categories";
 import Info from "./Info";
 import Recommended from "./Recommended";
 import { Container } from "./style";
+import Testimonials from "./Testimonals";
 
 const Home = () => {
   return (
@@ -12,6 +13,7 @@ const Home = () => {
       <Recommended />
       <Info />
       <Categories />
+      <Testimonials />
     </Container>
   );
 };

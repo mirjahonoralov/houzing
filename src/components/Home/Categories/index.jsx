@@ -17,13 +17,14 @@ import office from "../../../assets/imgs/office.png";
 import { useHttp } from "../../../hooks/useHttp";
 import { LeftOutlined, RightOutlined } from "@ant-design/icons";
 import { useEffect } from "react";
+import Loading from "../../Loading";
 
 const Categories = () => {
   const Category = ({ category, media }) => (
     <CategoryWrapper
       onClick={() => navigate(`/properties?category_id=${category?.id}`)}
     >
-      <img src={media.image} alt="categoryImage" />
+      <img src={media?.image} alt="categoryImage" />
       <div>{media.icon}</div>
       <h3>{category?.name}</h3>
     </CategoryWrapper>
@@ -52,6 +53,8 @@ const Categories = () => {
   const slider = useRef();
   const [list, setList] = useState([]);
   const { request } = useHttp();
+  const [loading, setLoading] = useState(true);
+
   useQuery(
     "",
     () =>
@@ -62,6 +65,7 @@ const Categories = () => {
     {
       onSuccess: (res) => {
         if (res?.data) setList(res?.data || []);
+        setLoading(false);
       },
     }
   );
@@ -83,11 +87,7 @@ const Categories = () => {
 
   const items = [
     ...list.map((item, index) => (
-      <Category
-        category={item}
-        key={item.id}
-        media={Images[index % list.length]}
-      />
+      <Category category={item} key={item.id} media={Images[index % 4]} />
     )),
   ];
 
@@ -97,29 +97,33 @@ const Categories = () => {
       <div className="subtitle">
         Nulla quis curabitur velit volutpat auctor bibendum consectetur sit.
       </div>
-      <Wrapper>
-        <Carousel>
-          <Icon
-            position={{ right: iconsPosition }}
-            onClick={() => slider.current.slideNext()}
-          >
-            <LeftOutlined />
-          </Icon>
-          <Icon
-            position={{ left: iconsPosition }}
-            onClick={() => slider.current.slidePrev()}
-          >
-            <RightOutlined />
-          </Icon>
-          <AliceCarousel
-            mouseTracking
-            keyboardNavigation
-            ref={slider}
-            responsive={responsive}
-            items={items}
-          />
-        </Carousel>
-      </Wrapper>
+      {loading ? (
+        <Loading />
+      ) : (
+        <Wrapper>
+          <Carousel>
+            <Icon
+              position={{ right: iconsPosition }}
+              onClick={() => slider.current.slideNext()}
+            >
+              <LeftOutlined />
+            </Icon>
+            <Icon
+              position={{ left: iconsPosition }}
+              onClick={() => slider.current.slidePrev()}
+            >
+              <RightOutlined />
+            </Icon>
+            <AliceCarousel
+              mouseTracking
+              keyboardNavigation
+              ref={slider}
+              responsive={responsive}
+              items={items}
+            />
+          </Carousel>
+        </Wrapper>
+      )}
     </Container>
   );
 };
