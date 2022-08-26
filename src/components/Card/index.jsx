@@ -49,7 +49,11 @@ const Card = ({
 
   return (
     <Container mr={mr} isHomePage={isHomePage}>
-      <Img onClick={onClick} src={info?.attachments[0]?.imgPath || noImg} />
+      <Img
+        isHomePage={isHomePage}
+        onClick={onClick}
+        src={info?.attachments[0]?.imgPath || noImg}
+      />
       <Info>
         <Popover
           content={

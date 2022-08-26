@@ -64,11 +64,11 @@ const Img = styled.img`
   height: 220px;
 
   @media (max-width: 500px) {
-    height: ${({ isHomePage }) => isHomePage && "140px"};
+    height: ${({ isHomePage }) => isHomePage && "auto"};
   }
 
   @media (max-width: 405px) {
-    height: 140px;
+    height: auto;
   }
 `;
 

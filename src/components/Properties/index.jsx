@@ -1,4 +1,4 @@
-import { Pagination, Select, Spin } from "antd";
+import { Pagination, Select } from "antd";
 import React, { useState } from "react";
 import { useEffect } from "react";
 import { useMutation } from "react-query";

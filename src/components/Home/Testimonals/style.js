@@ -35,6 +35,13 @@ const TestimonialWrapper = styled.div`
   gap: 20px;
   align-items: center;
   margin: auto;
+
+  @media (max-width: 550px) {
+    width: 90%;
+    min-width: 180px;
+    /* margin: 0 10px;
+    margin-right: 10px; */
+  }
 `;
 
 const Card = styled.div`
@@ -43,6 +50,10 @@ const Card = styled.div`
   background: #fff;
   width: 100%;
   position: relative;
+
+  @media (max-width: 425px) {
+    padding: 20px;
+  }
 `;
 
 const Author = styled.div`
