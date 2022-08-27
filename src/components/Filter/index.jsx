@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Input, Button } from "../Generic";
 import { Container, Icon, Wrapper } from "./style";
 import { Popover } from "antd";
@@ -53,6 +53,12 @@ const Filter = () => {
     navigate(`${pathname}${UseReplace("country", country)}`);
   };
 
+  const [width, setWidth] = useState(window.innerWidth);
+  useEffect(() => {
+    window.addEventListener("resize", () => setWidth(window.innerWidth));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [window.innerWidth]);
+
   return (
     <Container>
       <MobileFilter
@@ -61,17 +67,19 @@ const Filter = () => {
         setState={setState}
         state={state}
         query={query}
+        list={list}
       />
       <Wrapper>
         <Input
           placeholder={"Enter a country"}
           pl={44}
           onChange={(e) => onChange(e.target.value)}
+          value={state.country}
         >
           <Icon.Home />
         </Input>
         <Popover
-          placement="bottomRight"
+          placement={width > 768 ? "bottomRight" : "bottomLeft"}
           visible={visible}
           content={
             <AdvancedSearch

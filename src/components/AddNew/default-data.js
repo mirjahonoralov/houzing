@@ -1,10 +1,6 @@
 export const body = {
   address: "",
-  attachments: [
-    {
-      imgPath: "",
-    },
-  ],
+  attachments: [],
   categoryId: 0,
   city: "",
   componentsDto: {

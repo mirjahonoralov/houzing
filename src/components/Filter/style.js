@@ -52,6 +52,14 @@ const Advanced = styled.div`
   background: #fff;
   border-radius: 5px;
   padding: 10px;
+
+  @media (max-width: 900px) {
+    width: 90vw;
+  }
+
+  @media (max-width: 700px) {
+    width: 80vw;
+  }
 `;
 
 Advanced.Title = styled.div`
@@ -69,6 +77,16 @@ const Inputs = styled.div`
   gap: 20px;
   margin-bottom: 20px;
   justify-content: flex-end;
+
+  @media (max-width: 700px) {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  @media (max-width: 400px) {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
 
   .ant-select-selector {
     height: 45px !important;

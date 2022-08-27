@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Input2 } from "../Generic";
 import Map from "./Map";
 import {
@@ -27,32 +27,11 @@ const AddNew = () => {
   const { Option } = Select;
   const [loading, setLoading] = useState(false);
 
-  const [houseComponents, setHouseComponents] = useState([
-    // { name: "additional", isSelected: false },
-    { name: "airCondition", isSelected: false },
-    { name: "Drycourtyarder", isSelected: false },
-    { name: "furniture", isSelected: true },
-    { name: "gasStove", isSelected: false },
-    { name: "internet", isSelected: true },
-    { name: "tv", isSelected: false },
-  ]);
-
-  const [amenities, setAmenities] = useState([
-    { name: "additional", isSelected: false },
-    { name: "busStop", isSelected: false },
-    { name: "garden", isSelected: false },
-    { name: "market", isSelected: false },
-    { name: "park", isSelected: false },
-    { name: "parking", isSelected: false },
-    { name: "school", isSelected: false },
-    { name: "stadium", isSelected: false },
-    { name: "subway", isSelected: false },
-    { name: "superMarket", isSelected: false },
-  ]);
-
   const [data, setData] = useState(body);
   const [categories, setCategories] = useState([]);
   const [category, setCategory] = useState();
+
+  console.log(data, "data");
 
   const onChange = ({ target: { value, name } }) =>
     setData({ ...data, [name]: value });
@@ -60,13 +39,23 @@ const AddNew = () => {
   const onHouseDetailsChange = ({ target: { value, name } }) =>
     setData({ ...data, houseDetails: { ...data.houseDetails, [name]: value } });
 
-  useQuery(
-    "edit house",
-    () => id && request({ url: `/v1/houses/${id}`, token: true }),
-    {
-      onSuccess: (res) => id && setData(res?.data),
-    }
+  // const edit = useQuery(
+  //   "edit house",
+  //   () => id && request({ url: `/v1/houses/${id}`, token: true }),
+  //   {
+  //     onSuccess: (res) => id && setData(res?.data),
+  //   }
+  // );
+
+  const { mutate: getSelectedHouse } = useMutation(
+    () => id && request({ url: `/v1/houses/${id}`, token: true })
   );
+
+  useEffect(() => {
+    getSelectedHouse("getData", {
+      onSuccess: (res) => id && setData(res?.data),
+    });
+  }, [id]);
 
   useQuery(
     "categories",
@@ -135,15 +124,6 @@ const AddNew = () => {
   };
 
   const onChangeHouseComponents = (name) => {
-    // setHouseComponents((prev) => {
-    //   return prev.map((item) => {
-    //     if (item.name === name) {
-    //       if (item.isSelected) return { ...item, isSelected: false };
-    //       else return { ...item, isSelected: true };
-    //     } else return item;
-    //   });
-    // });
-
     setData({
       ...data,
       componentsDto: {
@@ -163,15 +143,20 @@ const AddNew = () => {
     });
   };
 
+  const [selectedImgs, setSelectedImgs] = useState([]);
   const selectImg = (e) => {
-    if (selectedImgs.length !== 4) {
+    if (data.attachments.length !== 4) {
       const [file] = e.target.files;
-      console.log(file, "file");
-      setSelectedImgs([...selectedImgs, URL.createObjectURL(file)]);
+      // setSelectedImgs([...selectedImgs, URL.createObjectURL(file)]);
+      setData({
+        ...data,
+        attachments: [
+          ...data.attachments,
+          { imgPath: URL.createObjectURL(file) },
+        ],
+      });
     }
   };
-
-  const [selectedImgs, setSelectedImgs] = useState([]);
 
   const antIcon = (
     <LoadingOutlined
@@ -201,7 +186,6 @@ const AddNew = () => {
               onChange={onChange}
               name="name"
             />
-            {/* <Input2 placeholder={"Type"} /> */}
             <Select
               value={category}
               style={{
@@ -311,23 +295,27 @@ const AddNew = () => {
             <div className="description">Featured image</div>
             <Imgs>
               <ImgWrapper>
-                {selectedImgs.length >= 0 && (
+                {/* {selectedImgs.length >= 0 && (
                   <img src={selectedImgs[0]} alt="" />
+                )} */}
+
+                {data?.attachments.length >= 0 && (
+                  <img src={data.attachments[0]?.imgPath} alt="" />
                 )}
               </ImgWrapper>
               <ImgWrapper>
-                {selectedImgs.length > 0 && (
-                  <img src={selectedImgs[1]} alt="" />
+                {data?.attachments.length > 0 && (
+                  <img src={data.attachments[1]?.imgPath} alt="" />
                 )}
               </ImgWrapper>
               <ImgWrapper>
-                {selectedImgs.length > 1 && (
-                  <img src={selectedImgs[2]} alt="" />
+                {data?.attachments.length > 1 && (
+                  <img src={data.attachments[2]?.imgPath} alt="" />
                 )}
               </ImgWrapper>
               <ImgWrapper>
-                {selectedImgs.length > 2 && (
-                  <img src={selectedImgs[3]} alt="" />
+                {data?.attachments.length > 2 && (
+                  <img src={data.attachments[3]?.imgPath} alt="" />
                 )}
               </ImgWrapper>
             </Imgs>

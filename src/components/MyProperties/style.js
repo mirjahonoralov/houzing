@@ -176,12 +176,17 @@ const CardWrapper = styled.div`
 
 const ImgWrapper = styled.div`
   min-width: 113px;
+  width: 113px;
   height: 113px;
   background: #c4c4c4;
   border-radius: 3px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
 
   img {
-    width: 100%;
+    height: 100%;
   }
 
   @media (max-width: 400px) {
